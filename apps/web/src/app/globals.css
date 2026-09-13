@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    --background: #090d16;
-    --foreground: #f8fafc;
-    --card: #0f172a;
-    --card-foreground: #f8fafc;
-    --border: #1e293b;
-    --primary: #10b981;
-    --primary-foreground: #ffffff;
-    --accent: #1e293b;
-    --accent-foreground: #f8fafc;
-    --muted: #64748b;
+    --background: #0A0A0A;
+    --foreground: #FFF8F0;
+    --card: #141414;
+    --card-foreground: #FFF8F0;
+    --border: #262626;
+    --primary: #F97316;
+    --primary-foreground: #0A0A0A;
+    --accent: #1C1410;
+    --accent-foreground: #FFF8F0;
+    --muted: #A3A3A3;
   }
 }
 
@@ -31,21 +31,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #0A0A0A;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #262626;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #404040;
 }
 
-/* Luxury Glow effects */
-.glow-emerald {
-  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.18);
+/* Glow effects */
+.glow-orange {
+  box-shadow: 0 0 35px -5px rgba(249, 115, 22, 0.18);
 }
 
 .glow-rose {
@@ -53,14 +53,14 @@ body {
 }
 
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(20, 20, 20, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-card {
-  background: rgba(24, 34, 52, 0.6);
+  background: rgba(26, 26, 26, 0.6);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
