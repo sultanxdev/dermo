@@ -168,7 +168,7 @@ export default function LeadsPage() {
                 className="glass-card rounded-2xl p-3 border border-neutral-800/90 flex flex-col min-w-[240px] bg-[#0D0D0D]"
               >
                 {/* Stage Header */}
-                <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-800">
+                <div className="flex items-center justify-between pb-2 mb-3 border-b border-neutral-800">
                   <div className="flex items-center gap-1.5">
                     <span className={`w-2 h-2 rounded-full ${stage.color.split(' ')[2]}`} />
                     <h3 className="font-bold text-xs text-white truncate">{stage.label}</h3>
@@ -187,7 +187,7 @@ export default function LeadsPage() {
                     >
                       <div className="flex items-start justify-between gap-1">
                         <span className="font-bold text-xs text-white">{lead.name}</span>
-                        <span className="px-1.5 py-0.5 rounded bg-neutral-800 text-[9px] font-semibold text-orange-400 border border-slate-700">
+                        <span className="px-1.5 py-0.5 rounded bg-neutral-800 text-[9px] font-semibold text-orange-400 border border-neutral-700">
                           {lead.source}
                         </span>
                       </div>
@@ -198,7 +198,7 @@ export default function LeadsPage() {
                       </div>
 
                       {lead.primaryConcern && (
-                        <p className="text-[11px] text-neutral-300 line-clamp-2 bg-neutral-950/60 p-1.5 rounded-lg border border-slate-800">
+                        <p className="text-[11px] text-neutral-300 line-clamp-2 bg-neutral-950/60 p-1.5 rounded-lg border border-neutral-800">
                           {lead.primaryConcern}
                         </p>
                       )}
@@ -265,7 +265,7 @@ export default function LeadsPage() {
                   <td className="p-3.5 font-bold text-white">{lead.name}</td>
                   <td className="p-3.5 font-mono text-neutral-400">{lead.phone}</td>
                   <td className="p-3.5">
-                    <span className="px-2 py-0.5 rounded bg-neutral-800 text-[10px] font-semibold text-orange-400 border border-slate-700">
+                    <span className="px-2 py-0.5 rounded bg-neutral-800 text-[10px] font-semibold text-orange-400 border border-neutral-700">
                       {lead.source}
                     </span>
                   </td>
@@ -352,7 +352,7 @@ export default function LeadsPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-slate-700"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-neutral-700"
                 >
                   Cancel
                 </button>

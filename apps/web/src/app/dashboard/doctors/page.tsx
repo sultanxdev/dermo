@@ -54,8 +54,8 @@ export default function DoctorsPage() {
             onClick={() => setSelectedDoc(doc)}
             className={`glass-card rounded-2xl p-6 border transition-all cursor-pointer space-y-4 ${
               selectedDoc?.id === doc.id
-                ? 'border-orange-500/80 bg-slate-900/90 glow-orange'
-                : 'border-neutral-800 hover:border-slate-700'
+                ? 'border-orange-500/80 bg-neutral-900/90 glow-orange'
+                : 'border-neutral-800 hover:border-neutral-700'
             }`}
           >
             <div className="flex items-start gap-4">
@@ -76,7 +76,7 @@ export default function DoctorsPage() {
               </div>
             </div>
 
-            <p className="text-xs text-neutral-300 leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-slate-800">
+            <p className="text-xs text-neutral-300 leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-neutral-800">
               {doc.bio}
             </p>
 
@@ -88,7 +88,7 @@ export default function DoctorsPage() {
                 {doc.specialty.map((spec, i) => (
                   <span
                     key={i}
-                    className="px-2 py-0.5 rounded-lg bg-neutral-900 text-neutral-300 text-[10px] border border-slate-800"
+                    className="px-2 py-0.5 rounded-lg bg-neutral-900 text-neutral-300 text-[10px] border border-neutral-800"
                   >
                     {spec}
                   </span>
@@ -111,7 +111,7 @@ export default function DoctorsPage() {
       {/* Selected Doctor Shift Schedule Inspector */}
       {selectedDoc && (
         <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-orange-400" />
               <h3 className="font-bold text-sm text-white">
@@ -129,7 +129,7 @@ export default function DoctorsPage() {
                 key={idx}
                 className={`p-3.5 rounded-xl border text-center text-xs space-y-1 ${
                   shift.isWorking
-                    ? 'bg-slate-900/90 border-neutral-800 text-neutral-200'
+                    ? 'bg-neutral-900/90 border-neutral-800 text-neutral-200'
                     : 'bg-neutral-950/40 border-neutral-900 text-neutral-600 opacity-60'
                 }`}
               >

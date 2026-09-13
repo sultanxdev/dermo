@@ -324,7 +324,7 @@ export default function ConversationsPage() {
 
         {/* Right: Interactive WhatsApp Mobile Simulator (4 cols) */}
         <div className="lg:col-span-4 glass-card rounded-2xl border border-neutral-800 flex flex-col p-4 space-y-4">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-800">
+          <div className="flex items-center gap-2 pb-3 border-b border-neutral-800">
             <Smartphone className="w-5 h-5 text-orange-400" />
             <div>
               <h3 className="font-bold text-xs text-white">Interactive WhatsApp Phone Simulator</h3>

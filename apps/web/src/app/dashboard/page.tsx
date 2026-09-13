@@ -170,7 +170,7 @@ export default function DashboardOverviewPage() {
         {/* Left 7 Cols: Appointments & Activity */}
         <div className="lg:col-span-7 space-y-6">
           {/* Upcoming Appointments */}
-          <div className="glass-card rounded-2xl p-6 space-y-4 border border-slate-800">
+          <div className="glass-card rounded-2xl p-6 space-y-4 border border-neutral-800">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-orange-400" />
@@ -212,7 +212,7 @@ export default function DashboardOverviewPage() {
                           ? 'bg-orange-500/15 text-orange-300 border-orange-500/30'
                           : apt.status === 'BOOKED'
                           ? 'bg-blue-500/15 text-blue-300 border-blue-500/30'
-                          : 'bg-neutral-800 text-neutral-300 border-slate-700'
+                          : 'bg-neutral-800 text-neutral-300 border-neutral-700'
                       }`}
                     >
                       {apt.status}
@@ -229,7 +229,7 @@ export default function DashboardOverviewPage() {
           </div>
 
           {/* Recent WhatsApp Live Conversations */}
-          <div className="glass-card rounded-2xl p-6 space-y-4 border border-slate-800">
+          <div className="glass-card rounded-2xl p-6 space-y-4 border border-neutral-800">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-orange-400" />
@@ -284,7 +284,7 @@ export default function DashboardOverviewPage() {
         {/* Right 5 Cols: Doctor Availability Today & AI Performance */}
         <div className="lg:col-span-5 space-y-6">
           {/* Doctor Profiles & Shifts */}
-          <div className="glass-card rounded-2xl p-6 space-y-4 border border-slate-800">
+          <div className="glass-card rounded-2xl p-6 space-y-4 border border-neutral-800">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Stethoscope className="w-5 h-5 text-orange-400" />
@@ -308,7 +308,7 @@ export default function DashboardOverviewPage() {
                     <img
                       src={doc.avatarUrl || 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=120'}
                       alt={doc.name}
-                      className="w-11 h-11 rounded-xl object-cover border border-slate-700"
+                      className="w-11 h-11 rounded-xl object-cover border border-neutral-700"
                     />
                     <div>
                       <div className="font-bold text-white text-xs sm:text-sm">{doc.name}</div>

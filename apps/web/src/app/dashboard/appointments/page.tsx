@@ -187,7 +187,7 @@ export default function AppointmentsPage() {
 
       {/* Live Availability Inspector Card */}
       <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-5">
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-neutral-800">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-orange-400" />
             <h3 className="font-bold text-sm text-white">Live Slot Availability Inspector</h3>
@@ -435,7 +435,7 @@ export default function AppointmentsPage() {
                 <button
                   type="button"
                   onClick={() => setShowBookingModal(false)}
-                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-slate-700"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-neutral-700"
                 >
                   Cancel
                 </button>

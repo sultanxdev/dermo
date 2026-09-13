@@ -177,7 +177,7 @@ export default function KnowledgePage() {
                       {faq.category}
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-300 leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-slate-800">
+                  <p className="text-xs text-neutral-300 leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-neutral-800">
                     {faq.answer}
                   </p>
                 </div>
@@ -227,7 +227,7 @@ export default function KnowledgePage() {
                     </span>
                   </div>
 
-                  <p className="text-xs text-neutral-300 leading-relaxed line-clamp-4 bg-neutral-950/60 p-3 rounded-xl border border-slate-800">
+                  <p className="text-xs text-neutral-300 leading-relaxed line-clamp-4 bg-neutral-950/60 p-3 rounded-xl border border-neutral-800">
                     {doc.content}
                   </p>
                 </div>
