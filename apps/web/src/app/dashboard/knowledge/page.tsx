@@ -105,10 +105,10 @@ export default function KnowledgePage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-emerald-400" />
+            <BookOpen className="w-6 h-6 text-orange-400" />
             <span>Clinic Knowledge Base & Grounded FAQs</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-neutral-400 mt-1">
             Approved answers and vectorized documents used by LangChain & pgvector for zero-hallucination responses.
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function KnowledgePage() {
           {activeTab === 'faqs' ? (
             <button
               onClick={() => setShowFaqModal(true)}
-              className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all"
+              className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all"
             >
               <Plus className="w-4 h-4" />
               <span>Add FAQ</span>
@@ -125,7 +125,7 @@ export default function KnowledgePage() {
           ) : (
             <button
               onClick={() => setShowDocModal(true)}
-              className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all"
+              className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all"
             >
               <Plus className="w-4 h-4" />
               <span>Add Document</span>
@@ -135,13 +135,13 @@ export default function KnowledgePage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-800 gap-6 text-xs font-semibold">
+      <div className="flex border-b border-neutral-800 gap-6 text-xs font-semibold">
         <button
           onClick={() => setActiveTab('faqs')}
           className={`pb-3 transition-colors flex items-center gap-2 ${
             activeTab === 'faqs'
-              ? 'text-emerald-400 border-b-2 border-emerald-400'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'text-orange-400 border-b-2 border-orange-400'
+              : 'text-neutral-400 hover:text-neutral-200'
           }`}
         >
           <CheckCircle2 className="w-4 h-4" />
@@ -152,8 +152,8 @@ export default function KnowledgePage() {
           onClick={() => setActiveTab('docs')}
           className={`pb-3 transition-colors flex items-center gap-2 ${
             activeTab === 'docs'
-              ? 'text-emerald-400 border-b-2 border-emerald-400'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'text-orange-400 border-b-2 border-orange-400'
+              : 'text-neutral-400 hover:text-neutral-200'
           }`}
         >
           <Database className="w-4 h-4" />
@@ -168,25 +168,25 @@ export default function KnowledgePage() {
             {faqs.map((faq) => (
               <div
                 key={faq.id}
-                className="glass-card rounded-2xl p-5 border border-slate-800 space-y-3 flex flex-col justify-between"
+                className="glass-card rounded-2xl p-5 border border-neutral-800 space-y-3 flex flex-col justify-between"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <span className="font-bold text-sm text-white">{faq.question}</span>
-                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[9px] font-bold border border-emerald-500/30 whitespace-nowrap">
+                    <span className="px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 text-[9px] font-bold border border-orange-500/30 whitespace-nowrap">
                       {faq.category}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                  <p className="text-xs text-neutral-300 leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-slate-800">
                     {faq.answer}
                   </p>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400">
+                <div className="pt-2 flex items-center justify-between text-[11px] text-neutral-400">
                   <span>Viewed by AI {faq.viewCount || 0} times</span>
                   <button
                     onClick={() => handleDeleteFaq(faq.id)}
-                    className="text-slate-500 hover:text-rose-400 p-1"
+                    className="text-neutral-500 hover:text-rose-400 p-1"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -204,20 +204,20 @@ export default function KnowledgePage() {
             {docs.map((doc) => (
               <div
                 key={doc.id}
-                className="glass-card rounded-2xl p-5 border border-slate-800 space-y-4 flex flex-col justify-between"
+                className="glass-card rounded-2xl p-5 border border-neutral-800 space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <h3 className="font-bold text-sm text-white">{doc.title}</h3>
-                      <div className="text-[10px] text-slate-400 mt-0.5">
+                      <div className="text-[10px] text-neutral-400 mt-0.5">
                         Category: {doc.category} • Version: {doc.version}
                       </div>
                     </div>
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                         doc.status === 'READY'
-                          ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                          ? 'bg-orange-500/15 text-orange-300 border-orange-500/30'
                           : doc.status === 'PROCESSING'
                           ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
                           : 'bg-rose-500/15 text-rose-300 border-rose-500/30'
@@ -227,21 +227,21 @@ export default function KnowledgePage() {
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-300 leading-relaxed line-clamp-4 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                  <p className="text-xs text-neutral-300 leading-relaxed line-clamp-4 bg-neutral-950/60 p-3 rounded-xl border border-slate-800">
                     {doc.content}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
-                  <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                    <Layers className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="pt-3 border-t border-neutral-800 flex items-center justify-between text-xs">
+                  <span className="text-[11px] text-neutral-400 flex items-center gap-1">
+                    <Layers className="w-3.5 h-3.5 text-orange-400" />
                     <span>{doc.chunkCount || 1} pgvector chunks</span>
                   </span>
 
                   <button
                     onClick={() => handleReindex(doc.id)}
                     disabled={reindexingId === doc.id}
-                    className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 border border-slate-700 transition-colors disabled:opacity-40"
+                    className="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-xs font-semibold flex items-center gap-1.5 border border-neutral-700 transition-colors disabled:opacity-40"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${reindexingId === doc.id ? 'animate-spin' : ''}`} />
                     <span>{reindexingId === doc.id ? 'Embedding...' : 'Re-index with Gemini'}</span>
@@ -256,27 +256,27 @@ export default function KnowledgePage() {
       {/* Add FAQ Modal */}
       {showFaqModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white">Add Approved Clinic FAQ</h3>
             <form onSubmit={handleCreateFaq} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1">Question *</label>
+                <label className="block text-neutral-400 mb-1">Question *</label>
                 <input
                   type="text"
                   required
                   value={faqQ}
                   onChange={(e) => setFaqQ(e.target.value)}
                   placeholder="e.g. Can I wear makeup after HydraFacial?"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Category</label>
+                <label className="block text-neutral-400 mb-1">Category</label>
                 <select
                   value={faqCat}
                   onChange={(e) => setFaqCat(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 >
                   <option value="GENERAL">General</option>
                   <option value="PRICING">Pricing & Payments</option>
@@ -287,14 +287,14 @@ export default function KnowledgePage() {
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Answer *</label>
+                <label className="block text-neutral-400 mb-1">Answer *</label>
                 <textarea
                   required
                   rows={3}
                   value={faqA}
                   onChange={(e) => setFaqA(e.target.value)}
                   placeholder="Doctor approved factual answer..."
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl p-2.5 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
@@ -302,13 +302,13 @@ export default function KnowledgePage() {
                 <button
                   type="button"
                   onClick={() => setShowFaqModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400"
+                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
                 >
                   Save FAQ
                 </button>
@@ -321,27 +321,27 @@ export default function KnowledgePage() {
       {/* Add Document Modal */}
       {showDocModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-lg w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-lg w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white">Upload Knowledge Document to RAG</h3>
             <form onSubmit={handleCreateDoc} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1">Document Title *</label>
+                <label className="block text-neutral-400 mb-1">Document Title *</label>
                 <input
                   type="text"
                   required
                   value={docTitle}
                   onChange={(e) => setDocTitle(e.target.value)}
                   placeholder="e.g. Soprano Titanium Laser Protocol & Instructions"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Category</label>
+                <label className="block text-neutral-400 mb-1">Category</label>
                 <select
                   value={docCategory}
                   onChange={(e) => setDocCategory(e.target.value as any)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 >
                   <option value="GENERAL">General</option>
                   <option value="SERVICES">Services & Protocols</option>
@@ -353,14 +353,14 @@ export default function KnowledgePage() {
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Document Content *</label>
+                <label className="block text-neutral-400 mb-1">Document Content *</label>
                 <textarea
                   required
                   rows={5}
                   value={docContent}
                   onChange={(e) => setDocContent(e.target.value)}
                   placeholder="Full text content to be chunked and vectorized..."
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl p-2.5 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
@@ -368,13 +368,13 @@ export default function KnowledgePage() {
                 <button
                   type="button"
                   onClick={() => setShowDocModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400"
+                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
                 >
                   Vectorize & Save
                 </button>

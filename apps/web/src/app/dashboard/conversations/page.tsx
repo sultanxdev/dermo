@@ -129,10 +129,10 @@ export default function ConversationsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <MessageSquare className="w-6 h-6 text-emerald-400" />
+            <MessageSquare className="w-6 h-6 text-orange-400" />
             <span>Live WhatsApp Conversations & Simulator</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-neutral-400 mt-1">
             Real-time chat monitor with 1-click Human Takeover and interactive phone simulator.
           </p>
         </div>
@@ -142,7 +142,7 @@ export default function ConversationsPage() {
             loadConversations();
             if (selectedConv) loadMessages(selectedConv.id);
           }}
-          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-2 border border-slate-700 self-start transition-colors"
+          className="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs flex items-center gap-2 border border-neutral-700 self-start transition-colors"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           <span>Refresh Chats</span>
@@ -152,12 +152,12 @@ export default function ConversationsPage() {
       {/* 3-Column Layout: Conv List (3 cols) | Chat Stream (5 cols) | Simulator & Lead Info (4 cols) */}
       <div className="grid lg:grid-cols-12 gap-6 h-[720px]">
         {/* Left: Conversation List (3 cols) */}
-        <div className="lg:col-span-3 glass-card rounded-2xl border border-slate-800 flex flex-col overflow-hidden">
-          <div className="p-3.5 border-b border-slate-800 bg-slate-900/60 font-semibold text-xs text-slate-300">
+        <div className="lg:col-span-3 glass-card rounded-2xl border border-neutral-800 flex flex-col overflow-hidden">
+          <div className="p-3.5 border-b border-neutral-800 bg-neutral-900/60 font-semibold text-xs text-neutral-300">
             Active Chats ({conversations.length})
           </div>
 
-          <div className="flex-1 overflow-y-auto divide-y divide-slate-800/60">
+          <div className="flex-1 overflow-y-auto divide-y divide-neutral-800/60">
             {conversations.map((conv) => {
               const isSelected = selectedConv?.id === conv.id;
               const isTakeover = conv.mode === 'HUMAN_TAKEOVER';
@@ -167,8 +167,8 @@ export default function ConversationsPage() {
                   onClick={() => handleSelectConv(conv)}
                   className={`w-full text-left p-3.5 transition-colors flex flex-col gap-1.5 ${
                     isSelected
-                      ? 'bg-emerald-500/10 border-l-4 border-l-emerald-400'
-                      : 'hover:bg-slate-800/40'
+                      ? 'bg-orange-500/10 border-l-4 border-l-orange-400'
+                      : 'hover:bg-neutral-800/40'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -180,17 +180,17 @@ export default function ConversationsPage() {
                         Staff
                       </span>
                     ) : (
-                      <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-bold border border-emerald-500/30">
+                      <span className="px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300 text-[9px] font-bold border border-orange-500/30">
                         AI
                       </span>
                     )}
                   </div>
 
-                  <p className="text-[11px] text-slate-400 line-clamp-1">
+                  <p className="text-[11px] text-neutral-400 line-clamp-1">
                     {conv.lastMessagePreview || 'No messages yet.'}
                   </p>
 
-                  <div className="text-[10px] text-slate-500 flex items-center justify-between pt-1">
+                  <div className="text-[10px] text-neutral-500 flex items-center justify-between pt-1">
                     <span className="font-mono">{conv.patientPhone}</span>
                     <span>{conv.state}</span>
                   </div>
@@ -201,20 +201,20 @@ export default function ConversationsPage() {
         </div>
 
         {/* Middle: Active Chat Window (5 cols) */}
-        <div className="lg:col-span-5 glass-card rounded-2xl border border-slate-800 flex flex-col overflow-hidden bg-[#0c131a]">
+        <div className="lg:col-span-5 glass-card rounded-2xl border border-neutral-800 flex flex-col overflow-hidden bg-[#0D0D0D]">
           {selectedConv ? (
             <>
               {/* Chat Header with Takeover Toggle */}
-              <div className="p-4 border-b border-slate-800 bg-[#141f28] flex items-center justify-between">
+              <div className="p-4 border-b border-neutral-800 bg-[#141414] flex items-center justify-between">
                 <div>
                   <div className="font-bold text-sm text-white flex items-center gap-2">
                     <span>{selectedConv.patientName}</span>
-                    <span className="text-xs font-normal text-slate-400 font-mono">
+                    <span className="text-xs font-normal text-neutral-400 font-mono">
                       ({selectedConv.patientPhone})
                     </span>
                   </div>
-                  <div className="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5">
-                    <span>Status: <strong className="text-emerald-400">{selectedConv.state}</strong></span>
+                  <div className="text-[10px] text-neutral-400 flex items-center gap-1.5 mt-0.5">
+                    <span>Status: <strong className="text-orange-400">{selectedConv.state}</strong></span>
                     <span>•</span>
                     <span>Mode: <strong className="text-white">{selectedConv.mode}</strong></span>
                   </div>
@@ -226,7 +226,7 @@ export default function ConversationsPage() {
                   disabled={actionLoading}
                   className={`px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-md ${
                     selectedConv.mode === 'HUMAN_TAKEOVER'
-                      ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/20'
+                      ? 'bg-orange-500 hover:bg-orange-400 text-neutral-950 shadow-orange-500/20'
                       : 'bg-rose-500/90 hover:bg-rose-400 text-white shadow-rose-500/20'
                   }`}
                 >
@@ -245,7 +245,7 @@ export default function ConversationsPage() {
               </div>
 
               {/* Chat Messages Stream */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#0c131a]">
+              <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#0D0D0D]">
                 {messages.map((msg) => {
                   const isPatient = msg.sender === 'PATIENT';
                   const isAI = msg.sender === 'AI';
@@ -254,13 +254,13 @@ export default function ConversationsPage() {
                       key={msg.id}
                       className={`flex flex-col ${isPatient ? 'items-start' : 'items-end'}`}
                     >
-                      <div className="text-[9px] text-slate-400 mb-0.5 px-1">
+                      <div className="text-[9px] text-neutral-400 mb-0.5 px-1">
                         {isPatient ? selectedConv.patientName : isAI ? '🤖 Dermo AI' : '👩‍💼 Receptionist'}
                       </div>
                       <div
                         className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs shadow-sm leading-relaxed ${
                           isPatient
-                            ? 'bg-[#1e2a32] text-slate-100 rounded-tl-none border border-slate-700/60'
+                            ? 'bg-[#1A1A1A] text-neutral-100 rounded-tl-none border border-neutral-700/60'
                             : isAI
                             ? 'bg-[#005c4b] text-white rounded-tr-none'
                             : 'bg-blue-600 text-white rounded-tr-none'
@@ -282,7 +282,7 @@ export default function ConversationsPage() {
                           </div>
                         )}
 
-                        <div className="text-[9px] text-slate-300 text-right mt-1 opacity-80">
+                        <div className="text-[9px] text-neutral-300 text-right mt-1 opacity-80">
                           {formatTime(new Date(msg.createdAt).toTimeString().substring(0, 5))}
                         </div>
                       </div>
@@ -292,7 +292,7 @@ export default function ConversationsPage() {
               </div>
 
               {/* Staff Reply Bar */}
-              <div className="p-3 border-t border-slate-800 bg-[#141f28] flex items-center gap-2">
+              <div className="p-3 border-t border-neutral-800 bg-[#141414] flex items-center gap-2">
                 <input
                   type="text"
                   value={replyText}
@@ -304,70 +304,70 @@ export default function ConversationsPage() {
                       : 'Take over conversation to reply manually...'
                   }
                   disabled={selectedConv.mode !== 'HUMAN_TAKEOVER'}
-                  className="flex-1 bg-[#1e2a32] border border-slate-700 rounded-xl px-3 py-2 text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 disabled:opacity-50"
+                  className="flex-1 bg-[#1A1A1A] border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 placeholder-neutral-500 text-xs focus:outline-none focus:ring-1 focus:ring-orange-500 disabled:opacity-50"
                 />
                 <button
                   onClick={handleSendStaffReply}
                   disabled={!replyText.trim() || actionLoading || selectedConv.mode !== 'HUMAN_TAKEOVER'}
-                  className="p-2.5 rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors disabled:opacity-30"
+                  className="p-2.5 rounded-xl bg-orange-500 text-neutral-950 hover:bg-orange-400 transition-colors disabled:opacity-30"
                 >
                   <Send className="w-4 h-4" />
                 </button>
               </div>
             </>
           ) : (
-            <div className="flex-1 flex items-center justify-center text-slate-500 text-xs">
+            <div className="flex-1 flex items-center justify-center text-neutral-500 text-xs">
               Select a conversation to monitor
             </div>
           )}
         </div>
 
         {/* Right: Interactive WhatsApp Mobile Simulator (4 cols) */}
-        <div className="lg:col-span-4 glass-card rounded-2xl border border-slate-800 flex flex-col p-4 space-y-4">
+        <div className="lg:col-span-4 glass-card rounded-2xl border border-neutral-800 flex flex-col p-4 space-y-4">
           <div className="flex items-center gap-2 pb-3 border-b border-slate-800">
-            <Smartphone className="w-5 h-5 text-emerald-400" />
+            <Smartphone className="w-5 h-5 text-orange-400" />
             <div>
               <h3 className="font-bold text-xs text-white">Interactive WhatsApp Phone Simulator</h3>
-              <p className="text-[10px] text-slate-400">Simulate incoming patient messages in real time.</p>
+              <p className="text-[10px] text-neutral-400">Simulate incoming patient messages in real time.</p>
             </div>
           </div>
 
           <div className="space-y-3 text-xs">
             <div>
-              <label className="block text-[11px] text-slate-400 mb-1">Simulated Patient Name</label>
+              <label className="block text-[11px] text-neutral-400 mb-1">Simulated Patient Name</label>
               <input
                 type="text"
                 value={simName}
                 onChange={(e) => setSimName(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-1.5 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] text-slate-400 mb-1">Patient WhatsApp Number</label>
+              <label className="block text-[11px] text-neutral-400 mb-1">Patient WhatsApp Number</label>
               <input
                 type="text"
                 value={simPhone}
                 onChange={(e) => setSimPhone(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-slate-100 text-xs font-mono focus:outline-none focus:border-emerald-500"
+                className="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-1.5 text-neutral-100 text-xs font-mono focus:outline-none focus:border-orange-500"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] text-slate-400 mb-1">Message Content</label>
+              <label className="block text-[11px] text-neutral-400 mb-1">Message Content</label>
               <textarea
                 value={simMessage}
                 onChange={(e) => setSimMessage(e.target.value)}
                 rows={3}
                 placeholder="e.g. Can you book Dr. Priya for tomorrow 11 AM for HydraFacial?"
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full bg-neutral-900 border border-neutral-800 rounded-xl p-3 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
               />
             </div>
 
             <button
               onClick={() => handleSendSimulatorMessage()}
               disabled={simSending || !simMessage.trim()}
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-500/20 disabled:opacity-40"
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-neutral-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-orange-500/20 disabled:opacity-40"
             >
               <Send className="w-3.5 h-3.5" />
               <span>{simSending ? 'Processing via LangChain AI...' : 'Dispatch Message as Patient'}</span>
@@ -375,8 +375,8 @@ export default function ConversationsPage() {
           </div>
 
           {/* Quick Click Prompts */}
-          <div className="pt-2 border-t border-slate-800/80 space-y-2">
-            <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold block">
+          <div className="pt-2 border-t border-neutral-800/80 space-y-2">
+            <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-semibold block">
               Quick Test Prompts
             </span>
             <div className="flex flex-col gap-1.5">
@@ -390,7 +390,7 @@ export default function ConversationsPage() {
                 <button
                   key={i}
                   onClick={() => handleSendSimulatorMessage(prompt)}
-                  className="text-left p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-[11px] text-slate-300 border border-slate-800 hover:border-slate-700 transition-colors"
+                  className="text-left p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-[11px] text-neutral-300 border border-neutral-800 hover:border-neutral-700 transition-colors"
                 >
                   💬 {prompt}
                 </button>

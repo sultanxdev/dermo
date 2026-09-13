@@ -88,17 +88,17 @@ export default function ServicesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-emerald-400" />
+            <Sparkles className="w-6 h-6 text-orange-400" />
             <span>Treatments & Pricing Catalog</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-neutral-400 mt-1">
             Grounded clinic procedures, duration, pricing, and Razorpay advance deposit rules.
           </p>
         </div>
 
         <button
           onClick={() => setShowAddModal(true)}
-          className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all self-start"
+          className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all self-start"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Treatment</span>
@@ -113,8 +113,8 @@ export default function ServicesPage() {
             onClick={() => setSelectedCategory(cat.id)}
             className={`whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               selectedCategory === cat.id
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-orange-500 text-neutral-950 shadow-md shadow-orange-500/20'
+                : 'bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-neutral-200'
             }`}
           >
             {cat.label}
@@ -127,17 +127,17 @@ export default function ServicesPage() {
         {filtered.map((service) => (
           <div
             key={service.id}
-            className="glass-card rounded-2xl p-5 border border-slate-800 space-y-4 hover:border-slate-700 transition-all flex flex-col justify-between"
+            className="glass-card rounded-2xl p-5 border border-neutral-800 space-y-4 hover:border-neutral-700 transition-all flex flex-col justify-between"
           >
             <div className="space-y-2.5">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="font-bold text-sm text-white">{service.name}</h3>
-                <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/30 whitespace-nowrap">
+                <span className="px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 text-[10px] font-bold border border-orange-500/30 whitespace-nowrap">
                   {service.category.replace('_', ' ')}
                 </span>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-neutral-300 leading-relaxed">
                 {service.description}
               </p>
 
@@ -145,8 +145,8 @@ export default function ServicesPage() {
               {service.benefits && service.benefits.length > 0 && (
                 <div className="pt-2 space-y-1">
                   {service.benefits.map((b, i) => (
-                    <div key={i} className="flex items-center gap-1.5 text-[11px] text-slate-400">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                    <div key={i} className="flex items-center gap-1.5 text-[11px] text-neutral-400">
+                      <CheckCircle2 className="w-3 h-3 text-orange-400" />
                       <span>{b}</span>
                     </div>
                   ))}
@@ -154,24 +154,24 @@ export default function ServicesPage() {
               )}
             </div>
 
-            <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <div className="pt-3 border-t border-neutral-800/80 flex items-center justify-between">
               <div>
                 <div className="text-lg font-extrabold text-white font-mono">
                   {formatCurrency(service.price)}
                 </div>
-                <div className="text-[10px] text-slate-400 flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-slate-500" />
+                <div className="text-[10px] text-neutral-400 flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-neutral-500" />
                   <span>{service.durationMinutes} mins session</span>
                 </div>
               </div>
 
               {service.depositRequired ? (
-                <span className="px-2 py-1 rounded-lg bg-emerald-950/80 text-emerald-300 text-[10px] font-semibold border border-emerald-800 flex items-center gap-1">
-                  <CreditCard className="w-3 h-3 text-emerald-400" />
+                <span className="px-2 py-1 rounded-lg bg-orange-950/80 text-orange-300 text-[10px] font-semibold border border-orange-800 flex items-center gap-1">
+                  <CreditCard className="w-3 h-3 text-orange-400" />
                   <span>Deposit: ₹{service.depositAmount || 500}</span>
                 </span>
               ) : (
-                <span className="text-[10px] text-slate-500">No deposit</span>
+                <span className="text-[10px] text-neutral-500">No deposit</span>
               )}
             </div>
           </div>
@@ -181,27 +181,27 @@ export default function ServicesPage() {
       {/* Add Treatment Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white">Add Clinic Treatment</h3>
             <form onSubmit={handleCreateService} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1">Treatment Name *</label>
+                <label className="block text-neutral-400 mb-1">Treatment Name *</label>
                 <input
                   type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Q-Switch Nd:YAG Laser"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Category *</label>
+                <label className="block text-neutral-400 mb-1">Category *</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as any)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 >
                   <option value="FACIAL_AESTHETICS">Facial Aesthetics</option>
                   <option value="LASER_TREATMENTS">Medical Lasers</option>
@@ -212,36 +212,36 @@ export default function ServicesPage() {
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Description *</label>
+                <label className="block text-neutral-400 mb-1">Description *</label>
                 <textarea
                   required
                   rows={2}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Procedure summary and clinical benefits..."
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl p-2.5 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 mb-1">Price (₹) *</label>
+                  <label className="block text-neutral-400 mb-1">Price (₹) *</label>
                   <input
                     type="number"
                     required
                     value={price}
                     onChange={(e) => setPrice(Number(e.target.value))}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 mb-1">Duration (Mins) *</label>
+                  <label className="block text-neutral-400 mb-1">Duration (Mins) *</label>
                   <input
                     type="number"
                     required
                     value={durationMinutes}
                     onChange={(e) => setDurationMinutes(Number(e.target.value))}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono"
                   />
                 </div>
               </div>
@@ -252,9 +252,9 @@ export default function ServicesPage() {
                   id="depositToggle"
                   checked={depositRequired}
                   onChange={(e) => setDepositRequired(e.target.checked)}
-                  className="rounded bg-slate-900 border-slate-700 text-emerald-500"
+                  className="rounded bg-neutral-900 border-neutral-700 text-orange-500"
                 />
-                <label htmlFor="depositToggle" className="text-slate-300 text-xs">
+                <label htmlFor="depositToggle" className="text-neutral-300 text-xs">
                   Require Razorpay advance booking deposit (₹500)
                 </label>
               </div>
@@ -263,13 +263,13 @@ export default function ServicesPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400"
+                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
                 >
                   Save Treatment
                 </button>

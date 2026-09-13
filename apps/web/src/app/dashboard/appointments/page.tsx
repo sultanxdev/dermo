@@ -168,17 +168,17 @@ export default function AppointmentsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <CalendarIcon className="w-6 h-6 text-emerald-400" />
+            <CalendarIcon className="w-6 h-6 text-orange-400" />
             <span>Doctor Appointments & Slot Manager</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-neutral-400 mt-1">
             Check real-time shift availability, doctor breaks, and atomic slot reservations.
           </p>
         </div>
 
         <button
           onClick={() => setShowBookingModal(true)}
-          className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all self-start"
+          className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all self-start"
         >
           <Plus className="w-4 h-4" />
           <span>Book In-Clinic Slot</span>
@@ -186,37 +186,37 @@ export default function AppointmentsPage() {
       </div>
 
       {/* Live Availability Inspector Card */}
-      <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-5">
+      <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-emerald-400" />
+            <Clock className="w-5 h-5 text-orange-400" />
             <h3 className="font-bold text-sm text-white">Live Slot Availability Inspector</h3>
           </div>
 
           {/* Doctor & Date Pickers */}
           <div className="flex flex-wrap items-center gap-3 text-xs">
-            <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5">
-              <Stethoscope className="w-4 h-4 text-emerald-400" />
+            <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-1.5">
+              <Stethoscope className="w-4 h-4 text-orange-400" />
               <select
                 value={selectedDoctorId}
                 onChange={(e) => setSelectedDoctorId(e.target.value)}
-                className="bg-transparent text-slate-100 font-semibold focus:outline-none"
+                className="bg-transparent text-neutral-100 font-semibold focus:outline-none"
               >
                 {doctors.map((d) => (
-                  <option key={d.id} value={d.id} className="bg-slate-900 text-white">
+                  <option key={d.id} value={d.id} className="bg-neutral-900 text-white">
                     {d.name} ({d.title})
                   </option>
                 ))}
               </select>
             </div>
 
-            <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5">
-              <CalendarIcon className="w-4 h-4 text-emerald-400" />
+            <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-1.5">
+              <CalendarIcon className="w-4 h-4 text-orange-400" />
               <input
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-transparent text-slate-100 font-semibold focus:outline-none"
+                className="bg-transparent text-neutral-100 font-semibold focus:outline-none"
               />
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function AppointmentsPage() {
 
         {/* Slot Grid */}
         {loadingSlots ? (
-          <div className="text-center py-8 text-xs text-slate-400 animate-pulse">
+          <div className="text-center py-8 text-xs text-neutral-400 animate-pulse">
             Calculating real-time doctor shifts and break intervals...
           </div>
         ) : availabilitySlots.length > 0 ? (
@@ -234,8 +234,8 @@ export default function AppointmentsPage() {
                 key={idx}
                 className={`p-2.5 rounded-xl border text-center text-xs font-semibold flex flex-col justify-center transition-all ${
                   slot.available
-                    ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300 hover:scale-105'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-500 opacity-60'
+                    ? 'bg-orange-500/10 border-orange-500/40 text-orange-300 hover:scale-105'
+                    : 'bg-neutral-900/60 border-neutral-800 text-neutral-500 opacity-60'
                 }`}
               >
                 <div className="font-mono">{slot.startTime}</div>
@@ -246,21 +246,21 @@ export default function AppointmentsPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-6 text-xs text-slate-500">
+          <div className="text-center py-6 text-xs text-neutral-500">
             Doctor is not working on this selected day.
           </div>
         )}
       </div>
 
       {/* Confirmed Appointments Table */}
-      <div className="glass-card rounded-2xl border border-slate-800 overflow-hidden">
-        <div className="p-4 border-b border-slate-800 bg-slate-900/60 flex items-center justify-between">
+      <div className="glass-card rounded-2xl border border-neutral-800 overflow-hidden">
+        <div className="p-4 border-b border-neutral-800 bg-neutral-900/60 flex items-center justify-between">
           <h3 className="font-bold text-sm text-white">All Clinic Appointments ({appointments.length})</h3>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-900/80 text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[10px]">
+          <table className="w-full text-left text-xs text-neutral-300">
+            <thead className="bg-neutral-900/80 text-neutral-400 border-b border-neutral-800 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="p-3.5">Patient Details</th>
                 <th className="p-3.5">Doctor</th>
@@ -271,33 +271,33 @@ export default function AppointmentsPage() {
                 <th className="p-3.5">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-neutral-800/60">
               {appointments.map((apt) => (
-                <tr key={apt.id} className="hover:bg-slate-800/30">
+                <tr key={apt.id} className="hover:bg-neutral-800/30">
                   <td className="p-3.5">
                     <div className="font-bold text-white">{apt.leadName}</div>
-                    <div className="text-[10px] text-slate-400 font-mono">{apt.leadPhone}</div>
+                    <div className="text-[10px] text-neutral-400 font-mono">{apt.leadPhone}</div>
                   </td>
-                  <td className="p-3.5 text-emerald-400 font-medium">{apt.doctorName}</td>
-                  <td className="p-3.5 text-slate-200">{apt.serviceName}</td>
+                  <td className="p-3.5 text-orange-400 font-medium">{apt.doctorName}</td>
+                  <td className="p-3.5 text-neutral-200">{apt.serviceName}</td>
                   <td className="p-3.5">
                     <div className="font-mono text-white">{formatDate(apt.date)}</div>
-                    <div className="text-[10px] text-slate-400 font-mono">{apt.startTime} – {apt.endTime}</div>
+                    <div className="text-[10px] text-neutral-400 font-mono">{apt.startTime} – {apt.endTime}</div>
                   </td>
                   <td className="p-3.5">
                     {apt.paymentStatus === 'PAID' ? (
-                      <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 text-[10px] font-bold border border-emerald-800">
+                      <span className="px-2 py-0.5 rounded bg-orange-950 text-orange-300 text-[10px] font-bold border border-orange-800">
                         ₹{apt.depositPaid} (Razorpay)
                       </span>
                     ) : (
-                      <span className="text-slate-500 text-[10px]">Unpaid</span>
+                      <span className="text-neutral-500 text-[10px]">Unpaid</span>
                     )}
                   </td>
                   <td className="p-3.5">
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                         apt.status === 'CONFIRMED'
-                          ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                          ? 'bg-orange-500/15 text-orange-300 border-orange-500/30'
                           : apt.status === 'BOOKED'
                           ? 'bg-blue-500/15 text-blue-300 border-blue-500/30'
                           : apt.status === 'RESCHEDULED'
@@ -317,11 +317,11 @@ export default function AppointmentsPage() {
                             setReschedDate(apt.date);
                             setReschedTime(apt.startTime);
                           }}
-                          className="text-[11px] text-emerald-400 hover:text-emerald-300 font-medium"
+                          className="text-[11px] text-orange-400 hover:text-orange-300 font-medium"
                         >
                           Reschedule
                         </button>
-                        <span className="text-slate-600">|</span>
+                        <span className="text-neutral-600">|</span>
                         <button
                           onClick={() => setShowCancelModal(apt)}
                           className="text-[11px] text-rose-400 hover:text-rose-300 font-medium"
@@ -341,7 +341,7 @@ export default function AppointmentsPage() {
       {/* Booking Modal */}
       {showBookingModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-lg w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-lg w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white">Book In-Clinic Appointment</h3>
             {bookingError && (
               <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
@@ -351,11 +351,11 @@ export default function AppointmentsPage() {
             )}
             <form onSubmit={handleCreateAppointment} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1">Select Patient *</label>
+                <label className="block text-neutral-400 mb-1">Select Patient *</label>
                 <select
                   value={bookLeadId}
                   onChange={(e) => setBookLeadId(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 >
                   {leads.map((l) => (
                     <option key={l.id} value={l.id}>
@@ -367,11 +367,11 @@ export default function AppointmentsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 mb-1">Doctor *</label>
+                  <label className="block text-neutral-400 mb-1">Doctor *</label>
                   <select
                     value={bookDoctorId}
                     onChange={(e) => setBookDoctorId(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                   >
                     {doctors.map((d) => (
                       <option key={d.id} value={d.id}>
@@ -381,11 +381,11 @@ export default function AppointmentsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-400 mb-1">Treatment / Procedure *</label>
+                  <label className="block text-neutral-400 mb-1">Treatment / Procedure *</label>
                   <select
                     value={bookServiceId}
                     onChange={(e) => setBookServiceId(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                   >
                     {services.map((s) => (
                       <option key={s.id} value={s.id}>
@@ -398,36 +398,36 @@ export default function AppointmentsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 mb-1">Date *</label>
+                  <label className="block text-neutral-400 mb-1">Date *</label>
                   <input
                     type="date"
                     required
                     value={bookDate}
                     onChange={(e) => setBookDate(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 mb-1">Slot Time (HH:mm) *</label>
+                  <label className="block text-neutral-400 mb-1">Slot Time (HH:mm) *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. 11:00"
                     value={bookTime}
                     onChange={(e) => setBookTime(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono focus:outline-none focus:border-orange-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Clinical Notes</label>
+                <label className="block text-neutral-400 mb-1">Clinical Notes</label>
                 <textarea
                   value={bookNotes}
                   onChange={(e) => setBookNotes(e.target.value)}
                   placeholder="Special instructions or initial complaints..."
                   rows={2}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl p-2.5 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
@@ -435,13 +435,13 @@ export default function AppointmentsPage() {
                 <button
                   type="button"
                   onClick={() => setShowBookingModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs hover:bg-slate-700"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-slate-700"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400"
+                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
                 >
                   Confirm & Reserve Slot
                 </button>
@@ -454,55 +454,55 @@ export default function AppointmentsPage() {
       {/* Reschedule Modal */}
       {showRescheduleModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white">Reschedule Appointment</h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-neutral-400">
               Rescheduling for <strong className="text-white">{showRescheduleModal.leadName}</strong> with {showRescheduleModal.doctorName}.
             </p>
             <form onSubmit={handleReschedule} className="space-y-3 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 mb-1">New Date *</label>
+                  <label className="block text-neutral-400 mb-1">New Date *</label>
                   <input
                     type="date"
                     required
                     value={reschedDate}
                     onChange={(e) => setReschedDate(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 mb-1">New Start Time *</label>
+                  <label className="block text-neutral-400 mb-1">New Start Time *</label>
                   <input
                     type="text"
                     required
                     value={reschedTime}
                     onChange={(e) => setReschedTime(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono"
+                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-slate-400 mb-1">Reason</label>
+                <label className="block text-neutral-400 mb-1">Reason</label>
                 <input
                   type="text"
                   value={reschedReason}
                   onChange={(e) => setReschedReason(e.target.value)}
                   placeholder="Patient requested different timing"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
                 />
               </div>
               <div className="flex justify-end gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowRescheduleModal(null)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400"
+                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
                 >
                   Confirm Reschedule
                 </button>
@@ -515,27 +515,27 @@ export default function AppointmentsPage() {
       {/* Cancel Modal */}
       {showCancelModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white text-rose-400">Cancel Appointment</h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-neutral-300">
               Are you sure you want to cancel the booking for <strong className="text-white">{showCancelModal.leadName}</strong> on {showCancelModal.date} at {showCancelModal.startTime}?
             </p>
             <form onSubmit={handleCancel} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1">Cancellation Reason *</label>
+                <label className="block text-neutral-400 mb-1">Cancellation Reason *</label>
                 <input
                   type="text"
                   required
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
                 />
               </div>
               <div className="flex justify-end gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowCancelModal(null)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
                 >
                   Keep Slot
                 </button>

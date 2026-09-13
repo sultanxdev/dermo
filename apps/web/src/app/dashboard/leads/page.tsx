@@ -22,9 +22,9 @@ const STAGES: { id: LeadStatus; label: string; color: string }[] = [
   { id: 'NEW', label: 'New Enquiries', color: 'border-blue-500/60 bg-blue-500/10 text-blue-400' },
   { id: 'CONTACTED', label: 'Contacted', color: 'border-amber-500/60 bg-amber-500/10 text-amber-400' },
   { id: 'QUALIFIED', label: 'Qualified (High Intent)', color: 'border-purple-500/60 bg-purple-500/10 text-purple-400' },
-  { id: 'APPOINTMENT_BOOKED', label: 'Appointment Booked', color: 'border-emerald-500/60 bg-emerald-500/10 text-emerald-400' },
-  { id: 'CONVERTED', label: 'Converted', color: 'border-teal-500/60 bg-teal-500/10 text-teal-400' },
-  { id: 'LOST', label: 'Lost / Closed', color: 'border-slate-500/60 bg-slate-500/10 text-slate-400' },
+  { id: 'APPOINTMENT_BOOKED', label: 'Appointment Booked', color: 'border-orange-500/60 bg-orange-500/10 text-orange-400' },
+  { id: 'CONVERTED', label: 'Converted', color: 'border-amber-500/60 bg-amber-500/10 text-amber-400' },
+  { id: 'LOST', label: 'Lost / Closed', color: 'border-neutral-500/60 bg-neutral-500/10 text-neutral-400' },
 ];
 
 export default function LeadsPage() {
@@ -100,23 +100,23 @@ export default function LeadsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <Users className="w-6 h-6 text-emerald-400" />
+            <Users className="w-6 h-6 text-orange-400" />
             <span>Clinic Leads & Patient Pipeline</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-neutral-400 mt-1">
             Track inquiries from WhatsApp, website, and Instagram across conversion stages.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           {/* View Toggle */}
-          <div className="flex bg-slate-900 border border-slate-800 rounded-xl p-1">
+          <div className="flex bg-neutral-900 border border-neutral-800 rounded-xl p-1">
             <button
               onClick={() => setViewMode('kanban')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors ${
                 viewMode === 'kanban'
-                  ? 'bg-emerald-500 text-slate-950 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-orange-500 text-neutral-950 shadow-sm'
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
               <Kanban className="w-3.5 h-3.5" />
@@ -126,8 +126,8 @@ export default function LeadsPage() {
               onClick={() => setViewMode('table')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors ${
                 viewMode === 'table'
-                  ? 'bg-emerald-500 text-slate-950 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-orange-500 text-neutral-950 shadow-sm'
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
               <TableIcon className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export default function LeadsPage() {
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all"
+            className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all"
           >
             <Plus className="w-4 h-4" />
             <span>Add Lead</span>
@@ -146,14 +146,14 @@ export default function LeadsPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="flex items-center gap-3 max-w-md bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-xs">
-        <Search className="w-4 h-4 text-slate-400" />
+      <div className="flex items-center gap-3 max-w-md bg-neutral-900 border border-neutral-800 rounded-xl px-3.5 py-2 text-xs">
+        <Search className="w-4 h-4 text-neutral-400" />
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search by patient name, phone, or treatment tag..."
-          className="flex-1 bg-transparent border-none text-slate-100 placeholder-slate-500 focus:outline-none"
+          className="flex-1 bg-transparent border-none text-neutral-100 placeholder-neutral-500 focus:outline-none"
         />
       </div>
 
@@ -165,7 +165,7 @@ export default function LeadsPage() {
             return (
               <div
                 key={stage.id}
-                className="glass-card rounded-2xl p-3 border border-slate-800/90 flex flex-col min-w-[240px] bg-[#0c121e]"
+                className="glass-card rounded-2xl p-3 border border-neutral-800/90 flex flex-col min-w-[240px] bg-[#0D0D0D]"
               >
                 {/* Stage Header */}
                 <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-800">
@@ -173,7 +173,7 @@ export default function LeadsPage() {
                     <span className={`w-2 h-2 rounded-full ${stage.color.split(' ')[2]}`} />
                     <h3 className="font-bold text-xs text-white truncate">{stage.label}</h3>
                   </div>
-                  <span className="px-1.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-mono text-slate-400">
+                  <span className="px-1.5 py-0.5 rounded-full bg-neutral-800 text-[10px] font-mono text-neutral-400">
                     {stageLeads.length}
                   </span>
                 </div>
@@ -183,22 +183,22 @@ export default function LeadsPage() {
                   {stageLeads.map((lead) => (
                     <div
                       key={lead.id}
-                      className="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all space-y-2 shadow-sm"
+                      className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-all space-y-2 shadow-sm"
                     >
                       <div className="flex items-start justify-between gap-1">
                         <span className="font-bold text-xs text-white">{lead.name}</span>
-                        <span className="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] font-semibold text-emerald-400 border border-slate-700">
+                        <span className="px-1.5 py-0.5 rounded bg-neutral-800 text-[9px] font-semibold text-orange-400 border border-slate-700">
                           {lead.source}
                         </span>
                       </div>
 
-                      <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1">
-                        <Phone className="w-3 h-3 text-slate-500" />
+                      <div className="text-[10px] text-neutral-400 font-mono flex items-center gap-1">
+                        <Phone className="w-3 h-3 text-neutral-500" />
                         <span>{lead.phone}</span>
                       </div>
 
                       {lead.primaryConcern && (
-                        <p className="text-[11px] text-slate-300 line-clamp-2 bg-slate-950/60 p-1.5 rounded-lg border border-slate-800">
+                        <p className="text-[11px] text-neutral-300 line-clamp-2 bg-neutral-950/60 p-1.5 rounded-lg border border-slate-800">
                           {lead.primaryConcern}
                         </p>
                       )}
@@ -209,7 +209,7 @@ export default function LeadsPage() {
                           {lead.tags.map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 text-[9px] border border-emerald-900/60"
+                              className="px-1.5 py-0.5 rounded bg-orange-950/60 text-orange-300 text-[9px] border border-orange-900/60"
                             >
                               {tag}
                             </span>
@@ -218,12 +218,12 @@ export default function LeadsPage() {
                       )}
 
                       {/* Status Selector Dropdown */}
-                      <div className="pt-2 border-t border-slate-800/80 flex justify-between items-center text-[10px]">
-                        <span className="text-slate-500">Move to:</span>
+                      <div className="pt-2 border-t border-neutral-800/80 flex justify-between items-center text-[10px]">
+                        <span className="text-neutral-500">Move to:</span>
                         <select
                           value={lead.status}
                           onChange={(e) => handleUpdateStatus(lead.id, e.target.value as LeadStatus)}
-                          className="bg-slate-950 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] text-emerald-400 focus:outline-none"
+                          className="bg-neutral-950 border border-neutral-800 rounded px-1.5 py-0.5 text-[10px] text-orange-400 focus:outline-none"
                         >
                           {STAGES.map((s) => (
                             <option key={s.id} value={s.id}>
@@ -236,7 +236,7 @@ export default function LeadsPage() {
                   ))}
 
                   {stageLeads.length === 0 && (
-                    <div className="text-center py-8 text-slate-600 text-[11px]">
+                    <div className="text-center py-8 text-neutral-600 text-[11px]">
                       No leads
                     </div>
                   )}
@@ -247,9 +247,9 @@ export default function LeadsPage() {
         </div>
       ) : (
         /* Table View */
-        <div className="glass-card rounded-2xl border border-slate-800 overflow-hidden">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-900/80 text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[10px]">
+        <div className="glass-card rounded-2xl border border-neutral-800 overflow-hidden">
+          <table className="w-full text-left text-xs text-neutral-300">
+            <thead className="bg-neutral-900/80 text-neutral-400 border-b border-neutral-800 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="p-3.5">Patient Name</th>
                 <th className="p-3.5">Phone Number</th>
@@ -259,19 +259,19 @@ export default function LeadsPage() {
                 <th className="p-3.5">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-neutral-800/60">
               {filteredLeads.map((lead) => (
-                <tr key={lead.id} className="hover:bg-slate-800/30">
+                <tr key={lead.id} className="hover:bg-neutral-800/30">
                   <td className="p-3.5 font-bold text-white">{lead.name}</td>
-                  <td className="p-3.5 font-mono text-slate-400">{lead.phone}</td>
+                  <td className="p-3.5 font-mono text-neutral-400">{lead.phone}</td>
                   <td className="p-3.5">
-                    <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-semibold text-emerald-400 border border-slate-700">
+                    <span className="px-2 py-0.5 rounded bg-neutral-800 text-[10px] font-semibold text-orange-400 border border-slate-700">
                       {lead.source}
                     </span>
                   </td>
-                  <td className="p-3.5 text-slate-300 max-w-xs truncate">{lead.primaryConcern || '—'}</td>
+                  <td className="p-3.5 text-neutral-300 max-w-xs truncate">{lead.primaryConcern || '—'}</td>
                   <td className="p-3.5">
-                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
+                    <span className="px-2 py-0.5 rounded bg-orange-500/10 text-orange-300 text-[10px] font-bold border border-orange-500/30">
                       {lead.status}
                     </span>
                   </td>
@@ -279,7 +279,7 @@ export default function LeadsPage() {
                     <select
                       value={lead.status}
                       onChange={(e) => handleUpdateStatus(lead.id, e.target.value as LeadStatus)}
-                      className="bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-200"
+                      className="bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1 text-xs text-neutral-200"
                     >
                       {STAGES.map((s) => (
                         <option key={s.id} value={s.id}>
@@ -298,48 +298,48 @@ export default function LeadsPage() {
       {/* Add Lead Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-slate-700 space-y-4 shadow-2xl">
+          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
             <h3 className="font-bold text-lg text-white">Create New Lead</h3>
             <form onSubmit={handleCreateLead} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1">Patient Full Name *</label>
+                <label className="block text-neutral-400 mb-1">Patient Full Name *</label>
                 <input
                   type="text"
                   required
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Phone Number (WhatsApp) *</label>
+                <label className="block text-neutral-400 mb-1">Phone Number (WhatsApp) *</label>
                 <input
                   type="text"
                   required
                   value={newPhone}
                   onChange={(e) => setNewPhone(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs font-mono focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Primary Concern / Treatment Inquiry</label>
+                <label className="block text-neutral-400 mb-1">Primary Concern / Treatment Inquiry</label>
                 <input
                   type="text"
                   value={newConcern}
                   onChange={(e) => setNewConcern(e.target.value)}
                   placeholder="e.g. HydraFacial, Acne Scar Treatment"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 mb-1">Inquiry Source</label>
+                <label className="block text-neutral-400 mb-1">Inquiry Source</label>
                 <select
                   value={newSource}
                   onChange={(e) => setNewSource(e.target.value as any)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-xs focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
                 >
                   <option value="WHATSAPP">WhatsApp</option>
                   <option value="WEBSITE">Website</option>
@@ -352,13 +352,13 @@ export default function LeadsPage() {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs hover:bg-slate-700"
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-slate-700"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400"
+                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
                 >
                   Create Lead
                 </button>
