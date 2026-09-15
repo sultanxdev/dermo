@@ -1,9 +1,32 @@
 import { db } from './db';
 import { Clinic, DoctorShift } from '@dermo/types';
+import bcrypt from 'bcryptjs';
 
 export function seedDatabase() {
   console.log('🌱 Seeding Dermo Clinic Database...');
 
+  // ─── Seed Default Staff Users ─────────────────────────────
+  const adminPasswordHash = bcrypt.hashSync('Admin@123', 10);
+  db.createUser({
+    clinicId: 'clinic_dermacare_01',
+    name: 'Dr. Priya Sharma',
+    email: 'admin@dermacare.in',
+    passwordHash: adminPasswordHash,
+    role: 'OWNER',
+    phone: '+91 98765 43210',
+    isActive: true,
+  });
+
+  db.createUser({
+    clinicId: 'clinic_dermacare_01',
+    name: 'Neha Kapoor',
+    email: 'staff@dermacare.in',
+    passwordHash: bcrypt.hashSync('Staff@123', 10),
+    role: 'STAFF',
+    isActive: true,
+  });
+
+  console.log('  ✅ 2 staff users seeded (admin@dermacare.in / Admin@123)');
   const standardSchedule: DoctorShift[] = [
     { day: 'monday', startTime: '10:00', endTime: '18:00', slotDurationMinutes: 30, breakStart: '13:00', breakEnd: '14:00', isWorking: true },
     { day: 'tuesday', startTime: '10:00', endTime: '18:00', slotDurationMinutes: 30, breakStart: '13:00', breakEnd: '14:00', isWorking: true },

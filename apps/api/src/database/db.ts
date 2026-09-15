@@ -62,6 +62,25 @@ class Database {
     return Database.instance;
   }
 
+  // Users / Auth
+  getUserByEmail(email: string): StaffUser | undefined {
+    return this.state.users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  }
+
+  getUserById(id: string): StaffUser | undefined {
+    return this.state.users.find((u) => u.id === id);
+  }
+
+  createUser(user: Omit<StaffUser, 'id' | 'createdAt'>): StaffUser {
+    const newUser: StaffUser = {
+      ...user,
+      id: `usr_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+      createdAt: new Date().toISOString(),
+    };
+    this.state.users.push(newUser);
+    return newUser;
+  }
+
   // Clinic
   getClinic(): Clinic {
     return this.state.clinic;

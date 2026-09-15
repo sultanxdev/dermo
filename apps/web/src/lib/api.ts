@@ -1,15 +1,36 @@
+import { getSession } from 'next-auth/react';
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 
 async function fetcher<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  const headers = {
+
+  // Get the current session to extract the API token
+  const session = await getSession();
+  const apiToken = (session?.user as any)?.apiToken;
+
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...(options.headers || {}),
+    ...(options.headers as Record<string, string> || {}),
   };
+
+  // Inject Bearer token if available
+  if (apiToken) {
+    headers['Authorization'] = `Bearer ${apiToken}`;
+  }
 
   try {
     const res = await fetch(url, { ...options, headers });
     const data = await res.json();
+
+    if (res.status === 401) {
+      // Token expired or invalid — user needs to re-authenticate
+      if (typeof window !== 'undefined') {
+        window.location.href = '/auth/login';
+      }
+      throw new Error('Session expired. Please sign in again.');
+    }
+
     if (!res.ok) {
       throw new Error(data?.error?.message || `HTTP error! status: ${res.status}`);
     }

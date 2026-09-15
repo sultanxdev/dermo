@@ -32,8 +32,10 @@ export interface StaffUser {
   clinicId: string;
   name: string;
   email: string;
+  passwordHash?: string;
   role: UserRole;
   phone?: string;
+  avatarUrl?: string;
   isActive: boolean;
   createdAt: string;
 }
