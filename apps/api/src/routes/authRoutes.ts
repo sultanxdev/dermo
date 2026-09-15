@@ -27,7 +27,7 @@ function generateToken(user: StaffUser): string {
       role: user.role,
     },
     config.jwtSecret,
-    { expiresIn: config.jwtExpiresIn }
+    { expiresIn: '7d' }
   );
 }
 
