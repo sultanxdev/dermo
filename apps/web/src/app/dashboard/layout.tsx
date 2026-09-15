@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import {
   LayoutDashboard,
   MessageSquare,
@@ -15,10 +16,10 @@ import {
   PhoneCall,
   BarChart3,
   Settings,
-  ShieldCheck,
   ChevronRight,
   ExternalLink,
-  Activity,
+  LogOut,
+  Loader2,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -35,8 +36,52 @@ const NAV_ITEMS = [
   { href: '/dashboard/settings', label: 'Clinic & Audit', icon: Settings },
 ];
 
+const ROLE_LABELS: Record<string, string> = {
+  OWNER: 'Clinic Owner',
+  ADMIN: 'Administrator',
+  STAFF: 'Staff Member',
+  DOCTOR: 'Doctor',
+};
+
+const ROLE_COLORS: Record<string, string> = {
+  OWNER: 'text-orange-400',
+  ADMIN: 'text-blue-400',
+  STAFF: 'text-emerald-400',
+  DOCTOR: 'text-purple-400',
+};
+
+function getUserInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+}
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { data: session, status } = useSession();
+
+  const user = session?.user as any;
+  const userName = user?.name || 'User';
+  const userRole = user?.role || 'STAFF';
+  const initials = getUserInitials(userName);
+
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: '/auth/login' });
+  };
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-8 h-8 text-orange-400 animate-spin" />
+          <span className="text-sm text-neutral-400">Loading dashboard...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] flex text-neutral-100 selection:bg-orange-500 selection:text-white">
@@ -135,12 +180,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             <div className="flex items-center gap-2.5 pl-3 border-l border-neutral-800">
               <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-black font-bold text-xs">
-                PS
+                {initials}
               </div>
               <div className="hidden sm:block">
-                <div className="text-xs font-semibold text-white">Dr. Priya Sharma</div>
-                <div className="text-[10px] text-orange-400">Clinic Owner / Chief Dermatologist</div>
+                <div className="text-xs font-semibold text-white">{userName}</div>
+                <div className={`text-[10px] ${ROLE_COLORS[userRole] || 'text-orange-400'}`}>
+                  {ROLE_LABELS[userRole] || userRole}
+                </div>
               </div>
+              <button
+                onClick={handleLogout}
+                className="ml-2 p-1.5 rounded-lg text-neutral-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                title="Sign out"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </header>
