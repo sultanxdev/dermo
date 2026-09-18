@@ -15,12 +15,15 @@
     --accent-foreground: #FFF8F0;
     --muted: #A3A3A3;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
 
@@ -43,7 +46,9 @@ body {
   background: #404040;
 }
 
-/* Glow effects */
+/* ───────────────────────────────────────────────
+   GLOW EFFECTS
+   ─────────────────────────────────────────────── */
 .glow-orange {
   box-shadow: 0 0 35px -5px rgba(249, 115, 22, 0.18);
 }
@@ -52,6 +57,9 @@ body {
   box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.18);
 }
 
+/* ───────────────────────────────────────────────
+   GLASS PANELS & CARDS
+   ─────────────────────────────────────────────── */
 .glass-panel {
   background: rgba(20, 20, 20, 0.75);
   backdrop-filter: blur(12px);
@@ -62,5 +70,378 @@ body {
 .glass-card {
   background: rgba(26, 26, 26, 0.6);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px -12px rgba(249, 115, 22, 0.12);
+}
+
+/* ───────────────────────────────────────────────
+   KEYFRAME ANIMATIONS
+   ─────────────────────────────────────────────── */
+
+/* Fade in + slide up from below */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gentle floating for the phone mockup */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Shimmer gradient sweep for text */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Gradient background color shift */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Slide in from right */
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from left */
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale-in pop effect */
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Subtle glow pulse */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px -5px rgba(249, 115, 22, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px -5px rgba(249, 115, 22, 0.3);
+  }
+}
+
+/* Particle float for ambient effects */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(10px, -20px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-5px, -40px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(15px, -20px) scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+/* Gentle breathing/pulse */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   ANIMATION UTILITY CLASSES
+   ─────────────────────────────────────────────── */
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* ───────────────────────────────────────────────
+   SPECIAL TEXT EFFECTS
+   ─────────────────────────────────────────────── */
+.text-shimmer {
+  background: linear-gradient(
+    110deg,
+    #FB923C 0%,
+    #FDE68A 25%,
+    #FB923C 50%,
+    #FDE68A 75%,
+    #FB923C 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ───────────────────────────────────────────────
+   ANIMATED GRADIENT BORDER
+   ─────────────────────────────────────────────── */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    #F97316,
+    #FDE68A,
+    #F97316,
+    rgba(249, 115, 22, 0.3)
+  );
+  background-size: 300% 300%;
+  animation: gradient-shift 3s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ───────────────────────────────────────────────
+   PREMIUM PRICING CARD BORDER
+   ─────────────────────────────────────────────── */
+.pricing-glow {
+  position: relative;
+  overflow: visible;
+}
+
+.pricing-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.5rem;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #F97316 0%,
+    #FDE68A 30%,
+    #F97316 50%,
+    #FB923C 70%,
+    #F97316 100%
+  );
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* ───────────────────────────────────────────────
+   LINK HOVER UNDERLINE EFFECT
+   ─────────────────────────────────────────────── */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(to right, #F97316, #FDE68A);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* ───────────────────────────────────────────────
+   FAQ SMOOTH ACCORDION
+   ─────────────────────────────────────────────── */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-content.open {
+  grid-template-rows: 1fr;
+}
+
+.faq-content > div {
+  overflow: hidden;
+}
+
+/* ───────────────────────────────────────────────
+   AMBIENT BACKGROUND EFFECTS
+   ─────────────────────────────────────────────── */
+.mesh-gradient {
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 20%, rgba(249, 115, 22, 0.07), transparent),
+    radial-gradient(ellipse 500px 350px at 75% 60%, rgba(251, 146, 60, 0.05), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 90%, rgba(253, 230, 138, 0.04), transparent);
+}
+
+.mesh-gradient-animated {
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 20%, rgba(249, 115, 22, 0.07), transparent),
+    radial-gradient(ellipse 500px 350px at 75% 60%, rgba(251, 146, 60, 0.05), transparent),
+    radial-gradient(ellipse 400px 300px at 50% 90%, rgba(253, 230, 138, 0.04), transparent);
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Noise grain texture overlay */
+.grain-overlay {
+  position: relative;
+}
+
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ───────────────────────────────────────────────
+   NO SCROLLBAR UTILITY
+   ─────────────────────────────────────────────── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ───────────────────────────────────────────────
+   STEP CONNECTOR LINE
+   ─────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .step-connector {
+    position: relative;
+  }
+
+  .step-connector::after {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    right: -0.75rem;
+    width: 1.5rem;
+    height: 2px;
+    background: linear-gradient(to right, rgba(249, 115, 22, 0.4), transparent);
+  }
+
+  .step-connector:last-child::after {
+    display: none;
+  }
 }
