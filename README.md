@@ -1,50 +1,209 @@
-# Derma.ai — WhatsApp AI Lead & Appointment System (PRD V1.0)
 
-Production-ready, grounded WhatsApp AI assistant and administrative management system for Dermatology & Aesthetic Clinics.
+# DermoAI
 
-Built with **JavaScript (Node.js Express + React Vite)**.
+> AI employee for clinics that handles WhatsApp conversations, clinic knowledge, leads, appointments, and human handoff.
 
----
+DermoAI is a clinic-focused AI assistant designed to automate repetitive patient conversations while keeping important business decisions under application control.
 
-## 🌟 Key Features
+**Core workflow**
 
-1. **Meta WhatsApp Cloud API Integration**:
-   - Official WhatsApp Business Cloud API webhook (`/api/webhooks/whatsapp`) with challenge verification.
-   - Message idempotency and deduplication on `wa_message_id`.
-   - Outgoing text, interactive quick-reply buttons, and template messages.
-   - Interactive WhatsApp Mobile Simulator included in dashboard for instant testing.
+`WhatsApp → AI → Knowledge → Lead → Appointment → Human Handoff`
 
-2. **Grounded AI Conversation Engine**:
-   - **Zero Hallucinations**: Grounded strictly on clinic database records for fees, services, doctor schedules, and working hours.
-   - **17 Intent Classifications**: `GREETING`, `SERVICE_INFORMATION`, `PRICE_INFORMATION`, `DOCTOR_INFORMATION`, `APPOINTMENT_BOOKING`, `APPOINTMENT_RESCHEDULE`, `APPOINTMENT_CANCEL`, `MEDICAL_QUESTION`, `HUMAN_REQUEST`, `EMERGENCY_SIGNAL`, etc.
-   - **Medical Safety Guardrails**: Strict non-diagnostic policy. Medication inquiries automatically trigger safe guidance and create human handoffs.
-   - **Multi-language Support**: Natural conversations in English, Hindi, and Hinglish.
+## Why DermoAI?
 
-3. **Deterministic Appointment Booking**:
-   - Dynamic slot calculation respecting doctor shift hours, break times, and appointment duration.
-   - Atomic reservation with conflict checks to eliminate double-booking.
-   - Reschedule, cancellation, completion, and no-show workflows.
+Clinics receive repetitive enquiries about:
 
-4. **Human Handoff & Receptionist Takeover**:
-   - 1-click **Take Over** button: pauses AI immediately so receptionists can reply directly to the patient's WhatsApp from the dashboard.
-   - **Return to AI**: resumes autonomous appointment booking anytime.
+- Treatments and services
+- Consultation fees
+- Doctors
+- Working hours
+- Clinic location
+- Appointment availability
+- Cancellations and rescheduling
+- General FAQs
 
-5. **Google Docs & Sheets Dashboard Live Sync (Toggleable via Flag)**:
-   - Easily enabled/disabled via `.env` flag `ENABLE_GOOGLE_DOCS_SYNC=true/false` or the Dashboard Settings toggle.
-   - Syncs approved FAQs directly from a Google Doc knowledge base.
-   - Streams live leads and confirmed bookings to a connected Google Sheet.
+Handling these conversations manually creates repetitive work, delayed responses, and avoidable booking mistakes.
 
-6. **Comprehensive Clinic Dashboard**:
-   - Overview KPI Metrics & Conversion Funnels (Qualification, Booking, Completion, No-show rates).
-   - Live Conversations & Human Takeover Console.
-   - Leads Kanban Board & Filterable Table.
-   - Appointment Calendar & Slot Manager.
-   - Treatments & Pricing Catalog.
-   - Doctor Profiles & Shift Schedule Manager.
-   - Approved FAQ Manager.
-   - Security Audit Trail (DPDP Act compliance-ready).
+DermoAI automates the repetitive workflow while keeping staff involved when human judgment is needed.
 
----
+## How It Works
 
+```text
+Patient → WhatsApp → DermoAI → Knowledge / Tools → Lead / Appointment
+                                      ↓
+                                 Human Handoff
+```
+
+The application controls business state such as appointments, leads, availability, and conversation mode. The LLM does not receive unrestricted database access.
+
+## Architecture
+
+DermoAI uses a modular monolith designed for a single-clinic deployment.
+
+```text
+WhatsApp
+   ↓
+Webhook
+   ↓
+PostgreSQL + pgvector
+   ↓
+Redis + BullMQ
+   ↓
+Conversation Engine
+   ↓
+RAG + LLM + Tools
+   ↓
+WhatsApp
+```
+
+The architecture keeps business rules inside application services while AI handles language, classification, retrieval, and response generation.
+
+## AI Pipeline
+
+```text
+Message
+  ↓
+Intent
+  ↓
+Safety
+  ↓
+Conversation State
+  ↓
+RAG / Clinic Context
+  ↓
+Tool Validation
+  ↓
+Response
+```
+
+## RAG
+
+Clinic-approved information is stored and retrieved with PostgreSQL + pgvector.
+
+`Clinic Content → Chunk → Embed → pgvector → Retrieve → LLM`
+
+The system is designed to use approved clinic knowledge and provide a safe fallback or human escalation when reliable information is unavailable.
+
+## Appointment Booking
+
+Appointments are handled by deterministic application logic rather than free-form AI decisions.
+
+`Request → Validate → Check Availability → Check Conflict → Commit`
+
+The server validates availability again during booking so the displayed slot is not treated as a guaranteed reservation.
+
+## Human Handoff & Safety
+
+A conversation can move between:
+
+`AI ↔ HUMAN_TAKEOVER`
+
+Handoff can occur when:
+
+- The patient requests a human
+- Medical input requires staff involvement
+- The AI cannot answer reliably
+- An emergency signal is detected
+
+DermoAI is not a diagnostic or prescription system.
+
+## WhatsApp
+
+The inbound webhook flow is:
+
+`Verify → Deduplicate → Persist → Queue → Process`
+
+Provider message IDs are used for idempotency so duplicate webhook deliveries do not create duplicate processing.
+
+## Core Features
+
+- WhatsApp patient conversations
+- Clinic-specific knowledge retrieval
+- AI intent detection
+- Medical safety boundaries
+- Lead management
+- Appointment availability and booking
+- Cancellation and rescheduling
+- Human receptionist takeover
+- Razorpay payment integration
+- Knowledge management
+- Clinic dashboard
+- Audit logging
+- Operational monitoring
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Frontend | Next.js, React |
+| Backend | Node.js, Express.js |
+| Database | PostgreSQL |
+| Vector Search | pgvector |
+| Background Jobs | Redis, BullMQ |
+| AI | Gemini, LangChain |
+| Messaging | WhatsApp Cloud API |
+| Payments | Razorpay |
+| Validation | Zod |
+| Authentication | JWT, bcrypt |
+| Styling | Tailwind CSS |
+
+## Project Structure
+
+```text
+dermoai/
+├── apps/
+│   ├── api/
+│   └── web/
+├── packages/
+│   ├── schemas/
+│   └── types/
+├── docs/
+└── package.json
+```
+## Testing
+
+The project includes tests for:
+
+- Authentication and authorization
+- Webhook verification
+- Message idempotency
+- Appointment availability
+- Booking conflicts
+- Conversation state
+- Safety rules
+- RAG retrieval
+- AI tool execution
+
+The project also includes a versioned AI evaluation suite for supported clinic conversation scenarios.
+
+## Security
+
+Security-sensitive areas include:
+
+- Staff authentication and authorization
+- WhatsApp webhook verification
+- Provider credentials
+- AI credentials
+- Database credentials
+- Audit logging
+- Clinic data boundaries
+
+Secrets must never be committed to the repository or exposed in normal responses and logs.
+
+## Project Status
+
+**Active Development**
+
+Current focus:
+
+`WhatsApp → AI → Knowledge → Lead → Appointment → Payment → Human Handoff → Dashboard`
+
+> **AI handles conversation. The application controls business decisions.**
+
+## Links
+
+- GitHub: https://github.com/sultanxdev/dermo
+- Live : https://www.dermoai.in
+- Portfolio: https://www.sultanx.dev/projects/dermo
 
 
