@@ -200,10 +200,6 @@ Current focus:
 
 > **AI handles conversation. The application controls business decisions.**
 
-## Links
 
-- GitHub: https://github.com/sultanxdev/dermo
-- Live : https://www.dermoai.in
-- Portfolio: https://www.sultanx.dev/projects/dermo
 
 
