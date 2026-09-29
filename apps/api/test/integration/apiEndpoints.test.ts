@@ -24,49 +24,15 @@ describe('Integration Tests: Express REST API Endpoints', () => {
     }
   });
 
-  it('GET /health should return 200 and healthy status', async () => {
+  it('GET /health should return 200 and healthy status (public route)', async () => {
     const res = await fetch(`${baseUrl}/health`);
-    const json = await res.json() as any;
+    const json = (await res.json()) as any;
     assert.strictEqual(res.status, 200);
     assert.strictEqual(json.status, 'healthy');
     assert.strictEqual(json.service, 'Dermo Clinic API');
   });
 
-  it('GET /api/v1/clinic should return clinic profile and working hours', async () => {
-    const res = await fetch(`${baseUrl}/api/v1/clinic`);
-    const json = await res.json() as any;
-    assert.strictEqual(res.status, 200);
-    assert.strictEqual(json.success, true);
-    assert.ok(json.data.name.includes('DermaCare'));
-  });
-
-  it('GET /api/v1/doctors should return doctor list', async () => {
-    const res = await fetch(`${baseUrl}/api/v1/doctors`);
-    const json = await res.json() as any;
-    assert.strictEqual(res.status, 200);
-    assert.strictEqual(json.success, true);
-    assert.ok(json.data.length >= 2);
-  });
-
-  it('GET /api/v1/services should return treatments catalog', async () => {
-    const res = await fetch(`${baseUrl}/api/v1/services`);
-    const json = await res.json() as any;
-    assert.strictEqual(res.status, 200);
-    assert.strictEqual(json.success, true);
-    assert.ok(json.data.length >= 5);
-  });
-
-  it('GET /api/v1/analytics/overview should return live clinic KPIs', async () => {
-    const res = await fetch(`${baseUrl}/api/v1/analytics/overview`);
-    const json = await res.json() as any;
-    assert.strictEqual(res.status, 200);
-    assert.strictEqual(json.success, true);
-    assert.ok(json.data.totalEnquiries >= 0);
-    assert.ok(json.data.qualifiedLeads >= 0);
-    assert.ok(json.data.aiConversionRate !== undefined);
-  });
-
-  it('POST /api/v1/whatsapp/simulator/send should respond with AI reply', async () => {
+  it('POST /api/v1/whatsapp/simulator/send should respond with AI reply (public simulation webhook)', async () => {
     const res = await fetch(`${baseUrl}/api/v1/whatsapp/simulator/send`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -77,11 +43,43 @@ describe('Integration Tests: Express REST API Endpoints', () => {
       }),
     });
 
-    const json = await res.json() as any;
+    const json = (await res.json()) as any;
     assert.strictEqual(res.status, 200);
     assert.strictEqual(json.success, true);
     assert.ok(json.data.userMessage);
     assert.ok(json.data.aiMessage);
     assert.ok(json.data.aiMessage.content.length > 0);
+  });
+
+  it('GET /api/v1/clinic should require authentication (401 without session)', async () => {
+    const res = await fetch(`${baseUrl}/api/v1/clinic`);
+    const json = (await res.json()) as any;
+    assert.strictEqual(res.status, 401);
+    assert.strictEqual(json.success, false);
+    assert.strictEqual(json.error.code, 'UNAUTHORIZED');
+  });
+
+  it('GET /api/v1/doctors should require authentication (401 without session)', async () => {
+    const res = await fetch(`${baseUrl}/api/v1/doctors`);
+    const json = (await res.json()) as any;
+    assert.strictEqual(res.status, 401);
+    assert.strictEqual(json.success, false);
+    assert.strictEqual(json.error.code, 'UNAUTHORIZED');
+  });
+
+  it('GET /api/v1/services should require authentication (401 without session)', async () => {
+    const res = await fetch(`${baseUrl}/api/v1/services`);
+    const json = (await res.json()) as any;
+    assert.strictEqual(res.status, 401);
+    assert.strictEqual(json.success, false);
+    assert.strictEqual(json.error.code, 'UNAUTHORIZED');
+  });
+
+  it('GET /api/v1/analytics/overview should require authentication (401 without session)', async () => {
+    const res = await fetch(`${baseUrl}/api/v1/analytics/overview`);
+    const json = (await res.json()) as any;
+    assert.strictEqual(res.status, 401);
+    assert.strictEqual(json.success, false);
+    assert.strictEqual(json.error.code, 'UNAUTHORIZED');
   });
 });

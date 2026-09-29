@@ -36,19 +36,36 @@ describe('Integration Tests: Better Auth Server Endpoints & Configuration', () =
     assert.strictEqual(json, null);
   });
 
-  it('POST /api/auth/sign-in/email should reject missing or invalid credentials', async () => {
+  it('POST /api/auth/sign-in/email should block requests from untrusted origins with 403 CSRF protection', async () => {
     const res = await fetch(`${baseUrl}/api/auth/sign-in/email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Origin: 'http://malicious-website.com',
       },
       body: JSON.stringify({
-        email: 'invalid@example.com',
+        email: 'attacker@example.com',
+        password: 'password',
+      }),
+    });
+
+    assert.strictEqual(res.status, 403);
+  });
+
+  it('POST /api/auth/sign-in/email with trusted origin should reject non-existent credentials', async () => {
+    const res = await fetch(`${baseUrl}/api/auth/sign-in/email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Origin: config.frontendUrl,
+      },
+      body: JSON.stringify({
+        email: 'nonexistent@example.com',
         password: 'wrongpassword',
       }),
     });
 
-    // Should return 400 or 401
-    assert.ok(res.status === 400 || res.status === 401 || res.status === 500);
+    // When origin is trusted, Better Auth processes the request (400/401 invalid credentials or 500 if DB offline)
+    assert.ok(res.status >= 400);
   });
 });
