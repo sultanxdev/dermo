@@ -6,6 +6,9 @@ import { requestIdMiddleware } from './middleware/audit';
 import { errorHandler } from './middleware/errorHandler';
 import apiRoutes from './routes';
 import { seedDatabase } from './database/seed';
+import { toNodeHandler } from 'better-auth/node';
+import { auth } from './auth';
+import { config } from './config';
 
 export function createApp(): Express {
   const app = express();
@@ -17,10 +20,14 @@ export function createApp(): Express {
   app.use(helmet({ contentSecurityPolicy: false }));
   app.use(
     cors({
-      origin: true,
+      origin: config.frontendUrl,
       credentials: true,
     })
   );
+
+  // Better Auth — handles all /api/auth/* routes
+  // Must be mounted BEFORE body parsers (Better Auth handles its own body parsing)
+  app.all('/api/auth/*', toNodeHandler(auth));
 
   // Body parsers
   app.use(express.json({ limit: '10mb' }));
