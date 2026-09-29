@@ -2,7 +2,7 @@
 
 Production-ready, grounded WhatsApp AI assistant and administrative management system for Dermatology & Aesthetic Clinics.
 
-Built with **JavaScript (Node.js Express + React Vite)**.
+Built with **JavaScript / TypeScript (Node.js Express + Next.js)**.
 
 ---
 
@@ -46,5 +46,37 @@ Built with **JavaScript (Node.js Express + React Vite)**.
 
 ---
 
+## 🚀 Local Setup
 
+1. **Start PostgreSQL**:
+   ```bash
+   docker compose up -d
+   ```
 
+2. **Migrate Auth Database**:
+   ```bash
+   npm run db:auth:migrate --workspace=apps/api
+   ```
+
+3. **Start Development Servers**:
+   ```bash
+   # Both API and Web
+   npm run dev
+
+   # Or separately
+   npm run dev:api   # API runs on http://localhost:4000
+   npm run dev:web   # Web runs on http://localhost:3000
+   ```
+
+4. **Register / Login**:
+   Open [http://localhost:3000/auth/signup](http://localhost:3000/auth/signup) to create your clinic staff account.
+
+---
+
+## 🔐 Authentication (Better Auth)
+
+Dermo uses [Better Auth](https://better-auth.com) backed by PostgreSQL auth storage:
+- **Email & Password**: Built-in credential provider with complexity enforcement.
+- **Social OAuth**: Google and GitHub OAuth providers (configured via `GOOGLE_CLIENT_ID` / `GITHUB_CLIENT_ID`).
+- **Server-Side Sessions**: Secure HTTP-only cookies (`credentials: 'include'`). Client-side JWTs are eliminated.
+- **Single-Tenant Identity Boundary**: PR 1.1 establishes authenticated identity while single-tenant isolation is centralized (`DEFAULT_CLINIC_ID`). Role authorization is deferred to `staff_profile` in PR 1.2.
