@@ -11,7 +11,28 @@ export const config = {
   appUrl: process.env.APP_URL || 'http://localhost:4000',
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
   
-  // JWT
+  // Better Auth
+  betterAuthSecret: process.env.BETTER_AUTH_SECRET || '',
+  betterAuthUrl: process.env.BETTER_AUTH_URL || 'http://localhost:4000',
+
+  // OAuth
+  google: {
+    clientId: process.env.GOOGLE_CLIENT_ID || '',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+  },
+  github: {
+    clientId: process.env.GITHUB_CLIENT_ID || '',
+    clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+  },
+
+  // Single-tenant clinic context
+  // This is the ONLY place that knows the default clinic ID.
+  // Replaced by req.auth.clinic in PR 1.2 when staff_profile is introduced.
+  singleTenant: {
+    clinicId: process.env.DEFAULT_CLINIC_ID || 'clinic_dermacare_01',
+  },
+
+  // JWT (Deprecated - kept during PR 1.1 transition)
   jwtSecret: process.env.JWT_SECRET || 'super_secret_dermo_clinic_jwt_key_32chars!',
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
 
