@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSession, signOut } from 'next-auth/react';
+import { authClient } from '@/lib/auth-client';
 import {
   LayoutDashboard,
   MessageSquare,
@@ -36,43 +36,32 @@ const NAV_ITEMS = [
   { href: '/dashboard/settings', label: 'Clinic & Audit', icon: Settings },
 ];
 
-const ROLE_LABELS: Record<string, string> = {
-  OWNER: 'Clinic Owner',
-  ADMIN: 'Administrator',
-  STAFF: 'Staff Member',
-  DOCTOR: 'Doctor',
-};
-
-const ROLE_COLORS: Record<string, string> = {
-  OWNER: 'text-orange-400',
-  ADMIN: 'text-blue-400',
-  STAFF: 'text-emerald-400',
-  DOCTOR: 'text-purple-400',
-};
-
 function getUserInitials(name: string): string {
+  if (!name) return 'U';
   return name
     .split(' ')
+    .filter(Boolean)
     .map((n) => n[0])
     .join('')
     .toUpperCase()
-    .slice(0, 2);
+    .slice(0, 2) || 'U';
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { data: session, status } = useSession();
+  const { data: session, isPending } = authClient.useSession();
 
-  const user = session?.user as any;
-  const userName = user?.name || 'User';
-  const userRole = user?.role || 'STAFF';
+  const user = session?.user;
+  const userName = user?.name || user?.email || 'User';
+  const userEmail = user?.email || '';
   const initials = getUserInitials(userName);
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: '/auth/login' });
+    await authClient.signOut();
+    window.location.href = '/auth/login';
   };
 
-  if (status === 'loading') {
+  if (isPending) {
     return (
       <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
@@ -184,8 +173,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
               <div className="hidden sm:block">
                 <div className="text-xs font-semibold text-white">{userName}</div>
-                <div className={`text-[10px] ${ROLE_COLORS[userRole] || 'text-orange-400'}`}>
-                  {ROLE_LABELS[userRole] || userRole}
+                <div className="text-[10px] text-neutral-400">
+                  {userEmail || 'Active Session'}
                 </div>
               </div>
               <button
