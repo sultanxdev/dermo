@@ -7,7 +7,7 @@ import {
   cancelAppointmentSchema,
   availabilityQuerySchema,
 } from '@dermo/schemas';
-import { AuthRequest } from '../middleware/auth';
+import { AuthRequest } from '../middleware/requireAuth';
 import { appointmentService } from '../services/appointmentService';
 
 const router = Router();
