@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import authRoutes from './authRoutes';
 import clinicRoutes from './clinicRoutes';
 import doctorRoutes from './doctorRoutes';
 import serviceRoutes from './serviceRoutes';
@@ -11,25 +10,24 @@ import paymentRoutes from './paymentRoutes';
 import whatsappRoutes from './whatsappRoutes';
 import analyticsRoutes from './analyticsRoutes';
 import auditRoutes from './auditRoutes';
-import { authenticate } from '../middleware/auth';
+import { requireAuth } from '../middleware/requireAuth';
 
 const router = Router();
 
 // Public / Webhook routes
 router.use('/', whatsappRoutes);
-router.use('/auth', authRoutes);
 
-// Protected routes
-router.use('/clinic', authenticate, clinicRoutes);
-router.use('/doctors', authenticate, doctorRoutes);
-router.use('/services', authenticate, serviceRoutes);
-router.use('/appointments', authenticate, appointmentRoutes);
-router.use('/leads', authenticate, leadRoutes);
-router.use('/conversations', authenticate, conversationRoutes);
-router.use('/knowledge', authenticate, knowledgeRoutes);
-router.use('/', authenticate, knowledgeRoutes); // For /faqs
-router.use('/payments', authenticate, paymentRoutes);
-router.use('/analytics', authenticate, analyticsRoutes);
-router.use('/audit-logs', authenticate, auditRoutes);
+// Protected routes — authenticated identity, single-tenant context
+router.use('/clinic', requireAuth, clinicRoutes);
+router.use('/doctors', requireAuth, doctorRoutes);
+router.use('/services', requireAuth, serviceRoutes);
+router.use('/appointments', requireAuth, appointmentRoutes);
+router.use('/leads', requireAuth, leadRoutes);
+router.use('/conversations', requireAuth, conversationRoutes);
+router.use('/knowledge', requireAuth, knowledgeRoutes);
+router.use('/', requireAuth, knowledgeRoutes); // For /faqs
+router.use('/payments', requireAuth, paymentRoutes);
+router.use('/analytics', requireAuth, analyticsRoutes);
+router.use('/audit-logs', requireAuth, auditRoutes);
 
 export default router;
