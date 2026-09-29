@@ -20,6 +20,7 @@
     "@langchain/core": "^0.3.40",
     "@langchain/google-genai": "^0.1.11",
     "bcryptjs": "^2.4.3",
+    "better-auth": "^1.7.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
