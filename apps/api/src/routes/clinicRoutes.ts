@@ -2,7 +2,7 @@ import { Router, Response } from 'express';
 import { db } from '../database/db';
 import { validateBody } from '../middleware/validator';
 import { updateClinicSchema } from '@dermo/schemas';
-import { AuthRequest } from '../middleware/auth';
+import { AuthRequest } from '../middleware/requireAuth';
 
 const router = Router();
 

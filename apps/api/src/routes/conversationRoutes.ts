@@ -2,7 +2,7 @@ import { Router, Response } from 'express';
 import { db } from '../database/db';
 import { validateBody } from '../middleware/validator';
 import { sendStaffMessageSchema } from '@dermo/schemas';
-import { AuthRequest } from '../middleware/auth';
+import { AuthRequest } from '../middleware/requireAuth';
 
 const router = Router();
 
@@ -37,7 +37,7 @@ router.post('/:id/messages', validateBody(sendStaffMessageSchema), (req: AuthReq
   }
 
   const { content, mediaUrl } = req.body;
-  const staffName = req.user?.email || 'Clinic Staff';
+  const staffName = req.auth?.user?.name || req.auth?.user?.email || 'Clinic Staff';
 
   const message = db.createMessage({
     conversationId: conv.id,
@@ -71,7 +71,7 @@ router.post('/:id/takeover', (req: AuthRequest, res: Response) => {
   const updated = db.updateConversation(conv.id, {
     mode: 'HUMAN_TAKEOVER',
     state: 'HANDOFF',
-    assignedStaffId: req.user?.id,
+    assignedStaffId: req.auth?.user?.id,
   });
 
   db.createAuditLog({
@@ -79,7 +79,7 @@ router.post('/:id/takeover', (req: AuthRequest, res: Response) => {
     action: 'HUMAN_TAKEOVER_START',
     entityType: 'CONVERSATION',
     entityId: conv.id,
-    details: { staff: req.user?.email },
+    details: { staff: req.auth?.user?.email },
   });
 
   res.json({ success: true, data: updated, message: 'AI paused. Human staff takeover active.' });
@@ -104,7 +104,7 @@ router.post('/:id/release', (req: AuthRequest, res: Response) => {
     action: 'RETURN_TO_AI',
     entityType: 'CONVERSATION',
     entityId: conv.id,
-    details: { staff: req.user?.email },
+    details: { staff: req.auth?.user?.email },
   });
 
   res.json({ success: true, data: updated, message: 'Conversation returned to AI assistant.' });
