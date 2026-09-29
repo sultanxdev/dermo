@@ -3,6 +3,11 @@ import { auth } from "../auth";
 import { fromNodeHeaders } from "better-auth/node";
 import type { AuthContext } from "../auth/types";
 
+export interface AuthRequest extends Request {
+  auth?: AuthContext;
+  requestId?: string;
+}
+
 /**
  * Validates the Better Auth session and attaches typed auth context to req.auth.
  *
