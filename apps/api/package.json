@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "seed": "tsx src/database/seed.ts",
+    "db:auth:migrate": "tsx src/database/migrate-auth.ts",
     "type-check": "tsc --noEmit",
     "test": "node --import tsx --test test/unit/*.test.ts test/integration/*.test.ts",
     "test:eval": "tsx src/eval/runAiEval.ts",
