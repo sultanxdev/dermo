@@ -10,7 +10,11 @@ export function middleware(request: NextRequest) {
     request.cookies.has('__Secure-better-auth.session_token');
 
   const isOnDashboard = request.nextUrl.pathname.startsWith('/dashboard');
-  const isOnAuth = request.nextUrl.pathname.startsWith('/auth');
+  const isOnAuth =
+    request.nextUrl.pathname.startsWith('/auth') ||
+    request.nextUrl.pathname === '/login' ||
+    request.nextUrl.pathname === '/forgot-password' ||
+    request.nextUrl.pathname === '/reset-password';
 
   if (isOnDashboard && !hasSession) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
@@ -24,5 +28,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth/:path*'],
+  matcher: ['/dashboard/:path*', '/auth/:path*', '/login', '/forgot-password', '/reset-password'],
 };

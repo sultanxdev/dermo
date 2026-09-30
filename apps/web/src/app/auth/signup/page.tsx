@@ -113,7 +113,7 @@ export default function SignupPage() {
           Create your account
         </h1>
         <p className="text-sm text-[#553E53]/70 mt-1.5 font-medium">
-          Join the <span className="text-[#553E53] font-bold">DermaCare</span> clinic platform
+          Join the <span className="text-[#553E53] font-bold">Dermo</span> clinic platform
         </p>
       </div>
 

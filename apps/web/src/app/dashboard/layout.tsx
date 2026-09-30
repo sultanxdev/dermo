@@ -84,7 +84,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
             <div>
               <span className="text-base font-bold tracking-tight text-[#553E53] block">
-                DermaCare<span className="text-[#8E6F8B]">.ai</span>
+                Dermo<span className="text-[#8E6F8B]">.ai</span>
               </span>
               <span className="text-[10px] text-[#553E53]/70 flex items-center gap-1 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#553E53] animate-pulse" />
