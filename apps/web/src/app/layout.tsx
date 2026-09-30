@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import AuthSessionProvider from '@/components/providers/session-provider';
 import './globals.css';
 
 const inter = Inter({
@@ -22,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${inter.variable}`}>
-      <body className="min-h-screen bg-[#0A0A0A] text-cream-100 antialiased font-sans selection:bg-orange-500 selection:text-white">
-        <AuthSessionProvider>{children}</AuthSessionProvider>
+    <html lang="en" className={inter.variable}>
+      <body className="min-h-screen bg-[#F5F6F0] text-[#553E53] antialiased font-sans selection:bg-[#B6CBDE] selection:text-[#553E53]">
+        {children}
       </body>
     </html>
   );

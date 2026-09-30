@@ -27,10 +27,10 @@ function evaluatePassword(password: string): PasswordStrength {
   const colors = [
     'bg-red-500',
     'bg-red-400',
-    'bg-orange-400',
-    'bg-yellow-400',
-    'bg-green-400',
-    'bg-emerald-400',
+    'bg-amber-500',
+    'bg-[#B6CBDE]',
+    'bg-[#7AA0BF]',
+    'bg-[#553E53]',
   ];
 
   return { score, label: labels[score], color: colors[score], checks };
@@ -106,23 +106,23 @@ export default function SignupPage() {
     <div className="w-full">
       {/* Logo & Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 shadow-lg shadow-orange-500/25 mb-5">
-          <UserPlus className="w-8 h-8 text-white" />
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#553E53] text-[#F5F6F0] shadow-xl shadow-[#553E53]/15 mb-5 ring-4 ring-[#B6CBDE]/40">
+          <UserPlus className="w-8 h-8 text-[#B6CBDE]" />
         </div>
-        <h1 className="text-2xl font-bold text-white tracking-tight">
+        <h1 className="text-2xl font-bold text-[#553E53] tracking-tight">
           Create your account
         </h1>
-        <p className="text-sm text-neutral-400 mt-1.5">
-          Join the <span className="text-orange-400 font-medium">DermaCare</span> clinic platform
+        <p className="text-sm text-[#553E53]/70 mt-1.5 font-medium">
+          Join the <span className="text-[#553E53] font-bold">DermaCare</span> clinic platform
         </p>
       </div>
 
       {/* Signup Card */}
-      <div className="bg-neutral-900/60 backdrop-blur-xl border border-neutral-800/80 rounded-2xl p-8 shadow-2xl shadow-black/40">
+      <div className="bg-white/95 backdrop-blur-xl border border-[#553E53]/15 rounded-2xl p-8 shadow-xl shadow-[#553E53]/5">
         {/* Error Alert */}
         {error && (
-          <div className="flex items-center gap-2.5 p-3.5 mb-6 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-400" />
+          <div className="flex items-center gap-2.5 p-3.5 mb-6 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+            <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-500" />
             <span>{error}</span>
           </div>
         )}
@@ -133,10 +133,10 @@ export default function SignupPage() {
             type="button"
             onClick={() => handleSocialSignIn('google')}
             disabled={!!socialLoading || isLoading}
-            className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/80 border border-neutral-700 text-xs font-semibold text-neutral-200 transition-all active:scale-[0.98] disabled:opacity-50"
+            className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#F5F6F0] hover:bg-[#B6CBDE]/30 border border-[#553E53]/15 text-xs font-semibold text-[#553E53] transition-all active:scale-[0.98] disabled:opacity-50"
           >
             {socialLoading === 'google' ? (
-              <Loader2 className="w-4 h-4 animate-spin text-orange-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#553E53]" />
             ) : (
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path
@@ -164,12 +164,12 @@ export default function SignupPage() {
             type="button"
             onClick={() => handleSocialSignIn('github')}
             disabled={!!socialLoading || isLoading}
-            className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/80 border border-neutral-700 text-xs font-semibold text-neutral-200 transition-all active:scale-[0.98] disabled:opacity-50"
+            className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#F5F6F0] hover:bg-[#B6CBDE]/30 border border-[#553E53]/15 text-xs font-semibold text-[#553E53] transition-all active:scale-[0.98] disabled:opacity-50"
           >
             {socialLoading === 'github' ? (
-              <Loader2 className="w-4 h-4 animate-spin text-orange-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#553E53]" />
             ) : (
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 fill-current text-[#553E53]" viewBox="0 0 24 24">
                 <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
               </svg>
             )}
@@ -180,10 +180,10 @@ export default function SignupPage() {
         {/* Divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-neutral-800" />
+            <div className="w-full border-t border-[#553E53]/15" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-neutral-900/60 px-3 text-[11px] text-neutral-500 uppercase tracking-wider">
+            <span className="bg-white px-3 text-[11px] text-[#553E53]/60 uppercase tracking-wider font-semibold">
               Or register with email
             </span>
           </div>
@@ -192,11 +192,11 @@ export default function SignupPage() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Full Name */}
           <div>
-            <label htmlFor="signup-name" className="block text-xs font-semibold text-neutral-300 mb-2 uppercase tracking-wider">
+            <label htmlFor="signup-name" className="block text-xs font-semibold text-[#553E53] mb-2 uppercase tracking-wider">
               Full Name
             </label>
             <div className="relative group">
-              <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 group-focus-within:text-orange-400 transition-colors" />
+              <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
               <input
                 id="signup-name"
                 type="text"
@@ -206,18 +206,18 @@ export default function SignupPage() {
                 required
                 minLength={2}
                 autoComplete="name"
-                className="w-full pl-11 pr-4 py-3 rounded-xl bg-neutral-800/60 border border-neutral-700/60 text-white placeholder:text-neutral-500 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/60 transition-all hover:border-neutral-600"
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#F5F6F0] border border-[#553E53]/20 text-[#553E53] placeholder:text-[#553E53]/40 text-sm focus:outline-none focus:ring-2 focus:ring-[#B6CBDE] focus:border-[#553E53] transition-all hover:border-[#553E53]/40"
               />
             </div>
           </div>
 
           {/* Email */}
           <div>
-            <label htmlFor="signup-email" className="block text-xs font-semibold text-neutral-300 mb-2 uppercase tracking-wider">
+            <label htmlFor="signup-email" className="block text-xs font-semibold text-[#553E53] mb-2 uppercase tracking-wider">
               Email Address
             </label>
             <div className="relative group">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 group-focus-within:text-orange-400 transition-colors" />
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
               <input
                 id="signup-email"
                 type="email"
@@ -226,18 +226,18 @@ export default function SignupPage() {
                 placeholder="you@clinic.com"
                 required
                 autoComplete="email"
-                className="w-full pl-11 pr-4 py-3 rounded-xl bg-neutral-800/60 border border-neutral-700/60 text-white placeholder:text-neutral-500 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/60 transition-all hover:border-neutral-600"
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#F5F6F0] border border-[#553E53]/20 text-[#553E53] placeholder:text-[#553E53]/40 text-sm focus:outline-none focus:ring-2 focus:ring-[#B6CBDE] focus:border-[#553E53] transition-all hover:border-[#553E53]/40"
               />
             </div>
           </div>
 
           {/* Password */}
           <div>
-            <label htmlFor="signup-password" className="block text-xs font-semibold text-neutral-300 mb-2 uppercase tracking-wider">
+            <label htmlFor="signup-password" className="block text-xs font-semibold text-[#553E53] mb-2 uppercase tracking-wider">
               Password
             </label>
             <div className="relative group">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 group-focus-within:text-orange-400 transition-colors" />
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
               <input
                 id="signup-password"
                 type={showPassword ? 'text' : 'password'}
@@ -246,12 +246,12 @@ export default function SignupPage() {
                 placeholder="••••••••"
                 required
                 autoComplete="new-password"
-                className="w-full pl-11 pr-12 py-3 rounded-xl bg-neutral-800/60 border border-neutral-700/60 text-white placeholder:text-neutral-500 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/60 transition-all hover:border-neutral-600"
+                className="w-full pl-11 pr-12 py-3 rounded-xl bg-[#F5F6F0] border border-[#553E53]/20 text-[#553E53] placeholder:text-[#553E53]/40 text-sm focus:outline-none focus:ring-2 focus:ring-[#B6CBDE] focus:border-[#553E53] transition-all hover:border-[#553E53]/40"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#553E53]/50 hover:text-[#553E53] transition-colors"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -266,12 +266,12 @@ export default function SignupPage() {
                       <div
                         key={i}
                         className={`h-1.5 flex-1 rounded-full transition-all ${
-                          i < passwordStrength.score ? passwordStrength.color : 'bg-neutral-700'
+                          i < passwordStrength.score ? passwordStrength.color : 'bg-[#553E53]/15'
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-[11px] text-neutral-400 font-medium min-w-[60px] text-right">
+                  <span className="text-[11px] text-[#553E53]/80 font-medium min-w-[60px] text-right">
                     {passwordStrength.label}
                   </span>
                 </div>
@@ -281,12 +281,12 @@ export default function SignupPage() {
                   {passwordStrength.checks.map((check) => (
                     <div key={check.label} className="flex items-center gap-1.5">
                       {check.passed ? (
-                        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                        <CheckCircle2 className="w-3 h-3 text-[#553E53]" />
                       ) : (
-                        <XCircle className="w-3 h-3 text-neutral-600" />
+                        <XCircle className="w-3 h-3 text-[#553E53]/30" />
                       )}
                       <span
-                        className={`text-[11px] ${check.passed ? 'text-emerald-300/80' : 'text-neutral-500'}`}
+                        className={`text-[11px] ${check.passed ? 'text-[#553E53] font-medium' : 'text-[#553E53]/50'}`}
                       >
                         {check.label}
                       </span>
@@ -299,11 +299,11 @@ export default function SignupPage() {
 
           {/* Confirm Password */}
           <div>
-            <label htmlFor="signup-confirm-password" className="block text-xs font-semibold text-neutral-300 mb-2 uppercase tracking-wider">
+            <label htmlFor="signup-confirm-password" className="block text-xs font-semibold text-[#553E53] mb-2 uppercase tracking-wider">
               Confirm Password
             </label>
             <div className="relative group">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 group-focus-within:text-orange-400 transition-colors" />
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
               <input
                 id="signup-confirm-password"
                 type={showConfirmPassword ? 'text' : 'password'}
@@ -312,31 +312,31 @@ export default function SignupPage() {
                 placeholder="••••••••"
                 required
                 autoComplete="new-password"
-                className={`w-full pl-11 pr-12 py-3 rounded-xl bg-neutral-800/60 border text-white placeholder:text-neutral-500 text-sm focus:outline-none focus:ring-2 transition-all hover:border-neutral-600 ${
+                className={`w-full pl-11 pr-12 py-3 rounded-xl bg-[#F5F6F0] border text-[#553E53] placeholder:text-[#553E53]/40 text-sm focus:outline-none focus:ring-2 transition-all hover:border-[#553E53]/40 ${
                   passwordsMatch
-                    ? 'border-emerald-500/50 focus:ring-emerald-500/50'
+                    ? 'border-[#553E53] focus:ring-[#B6CBDE]'
                     : passwordsMismatch
-                      ? 'border-red-500/50 focus:ring-red-500/50'
-                      : 'border-neutral-700/60 focus:ring-orange-500/50 focus:border-orange-500/60'
+                      ? 'border-red-400 focus:ring-red-200'
+                      : 'border-[#553E53]/20 focus:ring-[#B6CBDE] focus:border-[#553E53]'
                 }`}
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#553E53]/50 hover:text-[#553E53] transition-colors"
               >
                 {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
             {passwordsMismatch && (
-              <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1">
+              <p className="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
                 <XCircle className="w-3 h-3" />
                 Passwords do not match
               </p>
             )}
             {passwordsMatch && (
-              <p className="text-xs text-emerald-400 mt-1.5 flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" />
+              <p className="text-xs text-[#553E53] mt-1.5 flex items-center gap-1 font-medium">
+                <CheckCircle2 className="w-3 h-3 text-[#553E53]" />
                 Passwords match
               </p>
             )}
@@ -346,17 +346,17 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={isLoading || passwordsMismatch || passwordStrength.score < 5 || !!socialLoading}
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold text-sm shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#553E53] hover:bg-[#433041] text-[#F5F6F0] font-semibold text-sm shadow-lg shadow-[#553E53]/20 hover:shadow-[#553E53]/35 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin text-[#B6CBDE]" />
                 <span>Creating account...</span>
               </>
             ) : (
               <>
                 <span>Create Account</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#B6CBDE]" />
               </>
             )}
           </button>
@@ -364,9 +364,9 @@ export default function SignupPage() {
       </div>
 
       {/* Footer — Login Link */}
-      <p className="text-center text-sm text-neutral-500 mt-6">
+      <p className="text-center text-sm text-[#553E53]/80 mt-6">
         Already have an account?{' '}
-        <Link href="/auth/login" className="text-orange-400 hover:text-orange-300 font-medium transition-colors">
+        <Link href="/auth/login" className="text-[#553E53] hover:underline font-bold transition-colors">
           Sign in
         </Link>
       </p>
