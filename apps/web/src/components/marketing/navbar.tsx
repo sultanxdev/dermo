@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { marketingNav } from '@/config/navigation';
-import { IconArrowRight, IconX, IconMenu } from '@/components/ui/icons';
+import { IconArrowRight, IconX, IconMenu, DermoLogo } from '@/components/ui/icons';
 
 interface NavbarProps {
   onBookDemo: () => void;
@@ -16,9 +16,9 @@ export function Navbar({ onBookDemo }: NavbarProps) {
     <header className="sticky top-0 z-40 border-b border-[#553E53]/10 bg-[#F5F6F0]/95 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Left: Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg overflow-hidden bg-[#553E53] p-1 flex items-center justify-center">
-            <img src="/logo.png" alt="Dermo.ai" className="w-full h-full object-contain filter brightness-110" />
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-lg bg-white border border-[#553E53]/15 shadow-xs p-1 flex items-center justify-center transition-transform group-hover:scale-105">
+            <DermoLogo className="w-full h-full" />
           </div>
           <div>
             <span className="text-xl font-bold tracking-tight text-[#553E53]">

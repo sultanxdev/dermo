@@ -5,6 +5,32 @@ export interface IconProps {
   size?: number;
 }
 
+export interface LogoProps {
+  className?: string;
+  size?: number;
+  color?: string;
+}
+
+export const DermoLogo: React.FC<LogoProps> = ({
+  className = 'w-7 h-7',
+  size = 28,
+  color = '#4B624A',
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 120 120"
+    fill="none"
+    className={className}
+    aria-hidden="true"
+  >
+    <path
+      d="M 40 0 H 80 V 40 H 120 V 80 A 40 40 0 0 0 80 120 H 40 V 80 H 0 V 40 A 40 40 0 0 0 40 0 Z"
+      fill={color}
+    />
+  </svg>
+);
+
 export const IconArrowRight: React.FC<IconProps> = ({ className = 'w-4 h-4', size = 16 }) => (
   <svg
     width={size}

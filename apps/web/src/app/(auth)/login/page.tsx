@@ -13,6 +13,7 @@ import {
   IconEyeOff,
   IconAlertCircle,
   IconLoader,
+  DermoLogo,
 } from '@/components/ui/icons';
 
 export default function LoginPage() {
@@ -67,9 +68,9 @@ export default function LoginPage() {
     <div className="w-full">
       {/* Logo & Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#553E53] text-[#F5F6F0] shadow-sm mb-4 border border-[#B6CBDE]/30">
-          <IconShieldCheck className="w-8 h-8 text-[#B6CBDE]" />
-        </div>
+        <Link href="/" className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-sm mb-4 border border-[#553E53]/15 p-3 hover:scale-105 transition-transform">
+          <DermoLogo className="w-full h-full" size={40} />
+        </Link>
         <h1 className="text-2xl font-bold text-[#553E53] tracking-tight">
           Welcome back
         </h1>
