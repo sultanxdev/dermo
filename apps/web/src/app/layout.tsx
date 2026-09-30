@@ -9,10 +9,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Dermo — Managed WhatsApp AI Employee for Dermatology & Aesthetic Clinics',
+  title: 'Dermo.ai — The 24/7 AI Employee for Modern Clinics',
   description:
-    'Grounded 24/7 AI employee for dermatology clinics. Handles WhatsApp inquiries, RAG knowledge retrieval, real doctor slot booking, Razorpay deposits, and seamless human handoff.',
-  keywords: ['dermatology ai', 'whatsapp clinic bot', 'aesthetic clinic automation', 'medical appointment booking', 'langchain clinic ai'],
+    "Dermo handles patient conversations on WhatsApp, captures leads, answers questions using your clinic's verified information, checks real provider availability, books appointments, collects payments, and hands conversations to your team when needed.",
+  keywords: ['clinic ai employee', 'whatsapp clinic receptionist', 'healthcare appointment booking', 'outpatient clinic automation', 'medical appointment scheduling'],
 };
 
 export default function RootLayout({
