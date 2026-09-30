@@ -4,7 +4,16 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, ShieldCheck, AlertCircle } from 'lucide-react';
+import {
+  IconArrowRight,
+  IconLock,
+  IconShieldCheck,
+  IconMail,
+  IconEye,
+  IconEyeOff,
+  IconAlertCircle,
+  IconLoader,
+} from '../../components/Icons';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -59,7 +68,7 @@ export default function LoginPage() {
       {/* Logo & Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#553E53] text-[#F5F6F0] shadow-xl shadow-[#553E53]/15 mb-5 ring-4 ring-[#B6CBDE]/40">
-          <ShieldCheck className="w-8 h-8 text-[#B6CBDE]" />
+          <IconShieldCheck className="w-8 h-8 text-[#B6CBDE]" />
         </div>
         <h1 className="text-2xl font-bold text-[#553E53] tracking-tight">
           Welcome back
@@ -73,8 +82,8 @@ export default function LoginPage() {
       <div className="bg-white/95 backdrop-blur-xl border border-[#553E53]/15 rounded-2xl p-8 shadow-xl shadow-[#553E53]/5">
         {/* Error Alert */}
         {error && (
-          <div className="flex items-center gap-2.5 p-3.5 mb-6 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm animate-in fade-in slide-in-from-top-2">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-500" />
+          <div className="flex items-center gap-2.5 p-3.5 mb-6 rounded-xl bg-[#553E53]/10 border border-[#553E53]/25 text-[#553E53] text-sm animate-in fade-in slide-in-from-top-2">
+            <IconAlertCircle className="w-4 h-4 flex-shrink-0 text-[#553E53]" />
             <span>{error}</span>
           </div>
         )}
@@ -88,7 +97,7 @@ export default function LoginPage() {
             className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#F5F6F0] hover:bg-[#B6CBDE]/30 border border-[#553E53]/15 text-xs font-semibold text-[#553E53] transition-all active:scale-[0.98] disabled:opacity-50"
           >
             {socialLoading === 'google' ? (
-              <Loader2 className="w-4 h-4 animate-spin text-[#553E53]" />
+              <IconLoader className="w-4 h-4 text-[#553E53]" />
             ) : (
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path
@@ -119,7 +128,7 @@ export default function LoginPage() {
             className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#F5F6F0] hover:bg-[#B6CBDE]/30 border border-[#553E53]/15 text-xs font-semibold text-[#553E53] transition-all active:scale-[0.98] disabled:opacity-50"
           >
             {socialLoading === 'github' ? (
-              <Loader2 className="w-4 h-4 animate-spin text-[#553E53]" />
+              <IconLoader className="w-4 h-4 text-[#553E53]" />
             ) : (
               <svg className="w-4 h-4 fill-current text-[#553E53]" viewBox="0 0 24 24">
                 <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
@@ -148,13 +157,13 @@ export default function LoginPage() {
               Email Address
             </label>
             <div className="relative group">
-              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
+              <IconMail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
               <input
                 id="login-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="doctor@dermacareclinic.in"
+                placeholder="doctor@novaskinclinic.in"
                 required
                 autoComplete="email"
                 className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#F5F6F0] border border-[#553E53]/20 text-[#553E53] placeholder:text-[#553E53]/40 text-sm focus:outline-none focus:ring-2 focus:ring-[#B6CBDE] focus:border-[#553E53] transition-all hover:border-[#553E53]/40"
@@ -168,7 +177,7 @@ export default function LoginPage() {
               Password
             </label>
             <div className="relative group">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
+              <IconLock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#553E53]/50 group-focus-within:text-[#553E53] transition-colors" />
               <input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
@@ -184,7 +193,7 @@ export default function LoginPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#553E53]/50 hover:text-[#553E53] transition-colors"
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showPassword ? <IconEyeOff className="w-4 h-4" /> : <IconEye className="w-4 h-4" />}
               </button>
             </div>
           </div>
@@ -226,24 +235,24 @@ export default function LoginPage() {
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-[#B6CBDE]" />
+                <IconLoader className="w-4 h-4 text-[#B6CBDE]" />
                 <span>Signing in...</span>
               </>
             ) : (
               <>
                 <span>Sign In</span>
-                <ArrowRight className="w-4 h-4 text-[#B6CBDE]" />
+                <IconArrowRight className="w-4 h-4 text-[#B6CBDE]" />
               </>
             )}
           </button>
         </form>
       </div>
 
-      {/* Footer — Sign Up Link */}
-      <p className="text-center text-sm text-[#553E53]/80 mt-6">
-        Don&apos;t have an account?{' '}
-        <Link href="/auth/signup" className="text-[#553E53] hover:underline font-bold transition-colors">
-          Create one
+      {/* Footer — Onboarding Link */}
+      <p className="text-center text-xs sm:text-sm text-[#553E53]/80 mt-6">
+        Looking to deploy Dermo for your practice?{' '}
+        <Link href="/book-demo" className="text-[#553E53] hover:underline font-bold transition-colors">
+          Book a Demo
         </Link>
       </p>
     </div>
