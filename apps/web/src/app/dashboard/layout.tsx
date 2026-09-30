@@ -63,31 +63,31 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (isPending) {
     return (
-      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F5F6F0] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 text-orange-400 animate-spin" />
-          <span className="text-sm text-neutral-400">Loading dashboard...</span>
+          <Loader2 className="w-8 h-8 text-[#553E53] animate-spin" />
+          <span className="text-sm text-[#553E53]/70 font-medium">Loading dashboard...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex text-neutral-100 selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-[#F5F6F0] flex text-[#553E53] selection:bg-[#B6CBDE] selection:text-[#553E53]">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-neutral-800/80 bg-[#0D0D0D]/90 backdrop-blur-xl flex flex-col fixed inset-y-0 z-40">
+      <aside className="w-64 border-r border-[#553E53]/15 bg-white/95 backdrop-blur-xl flex flex-col fixed inset-y-0 z-40 shadow-sm">
         {/* Clinic Brand */}
-        <div className="p-4 border-b border-neutral-800/80">
+        <div className="p-4 border-b border-[#553E53]/10">
           <Link href="/dashboard" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl overflow-hidden bg-black flex items-center justify-center shadow-lg shadow-orange-500/10 group-hover:scale-105 transition-transform">
-              <img src="/logo.png" alt="Dermo Logo" className="w-10 h-10 object-contain" />
+            <div className="w-10 h-10 rounded-xl overflow-hidden bg-[#553E53] p-1.5 flex items-center justify-center shadow-md shadow-[#553E53]/15 group-hover:scale-105 transition-transform ring-2 ring-[#B6CBDE]/40">
+              <img src="/logo.png" alt="Dermo Logo" className="w-full h-full object-contain filter brightness-110" />
             </div>
             <div>
-              <span className="text-base font-bold tracking-tight text-white block">
-                DermaCare<span className="text-orange-400">.ai</span>
+              <span className="text-base font-bold tracking-tight text-[#553E53] block">
+                DermaCare<span className="text-[#8E6F8B]">.ai</span>
               </span>
-              <span className="text-[10px] text-neutral-400 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+              <span className="text-[10px] text-[#553E53]/70 flex items-center gap-1 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#553E53] animate-pulse" />
                 <span>AI Assistant Active</span>
               </span>
             </div>
@@ -103,18 +103,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-orange-500/15 text-orange-300 border border-orange-500/30 shadow-sm'
-                    : 'text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800/50'
+                    ? 'bg-[#553E53] text-[#F5F6F0] shadow-sm'
+                    : 'text-[#553E53]/75 hover:text-[#553E53] hover:bg-[#B6CBDE]/25'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-orange-400' : 'text-neutral-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#B6CBDE]' : 'text-[#553E53]/60'}`} />
                   <span>{item.label}</span>
                 </div>
                 {item.badge && (
-                  <span className="px-1.5 py-0.5 rounded-md bg-orange-500/20 text-orange-400 text-[9px] font-bold border border-orange-500/40 animate-pulse">
+                  <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold border ${
+                    isActive
+                      ? 'bg-[#B6CBDE] text-[#553E53] border-transparent'
+                      : 'bg-[#B6CBDE]/30 text-[#553E53] border-[#B6CBDE]/60'
+                  }`}>
                     {item.badge}
                   </span>
                 )}
@@ -124,62 +128,62 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* Bottom Clinic Status & Profile */}
-        <div className="p-3 border-t border-neutral-800/80 bg-neutral-950/40">
-          <div className="p-2.5 rounded-xl bg-neutral-900/80 border border-neutral-800 mb-2">
+        <div className="p-3 border-t border-[#553E53]/10 bg-[#F5F6F0]/60">
+          <div className="p-2.5 rounded-xl bg-white border border-[#553E53]/10 mb-2 shadow-xs">
             <div className="flex items-center justify-between text-[11px] mb-1">
-              <span className="text-neutral-400">WhatsApp Webhook</span>
-              <span className="text-orange-400 font-semibold flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+              <span className="text-[#553E53]/70 font-medium">WhatsApp Webhook</span>
+              <span className="text-[#553E53] font-bold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 Healthy
               </span>
             </div>
-            <div className="text-[10px] text-neutral-500 truncate">Indiranagar, Bengaluru</div>
+            <div className="text-[10px] text-[#553E53]/55 truncate">Indiranagar, Bengaluru</div>
           </div>
 
           <div className="flex items-center justify-between px-1">
             <Link
               href="/"
-              className="text-[11px] text-neutral-400 hover:text-orange-300 flex items-center gap-1 transition-colors"
+              className="text-[11px] text-[#553E53]/70 hover:text-[#553E53] flex items-center gap-1 transition-colors font-medium"
             >
               <span>Landing Page</span>
-              <ExternalLink className="w-3 h-3" />
+              <ExternalLink className="w-3 h-3 text-[#553E53]/60" />
             </Link>
-            <span className="text-[10px] text-neutral-500 font-mono">v1.0 (Phase 1)</span>
+            <span className="text-[10px] text-[#553E53]/50 font-mono">v1.0 (Phase 1)</span>
           </div>
         </div>
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-64 min-h-screen flex flex-col bg-[#0A0A0A]">
+      <main className="flex-1 ml-64 min-h-screen flex flex-col bg-[#F5F6F0]">
         {/* Top Header */}
-        <header className="h-16 border-b border-neutral-800/80 px-8 flex items-center justify-between bg-[#0A0A0A]/75 backdrop-blur-md sticky top-0 z-30">
-          <div className="flex items-center gap-2 text-xs text-neutral-400">
+        <header className="h-16 border-b border-[#553E53]/10 px-8 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-30">
+          <div className="flex items-center gap-2 text-xs text-[#553E53]/70 font-medium">
             <span>Clinic Dashboard</span>
-            <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
-            <span className="text-neutral-200 font-semibold capitalize">
+            <ChevronRight className="w-3.5 h-3.5 text-[#553E53]/40" />
+            <span className="text-[#553E53] font-bold capitalize">
               {pathname.split('/')[2] || 'Overview'}
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-xs text-neutral-300">
-              <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F5F6F0] border border-[#553E53]/15 text-xs text-[#553E53] font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#553E53] animate-pulse" />
               <span>Gemini 2.0 Flash + RAG Vector Store</span>
             </div>
 
-            <div className="flex items-center gap-2.5 pl-3 border-l border-neutral-800">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-black font-bold text-xs">
+            <div className="flex items-center gap-2.5 pl-3 border-l border-[#553E53]/15">
+              <div className="w-8 h-8 rounded-full bg-[#553E53] flex items-center justify-center text-[#F5F6F0] font-bold text-xs shadow-sm ring-2 ring-[#B6CBDE]/50">
                 {initials}
               </div>
               <div className="hidden sm:block">
-                <div className="text-xs font-semibold text-white">{userName}</div>
-                <div className="text-[10px] text-neutral-400">
+                <div className="text-xs font-bold text-[#553E53]">{userName}</div>
+                <div className="text-[10px] text-[#553E53]/60">
                   {userEmail || 'Active Session'}
                 </div>
               </div>
               <button
                 onClick={handleLogout}
-                className="ml-2 p-1.5 rounded-lg text-neutral-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                className="ml-2 p-1.5 rounded-lg text-[#553E53]/60 hover:text-red-600 hover:bg-red-50 transition-all"
                 title="Sign out"
               >
                 <LogOut className="w-4 h-4" />
