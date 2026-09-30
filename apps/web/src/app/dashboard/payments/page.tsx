@@ -68,11 +68,11 @@ export default function PaymentsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <CreditCard className="w-6 h-6 text-orange-400" />
+          <h1 className="text-2xl font-serif font-bold text-[#553E53] flex items-center gap-2">
+            <CreditCard className="w-6 h-6 text-[#553E53]" />
             <span>Razorpay Payment Gateway & Deposits</span>
           </h1>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[#553E53]/70 mt-1">
             Automated advance consultation holding deposits and treatment payment verification.
           </p>
         </div>
@@ -82,48 +82,48 @@ export default function PaymentsPage() {
             setCreatedOrder(null);
             setShowOrderModal(true);
           }}
-          className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all self-start"
+          className="px-4 py-2.5 rounded-xl bg-[#553E53] hover:bg-[#433041] text-[#F5F6F0] font-medium text-xs flex items-center gap-2 shadow-sm transition-all self-start"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 text-[#B6CBDE]" />
           <span>Generate Razorpay Link</span>
         </button>
       </div>
 
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="glass-card rounded-2xl p-5 border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">Total Captured Revenue</span>
-          <div className="text-2xl font-bold font-mono text-orange-400">
+        <div className="bg-white rounded-2xl p-5 border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">Total Captured Revenue</span>
+          <div className="text-2xl font-bold font-mono text-[#553E53]">
             {formatCurrency(totalCaptured)}
           </div>
-          <div className="text-[10px] text-neutral-500">Collected through Razorpay UPI & Cards</div>
+          <div className="text-[10px] text-[#553E53]/50">Collected through Razorpay UPI & Cards</div>
         </div>
 
-        <div className="glass-card rounded-2xl p-5 border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">Total Orders Generated</span>
-          <div className="text-2xl font-bold font-mono text-white">{payments.length}</div>
-          <div className="text-[10px] text-neutral-500">Includes WhatsApp holding links</div>
+        <div className="bg-white rounded-2xl p-5 border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">Total Orders Generated</span>
+          <div className="text-2xl font-bold font-mono text-[#553E53]">{payments.length}</div>
+          <div className="text-[10px] text-[#553E53]/50">Includes WhatsApp holding links</div>
         </div>
 
-        <div className="glass-card rounded-2xl p-5 border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">Razorpay Gateway Status</span>
-          <div className="text-sm font-bold text-orange-400 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+        <div className="bg-white rounded-2xl p-5 border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">Razorpay Gateway Status</span>
+          <div className="text-sm font-bold text-[#553E53] flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#553E53] animate-pulse" />
             <span>HMAC Verification Active</span>
           </div>
-          <div className="text-[10px] text-neutral-500">Instant webhook reconciliation</div>
+          <div className="text-[10px] text-[#553E53]/50">Instant webhook reconciliation</div>
         </div>
       </div>
 
       {/* Transactions Table */}
-      <div className="glass-card rounded-2xl border border-neutral-800 overflow-hidden">
-        <div className="p-4 border-b border-neutral-800 bg-neutral-900/60 flex items-center justify-between">
-          <h3 className="font-bold text-sm text-white">Payment Orders & Audit Trail</h3>
+      <div className="bg-white rounded-2xl border border-[#553E53]/10 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-[#553E53]/10 bg-[#F5F6F0]/60 flex items-center justify-between">
+          <h3 className="font-serif font-bold text-sm text-[#553E53]">Payment Orders & Audit Trail</h3>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-neutral-300">
-            <thead className="bg-neutral-900/80 text-neutral-400 border-b border-neutral-800 uppercase tracking-wider text-[10px]">
+          <table className="w-full text-left text-xs text-[#553E53]">
+            <thead className="bg-[#F5F6F0] text-[#553E53]/70 border-b border-[#553E53]/10 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="p-3.5">Order ID & Receipt</th>
                 <th className="p-3.5">Patient Details</th>
@@ -133,33 +133,33 @@ export default function PaymentsPage() {
                 <th className="p-3.5">Date</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/60">
+            <tbody className="divide-y divide-[#553E53]/10">
               {payments.map((pay) => (
-                <tr key={pay.id} className="hover:bg-neutral-800/30">
+                <tr key={pay.id} className="hover:bg-[#F5F6F0]/50 transition-colors">
                   <td className="p-3.5">
-                    <div className="font-mono text-white font-semibold">{pay.orderId}</div>
-                    <div className="text-[10px] text-neutral-500 font-mono">{pay.receipt}</div>
+                    <div className="font-mono text-[#553E53] font-semibold">{pay.orderId}</div>
+                    <div className="text-[10px] text-[#553E53]/60 font-mono">{pay.receipt}</div>
                   </td>
                   <td className="p-3.5">
-                    <div className="font-bold text-neutral-200">{pay.customerName}</div>
-                    <div className="text-[10px] text-neutral-400 font-mono">{pay.customerPhone}</div>
+                    <div className="font-bold text-[#553E53]">{pay.customerName}</div>
+                    <div className="text-[10px] text-[#553E53]/60 font-mono">{pay.customerPhone}</div>
                   </td>
-                  <td className="p-3.5 font-mono font-bold text-orange-400">
+                  <td className="p-3.5 font-mono font-bold text-[#553E53]">
                     {formatCurrency(pay.amount / 100, pay.currency)}
                   </td>
-                  <td className="p-3.5 text-neutral-300 text-xs">{pay.description}</td>
+                  <td className="p-3.5 text-[#553E53]/80 text-xs">{pay.description}</td>
                   <td className="p-3.5">
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                         pay.status === 'CAPTURED'
-                          ? 'bg-orange-500/15 text-orange-300 border-orange-500/30'
-                          : 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+                          ? 'bg-[#B6CBDE]/35 text-[#553E53] border-[#553E53]/25'
+                          : 'bg-amber-50 text-amber-700 border-amber-200'
                       }`}
                     >
                       {pay.status}
                     </span>
                   </td>
-                  <td className="p-3.5 font-mono text-neutral-400 text-[11px]">
+                  <td className="p-3.5 font-mono text-[#553E53]/70 text-[11px]">
                     {formatDate(pay.createdAt)}
                   </td>
                 </tr>
@@ -171,29 +171,29 @@ export default function PaymentsPage() {
 
       {/* Generate Order Modal */}
       {showOrderModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
-            <h3 className="font-bold text-lg text-white">Generate Razorpay Payment Order</h3>
+        <div className="fixed inset-0 z-50 bg-[#553E53]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white p-6 rounded-2xl max-w-md w-full border border-[#553E53]/15 space-y-4 shadow-xl">
+            <h3 className="font-serif font-bold text-lg text-[#553E53]">Generate Razorpay Payment Order</h3>
 
             {createdOrder ? (
               <div className="space-y-3">
-                <div className="p-3.5 rounded-xl bg-orange-500/10 border border-orange-500/30 space-y-2">
-                  <div className="flex items-center gap-2 text-orange-400 font-bold text-xs">
-                    <CheckCircle2 className="w-4 h-4" />
+                <div className="p-3.5 rounded-xl bg-[#B6CBDE]/20 border border-[#553E53]/20 space-y-2">
+                  <div className="flex items-center gap-2 text-[#553E53] font-bold text-xs">
+                    <CheckCircle2 className="w-4 h-4 text-[#553E53]" />
                     <span>Order Created Successfully</span>
                   </div>
-                  <div className="text-xs text-neutral-300">
-                    Order ID: <strong className="font-mono text-white">{createdOrder.orderId}</strong>
+                  <div className="text-xs text-[#553E53]/80">
+                    Order ID: <strong className="font-mono text-[#553E53]">{createdOrder.orderId}</strong>
                   </div>
-                  <div className="text-xs text-neutral-300">
-                    Amount: <strong className="font-mono text-orange-400">₹{createdOrder.amount / 100}</strong>
+                  <div className="text-xs text-[#553E53]/80">
+                    Amount: <strong className="font-mono text-[#553E53]">₹{createdOrder.amount / 100}</strong>
                   </div>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setShowOrderModal(false)}
-                  className="w-full py-2.5 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs"
+                  className="w-full py-2.5 rounded-xl bg-[#553E53] text-[#F5F6F0] font-medium text-xs hover:bg-[#433041]"
                 >
                   Done
                 </button>
@@ -201,11 +201,11 @@ export default function PaymentsPage() {
             ) : (
               <form onSubmit={handleCreateOrder} className="space-y-3 text-xs">
                 <div>
-                  <label className="block text-neutral-400 mb-1">Select Patient *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Select Patient *</label>
                   <select
                     value={selectedLeadId}
                     onChange={(e) => setSelectedLeadId(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                   >
                     {leads.map((l) => (
                       <option key={l.id} value={l.id}>
@@ -216,23 +216,23 @@ export default function PaymentsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-neutral-400 mb-1">Deposit Amount (₹) *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Deposit Amount (₹) *</label>
                   <input
                     type="number"
                     required
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs font-mono focus:outline-none focus:border-[#553E53]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-neutral-400 mb-1">Payment Purpose</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Payment Purpose</label>
                   <input
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                   />
                 </div>
 
@@ -240,13 +240,13 @@ export default function PaymentsPage() {
                   <button
                     type="button"
                     onClick={() => setShowOrderModal(false)}
-                    className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
+                    className="px-4 py-2 rounded-xl bg-[#F5F6F0] text-[#553E53] font-medium text-xs border border-[#553E53]/15 hover:bg-[#e8ecea]"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
+                    className="px-4 py-2 rounded-xl bg-[#553E53] text-[#F5F6F0] font-medium text-xs hover:bg-[#433041]"
                   >
                     Create Razorpay Order
                   </button>

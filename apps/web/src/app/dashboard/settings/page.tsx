@@ -75,11 +75,11 @@ export default function SettingsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-          <Settings className="w-6 h-6 text-orange-400" />
+        <h1 className="text-2xl font-serif font-bold text-[#553E53] flex items-center gap-2">
+          <Settings className="w-6 h-6 text-[#553E53]" />
           <span>Clinic Configuration & Audit Trail</span>
         </h1>
-        <p className="text-xs text-neutral-400 mt-1">
+        <p className="text-xs text-[#553E53]/70 mt-1">
           Manage clinic working hours, medical safety guardrails, and compliance logs.
         </p>
       </div>
@@ -88,58 +88,58 @@ export default function SettingsPage() {
         {/* Left 7 Cols: Clinic Settings & Safety */}
         <div className="lg:col-span-7 space-y-6">
           {/* Clinic Details Form */}
-          <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-4">
-            <h3 className="font-bold text-sm text-white flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-orange-400" />
+          <div className="bg-white rounded-2xl p-6 border border-[#553E53]/10 shadow-sm space-y-4">
+            <h3 className="font-serif font-bold text-sm text-[#553E53] flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-[#553E53]" />
               <span>Clinic Profile & Deposit Settings</span>
             </h3>
 
             {savedSuccess && (
-              <div className="p-3 rounded-xl bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4" />
+              <div className="p-3 rounded-xl bg-[#B6CBDE]/25 border border-[#553E53]/20 text-[#553E53] text-xs flex items-center gap-2 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-[#553E53]" />
                 <span>Clinic settings updated successfully!</span>
               </div>
             )}
 
             <form onSubmit={handleSaveSettings} className="space-y-3 text-xs">
               <div>
-                <label className="block text-neutral-400 mb-1">Clinic Name</label>
+                <label className="block text-[#553E53]/80 font-medium mb-1">Clinic Name</label>
                 <input
                   type="text"
                   value={clinicName}
                   onChange={(e) => setClinicName(e.target.value)}
-                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                  className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-neutral-400 mb-1">Official WhatsApp Phone</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Official WhatsApp Phone</label>
                   <input
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs font-mono focus:outline-none focus:border-[#553E53]"
                   />
                 </div>
                 <div>
-                  <label className="block text-neutral-400 mb-1">Default Deposit (₹)</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Default Deposit (₹)</label>
                   <input
                     type="number"
                     value={depositAmount}
                     onChange={(e) => setDepositAmount(Number(e.target.value))}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs font-mono focus:outline-none focus:border-[#553E53]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1">Address & Location</label>
+                <label className="block text-[#553E53]/80 font-medium mb-1">Address & Location</label>
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                  className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                 />
               </div>
 
@@ -147,9 +147,9 @@ export default function SettingsPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md shadow-orange-500/20"
+                  className="px-4 py-2.5 rounded-xl bg-[#553E53] hover:bg-[#433041] text-[#F5F6F0] font-medium text-xs flex items-center gap-2 transition-all shadow-sm"
                 >
-                  <Save className="w-3.5 h-3.5" />
+                  <Save className="w-3.5 h-3.5 text-[#B6CBDE]" />
                   <span>{saving ? 'Saving...' : 'Save Settings'}</span>
                 </button>
               </div>
@@ -157,17 +157,17 @@ export default function SettingsPage() {
           </div>
 
           {/* Medical Safety Guardrails Switches */}
-          <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-4">
-            <h3 className="font-bold text-sm text-white flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-orange-400" />
+          <div className="bg-white rounded-2xl p-6 border border-[#553E53]/10 shadow-sm space-y-4">
+            <h3 className="font-serif font-bold text-sm text-[#553E53] flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#553E53]" />
               <span>Medical Safety & Guardrail Policies</span>
             </h3>
 
             <div className="space-y-3 text-xs">
-              <div className="p-3 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between gap-4">
+              <div className="p-3.5 rounded-xl bg-[#F5F6F0] border border-[#553E53]/10 flex items-center justify-between gap-4">
                 <div>
-                  <div className="font-semibold text-white">Strict Non-Diagnostic & Medication Filter</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">
+                  <div className="font-semibold text-[#553E53]">Strict Non-Diagnostic & Medication Filter</div>
+                  <div className="text-[11px] text-[#553E53]/70 mt-0.5">
                     Blocks prescriptions for tretinoin, accutane, antibiotics, and steroids.
                   </div>
                 </div>
@@ -175,14 +175,14 @@ export default function SettingsPage() {
                   type="checkbox"
                   checked={blockPrescriptions}
                   onChange={(e) => setBlockPrescriptions(e.target.checked)}
-                  className="w-4 h-4 rounded bg-neutral-950 border-neutral-700 text-orange-500"
+                  className="w-4 h-4 rounded border-[#553E53]/20 text-[#553E53] focus:ring-[#553E53]"
                 />
               </div>
 
-              <div className="p-3 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between gap-4">
+              <div className="p-3.5 rounded-xl bg-[#F5F6F0] border border-[#553E53]/10 flex items-center justify-between gap-4">
                 <div>
-                  <div className="font-semibold text-white">Emergency Keyword Interceptor</div>
-                  <div className="text-[11px] text-neutral-400 mt-0.5">
+                  <div className="font-semibold text-[#553E53]">Emergency Keyword Interceptor</div>
+                  <div className="text-[11px] text-[#553E53]/70 mt-0.5">
                     Instantly flags acute reactions and pauses AI for urgent staff intervention.
                   </div>
                 </div>
@@ -190,7 +190,7 @@ export default function SettingsPage() {
                   type="checkbox"
                   checked={escalateEmergency}
                   onChange={(e) => setEscalateEmergency(e.target.checked)}
-                  className="w-4 h-4 rounded bg-neutral-950 border-neutral-700 text-orange-500"
+                  className="w-4 h-4 rounded border-[#553E53]/20 text-[#553E53] focus:ring-[#553E53]"
                 />
               </div>
             </div>
@@ -199,25 +199,25 @@ export default function SettingsPage() {
 
         {/* Right 5 Cols: Audit Trail */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-4">
+          <div className="bg-white rounded-2xl p-6 border border-[#553E53]/10 shadow-sm space-y-4">
             <div className="flex items-center gap-2">
-              <Lock className="w-4 h-4 text-orange-400" />
-              <h3 className="font-bold text-sm text-white">DPDP Act Security Audit Trail</h3>
+              <Lock className="w-4 h-4 text-[#553E53]" />
+              <h3 className="font-serif font-bold text-sm text-[#553E53]">DPDP Act Security Audit Trail</h3>
             </div>
 
-            <div className="space-y-2.5 max-h-[480px] overflow-y-auto divide-y divide-neutral-800/60">
+            <div className="space-y-2.5 max-h-[480px] overflow-y-auto divide-y divide-[#553E53]/10">
               {auditLogs.map((log) => (
                 <div key={log.id} className="pt-2 text-xs space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-orange-400 font-mono text-[11px]">
+                    <span className="font-bold text-[#553E53] font-mono text-[11px]">
                       {log.action}
                     </span>
-                    <span className="text-[10px] text-neutral-500 font-mono">
+                    <span className="text-[10px] text-[#553E53]/60 font-mono">
                       {formatDate(log.createdAt)}
                     </span>
                   </div>
-                  <div className="text-[11px] text-neutral-300">
-                    Entity: <strong className="text-white">{log.entityType}</strong> ({log.entityId.substring(0, 12)}...)
+                  <div className="text-[11px] text-[#553E53]/80">
+                    Entity: <strong className="text-[#553E53]">{log.entityType}</strong> ({log.entityId.substring(0, 12)}...)
                   </div>
                 </div>
               ))}
