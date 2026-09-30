@@ -105,15 +105,15 @@ export function PhoneDemo() {
   };
 
   return (
-    <div className="relative w-full max-w-[380px]">
+    <div className="relative w-full max-w-[370px] sm:max-w-[380px]">
       {/* Interactive Demo Label Badge */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#553E53] text-[#F5F6F0] text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5 border border-[#B6CBDE]/30">
+      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 rounded-full bg-[#F5F6F0] text-[#553E53] text-[10px] font-bold uppercase tracking-wider shadow-xs flex items-center gap-1.5 border border-[#553E53]/15">
         <span className="w-1.5 h-1.5 rounded-full bg-[#4B624A]" />
         <span>Interactive Demo</span>
       </div>
 
       {/* iPhone Outer Device Frame */}
-      <div className="relative rounded-[44px] p-3.5 bg-[#553E53] shadow-xl border-4 border-[#553E53]/80">
+      <div className="relative rounded-[44px] p-3 sm:p-3.5 bg-[#553E53] shadow-2xl shadow-[#553E53]/15 border-4 border-[#553E53]/90">
         {/* Dynamic Island Notch */}
         <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-4 bg-[#553E53]/90 rounded-full z-20 flex items-center justify-between px-2">
           <div className="w-2 h-2 rounded-full bg-[#553E53]" />

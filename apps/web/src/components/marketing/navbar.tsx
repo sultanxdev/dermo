@@ -18,7 +18,7 @@ export function Navbar({ onBookDemo }: NavbarProps) {
         {/* Left: Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <div className="w-8 h-8 rounded-lg bg-white border border-[#553E53]/15 shadow-xs p-1 flex items-center justify-center transition-transform group-hover:scale-105">
-            <DermoLogo className="w-full h-full" />
+            <DermoLogo className="w-full h-full backgroundColor='bg-[#F5F6F0]/92" />
           </div>
           <div>
             <span className="text-xl font-bold tracking-tight text-[#553E53]">
