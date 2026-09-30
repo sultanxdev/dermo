@@ -65,7 +65,7 @@ export default function LoginPage() {
           Welcome back
         </h1>
         <p className="text-sm text-[#553E53]/70 mt-1.5 font-medium">
-          Sign in to your <span className="text-[#553E53] font-bold">DermaCare</span> clinic platform
+          Sign in to your <span className="text-[#553E53] font-bold">Dermo</span> clinic platform
         </p>
       </div>
 
