@@ -1,69 +1,29 @@
+@import '../styles/tokens.css';
+@import '../styles/utilities.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: #F5F6F0;
-    --foreground: #553E53;
-    --primary: #553E53;
-    --secondary: #B6CBDE;
-    --forest: #4B624A;
-    --border: rgba(85, 62, 83, 0.12);
+    --background: var(--dermo-bg);
+    --foreground: var(--dermo-plum);
+    --primary: var(--dermo-plum);
+    --secondary: var(--dermo-blue);
+    --forest: var(--dermo-forest);
+    --border: var(--dermo-plum-15);
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-manrope), 'Manrope', sans-serif;
+    font-family: var(--font-manrope), 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   }
-}
 
-body {
-  background-color: #F5F6F0;
-  color: #553E53;
-  overflow-x: hidden;
-  font-family: var(--font-manrope), 'Manrope', sans-serif;
-}
-
-/* Custom minimal scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #F5F6F0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(85, 62, 83, 0.25);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #553E53;
-}
-
-/* FAQ Accordion */
-.faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.faq-content.open {
-  grid-template-rows: 1fr;
-}
-
-.faq-content > div {
-  overflow: hidden;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+  body {
+    background-color: var(--dermo-bg);
+    color: var(--dermo-plum);
+    overflow-x: hidden;
+    font-family: var(--font-manrope), 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
 }
