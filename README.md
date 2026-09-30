@@ -4,10 +4,8 @@
 
 [![Dermoai Platform Banner](docs/hero.png)](https://github.com/sultanxdev/dermo)
 
-### **Transform every WhatsApp inquiry into a confirmed, paid clinic appointment.**
-*An enterprise-grade B2B Healthcare SaaS automating front-desk triage, provider scheduling, upfront deposit collection, and receptionist handoffs.*
 
----
+# Tech Stack
 
 [![Next.js 15](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
@@ -17,9 +15,7 @@
 [![Better Auth](https://img.shields.io/badge/Better_Auth-Security-blueviolet?style=for-the-badge)](https://better-auth.com/)
 [![Meta WhatsApp API](https://img.shields.io/badge/Meta_WhatsApp-Cloud_API-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://developers.facebook.com/docs/whatsapp/)
 [![Razorpay](https://img.shields.io/badge/Razorpay-Payment_Gateway-02042B?style=for-the-badge&logo=razorpay&logoColor=3395FF)](https://razorpay.com/)
-[![Redis + BullMQ](https://img.shields.io/badge/Redis_&_BullMQ-Async_Queues-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://bullmq.io/)
 
-[Live Demo](http://localhost:3000) • [Architecture](#-system-architecture) • [Key Features](#-core-capabilities) • [Engineering Highlights](#-engineering-depth--technical-innovations) • [Local Setup](#-quickstart--local-setup)
 
 </div>
 
@@ -88,7 +84,6 @@ Clinic documents (services, post-care instructions, pricing, doctor bios) are pr
 *Full-Stack Engineer & AI Systems Developer*  
 
 * **GitHub**: [@sultanxdev](https://github.com/sultanxdev)
-* **Project**: [Dermo.ai Repository](https://github.com/sultanxdev/dermo)
 
 ---
 
