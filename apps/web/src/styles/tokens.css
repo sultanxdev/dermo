@@ -1,0 +1,32 @@
+/* ─────────────────────────────────────────────────────────────
+   Dermo Global Design Tokens — Strict 4-Color Brand System
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* Core 4-Color Brand Palette */
+  --dermo-bg: #F5F6F0;       /* Canvas / Primary Background */
+  --dermo-plum: #553E53;     /* Primary Brand / Dark */
+  --dermo-blue: #B6CBDE;     /* Secondary Brand / Soft Accent */
+  --dermo-forest: #4B624A;   /* Core Brand / Forest Accent */
+
+  /* Derived Alpha Tokens */
+  --dermo-plum-10: rgba(85, 62, 83, 0.10);
+  --dermo-plum-15: rgba(85, 62, 83, 0.15);
+  --dermo-plum-20: rgba(85, 62, 83, 0.20);
+  --dermo-plum-30: rgba(85, 62, 83, 0.30);
+  --dermo-plum-70: rgba(85, 62, 83, 0.70);
+  --dermo-plum-80: rgba(85, 62, 83, 0.80);
+
+  --dermo-blue-15: rgba(182, 203, 222, 0.15);
+  --dermo-blue-20: rgba(182, 203, 222, 0.20);
+  --dermo-blue-30: rgba(182, 203, 222, 0.30);
+  --dermo-blue-40: rgba(182, 203, 222, 0.40);
+  --dermo-blue-50: rgba(182, 203, 222, 0.50);
+
+  --dermo-forest-10: rgba(75, 98, 74, 0.10);
+  --dermo-forest-15: rgba(75, 98, 74, 0.15);
+  --dermo-forest-20: rgba(75, 98, 74, 0.20);
+  --dermo-forest-30: rgba(75, 98, 74, 0.30);
+
+  /* Typography */
+  --font-family-sans: var(--font-manrope), 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+}
