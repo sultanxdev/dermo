@@ -1,18 +1,37 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Dermo.ai — The 24/7 AI Employee for Modern Clinics',
+  title: 'Dermo.ai — AI Employee for Modern Clinics',
   description:
-    "Dermo handles patient conversations on WhatsApp, captures leads, answers questions using your clinic's verified information, checks real provider availability, books appointments, collects payments, and hands conversations to your team when needed.",
-  keywords: ['clinic ai employee', 'whatsapp clinic receptionist', 'healthcare appointment booking', 'outpatient clinic automation', 'medical appointment scheduling'],
+    "Dermo helps clinics automate WhatsApp patient conversations, lead capture, appointment booking, payments, and human handoff.",
+  keywords: [
+    'clinic ai employee',
+    'whatsapp clinic receptionist',
+    'healthcare appointment booking',
+    'outpatient clinic automation',
+    'medical appointment scheduling',
+  ],
+  openGraph: {
+    title: 'Dermo.ai — AI Employee for Modern Clinics',
+    description:
+      'Dermo helps clinics automate WhatsApp patient conversations, lead capture, appointment booking, payments, and human handoff.',
+    url: 'https://dermo.ai',
+    siteName: 'Dermo.ai',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -21,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={manrope.variable}>
       <body className="min-h-screen bg-[#F5F6F0] text-[#553E53] antialiased font-sans selection:bg-[#B6CBDE] selection:text-[#553E53]">
         {children}
       </body>
