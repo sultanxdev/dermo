@@ -34,7 +34,7 @@ export function Navbar({ onBookDemo }: NavbarProps) {
             <DermoLogo className="h-full w-full" />
           </div>
           <span className="text-xl font-bold tracking-tight text-[#553E53]">
-            Dermo<span className="text-[#4B624A]">.ai</span>
+            Dermoai<span className="text-[#4B624A]"></span>
           </span>
         </Link>
 
@@ -55,9 +55,9 @@ export function Navbar({ onBookDemo }: NavbarProps) {
         <div className="hidden items-center gap-4 md:flex">
           <Link
             href="/auth/login"
-            className={`rounded px-2 py-1.5 text-sm font-semibold text-[#553E53]/80 transition-colors hover:text-[#553E53] ${focusRing}`}
+            className="inline-flex items-center px-4 py-2 rounded-lg border border-[#553E53]/25 text-sm font-semibold text-[#553E53] hover:bg-[#4B624A] hover:text-[#F5F6F0] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4B624A]"
           >
-            Clinic Login
+            Clinic login
           </Link>
           <button
             type="button"

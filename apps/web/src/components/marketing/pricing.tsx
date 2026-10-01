@@ -3,84 +3,88 @@
 import React from 'react';
 import { pricingTiers } from '@/config/pricing';
 import { IconCheck } from '@/components/ui/icons';
-import { useInView } from '@/hooks/use-in-view';
 
 interface PricingProps {
   onBookDemo: () => void;
 }
 
 export function Pricing({ onBookDemo }: PricingProps) {
-  const { ref, isInView } = useInView();
-
   return (
-    <section id="pricing" className="py-20 border-b border-[#553E53]/12" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="text-xs uppercase tracking-widest text-[#4B624A] font-bold">
-            Predictable Investment
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#553E53] tracking-tight">
-            Simple Pricing for Growing Clinics.
+    <section id="pricing" className="py-20 sm:py-24 border-b border-[#553E53]/10 bg-[#F5F6F0]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-14 space-y-4">
+          <p className="text-sm font-semibold text-[#4B624A]">Pricing</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#553E53] tracking-tight text-balance">
+            Simple monthly pricing for growing clinics
           </h2>
-          <p className="text-[#553E53]/75 text-sm sm:text-base font-medium">
-            Transparent monthly pricing with managed onboarding. No hidden implementation fees.
+          <p className="text-base text-[#553E53]/75 leading-relaxed">
+            Managed onboarding is included. No hidden implementation fees.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-          {pricingTiers.map((tier) => (
-            <div
-              key={tier.id}
-              className={`p-8 rounded-3xl bg-[#F5F6F0] flex flex-col justify-between space-y-6 relative shadow-sm ${
-                tier.popular
-                  ? 'border-2 border-[#553E53] shadow-md'
-                  : 'border border-[#553E53]/20'
-              }`}
-            >
-              {tier.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#553E53] text-[#F5F6F0] text-[10px] font-bold uppercase tracking-wider">
-                  Most Popular
-                </div>
-              )}
-
-              <div className="space-y-4 pt-1">
-                <div>
-                  <h3 className="text-lg font-bold text-[#553E53]">{tier.name}</h3>
-                  <p className="text-xs text-[#553E53]/70 font-medium mt-1">
-                    {tier.description}
-                  </p>
-                </div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-extrabold text-[#553E53]">
-                    {tier.price}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {pricingTiers.map((tier) => {
+            const featured = !!tier.popular;
+            return (
+              <div
+                key={tier.id}
+                className={`relative flex flex-col p-8 rounded-3xl ${featured
+                  ? 'bg-[#4B624A] text-[#F5F6F0] md:-my-3 md:py-11 shadow-lg'
+                  : 'bg-white border border-[#553E53]/15 text-[#553E53]'
+                  }`}
+              >
+                {featured && (
+                  <span className="absolute top-5 right-5 px-3 py-1 rounded-full bg-[#B6CBDE] text-[#553E53] text-xs font-bold">
+                    Most popular
                   </span>
+                )}
+
+                <h3 className="text-lg font-bold">{tier.name}</h3>
+                <p className={`text-sm mt-1.5 leading-relaxed ${featured ? 'text-[#F5F6F0]/75' : 'text-[#553E53]/70'}`}>
+                  {tier.description}
+                </p>
+
+                <div className="mt-6 flex items-baseline gap-1.5">
+                  <span className="text-4xl font-extrabold tracking-tight">{tier.price}</span>
                   {tier.period && (
-                    <span className="text-xs text-[#553E53]/60 font-semibold">{tier.period}</span>
+                    <span className={`text-sm font-medium ${featured ? 'text-[#F5F6F0]/65' : 'text-[#553E53]/60'}`}>
+                      {tier.period}
+                    </span>
                   )}
                 </div>
-                <ul className="space-y-2.5 text-xs text-[#553E53]/85 font-medium border-t border-[#553E53]/10 pt-4">
+
+                <button
+                  type="button"
+                  onClick={onBookDemo}
+                  className={`mt-6 w-full py-3 rounded-xl text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6CBDE] ${featured
+                    ? 'bg-[#F5F6F0] text-[#553E53] hover:bg-white'
+                    : 'bg-[#553E53] text-[#F5F6F0] hover:bg-[#4B624A]'
+                    }`}
+                >
+                  {tier.ctaText}
+                </button>
+
+                <ul
+                  className={`mt-7 pt-6 space-y-3 text-sm border-t ${featured ? 'border-[#F5F6F0]/15' : 'border-[#553E53]/10'
+                    }`}
+                >
                   {tier.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <IconCheck className="w-4 h-4 text-[#4B624A] shrink-0" />
+                    <li key={i} className="flex items-start gap-2.5 leading-snug">
+                      <IconCheck
+                        className={`w-4 h-4 shrink-0 mt-0.5 ${featured ? 'text-[#B6CBDE]' : 'text-[#4B624A]'}`}
+                      />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-
-              <button
-                onClick={onBookDemo}
-                className={`w-full py-3.5 rounded-xl font-bold text-xs transition-colors shadow-xs ${
-                  tier.popular
-                    ? 'bg-[#553E53] hover:bg-[#4B624A] text-[#F5F6F0]'
-                    : 'bg-[#F5F6F0] hover:bg-[#B6CBDE]/30 border border-[#553E53]/25 text-[#553E53]'
-                }`}
-              >
-                {tier.ctaText}
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        <p className="mt-10 text-center text-sm text-[#553E53]/65">
+          Not sure which plan fits? Book a demo and we&apos;ll recommend one based on your WhatsApp volume.
+        </p>
       </div>
     </section>
   );

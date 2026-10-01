@@ -7,7 +7,6 @@ import { CapabilityStrip } from '@/components/marketing/capability-strip';
 import { Problem } from '@/components/marketing/problem';
 import { Workflow } from '@/components/marketing/workflow';
 import { Features } from '@/components/marketing/features';
-import { ControlSection } from '@/components/marketing/control-section';
 import { DashboardPreview } from '@/components/marketing/dashboard-preview';
 import { HowItWorks } from '@/components/marketing/how-it-works';
 import { ClinicTypes } from '@/components/marketing/clinic-types';
@@ -29,7 +28,6 @@ export default function MarketingPage() {
         <Problem />
         <Workflow />
         <Features />
-        <ControlSection />
         <DashboardPreview />
         <HowItWorks onBookDemo={() => setShowDemoModal(true)} />
         <ClinicTypes />

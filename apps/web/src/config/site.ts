@@ -1,16 +1,16 @@
 export const siteConfig = {
-  name: 'Dermo.ai',
+  name: 'Dermoai',
   tagline: 'The AI Employee for Modern Clinics',
   description:
     'Dermo handles patient conversations on WhatsApp, captures leads, answers questions using your clinic verified information, checks real provider availability, books appointments, collects payments, and hands conversations to your team when needed.',
-  url: 'https://dermo.ai',
-  ogImage: 'https://dermo.ai/og-image.png',
+  url: 'https://dermoai.in',
+  ogImage: 'https://dermoai.in/og-image.png',
   links: {
     twitter: 'https://twitter.com/dermoai',
     github: 'https://github.com/dermoai',
   },
   contact: {
-    email: 'hello@dermo.ai',
-    support: 'support@dermo.ai',
+    email: 'hello@dermoai.in',
+    support: 'support@dermoai.in',
   },
 };

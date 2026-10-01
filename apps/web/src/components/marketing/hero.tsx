@@ -124,24 +124,10 @@ export function Hero({ onBookDemo }: HeroProps) {
 
             {/* Supporting copy */}
             <p className="mb-6 max-w-[540px] text-[17px] font-medium leading-[1.65] text-[#553E53]/75 sm:text-[18px] lg:text-[18.5px]">
-              Dermo is the 24/7 AI employee for your clinic. It replies instantly, captures every lead, and
-              books patients while your front desk focuses on the people in the room.
+              Dermo is the AI employee that answers patients, books the slot and collects the deposit, day and night.
             </p>
 
-            {/* Capability checklist */}
-            <ul className="mb-8 max-w-[540px] space-y-2.5 sm:mb-9">
-              {CAPABILITIES.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-[14.5px] font-medium leading-snug text-[#553E53]/85 sm:text-[15px]"
-                >
-                  <span className="mt-[3px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#4B624A]">
-                    <IconCheck />
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+
 
             {/* CTAs */}
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
