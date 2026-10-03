@@ -1,4 +1,4 @@
-# Dermoai — 24/7 Autonomous AI Employee for Modern Clinics
+# Dermoai — 24/7 AI Employee for Modern Clinics
 
 <div align="center">
 
