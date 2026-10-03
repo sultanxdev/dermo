@@ -126,100 +126,190 @@ export function HowItWorks({ onBookDemo }: HowItWorksProps) {
           </p>
         </div>
 
-        {/* ── Steps Grid ── */}
-        <div className="relative">
-          {/* Progress track – desktop */}
-          <div aria-hidden className="hidden lg:block absolute top-[52px] left-[calc(1.5rem+20px)] right-[calc(1.5rem+20px)] h-px bg-[#553E53]/10" />
-          <div
-            aria-hidden
-            className={`hidden lg:block absolute top-[52px] left-[calc(1.5rem+20px)] h-px bg-gradient-to-r from-[#4B624A] to-[#553E53] origin-left transition-transform duration-[1200ms] ease-out motion-reduce:transition-none ${isInView ? 'scale-x-100' : 'scale-x-0'}`}
-            style={{ right: 'calc(1.5rem + 20px)' }}
-          />
-          {/* Progress track – mobile */}
-          <div aria-hidden className="lg:hidden absolute left-[19px] top-3 bottom-3 w-px bg-[#553E53]/10" />
-          <div
-            aria-hidden
-            className={`lg:hidden absolute left-[19px] top-3 w-px bg-gradient-to-b from-[#4B624A] to-[#553E53] origin-top transition-transform duration-[1200ms] ease-out motion-reduce:transition-none ${isInView ? 'scale-y-100' : 'scale-y-0'} bottom-3`}
-          />
+        {/* ══════════════════════════════════════════════
+             STEPPER BAR  (desktop: horizontal, mobile: vertical)
+        ══════════════════════════════════════════════ */}
 
-          <ol className="grid gap-4 lg:gap-5 lg:grid-cols-4">
+        {/* ── DESKTOP stepper ── */}
+        <div className="hidden lg:block mb-10" aria-hidden>
+          {/* Outer container positions rail + nodes */}
+          <div className="relative flex items-center">
+
+            {/* ── Rail track (background) ── */}
+            <div className="absolute inset-x-5 top-1/2 -translate-y-1/2 h-2 rounded-full bg-[#553E53]/8" />
+
+            {/* ── Animated fill segments between nodes ── */}
+            {/* Segment 1: node0 → node1 */}
+            <div className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full overflow-hidden"
+              style={{ left: 'calc(25% * 0 + 20px)', right: 'calc(25% * 3 + 20px)' }}>
+              <div
+                className={`h-full w-full bg-gradient-to-r from-[#4B624A] to-[#4B624A]/70 origin-left transition-transform duration-500 ease-out delay-[100ms] motion-reduce:transition-none ${
+                  isInView ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
+            </div>
+            {/* Segment 2: node1 → node2 */}
+            <div className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full overflow-hidden"
+              style={{ left: 'calc(25% * 1 + 20px)', right: 'calc(25% * 2 + 20px)' }}>
+              <div
+                className={`h-full w-full bg-gradient-to-r from-[#4B624A]/70 to-[#553E53]/70 origin-left transition-transform duration-500 ease-out delay-[350ms] motion-reduce:transition-none ${
+                  isInView ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
+            </div>
+            {/* Segment 3: node2 → node3 */}
+            <div className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full overflow-hidden"
+              style={{ left: 'calc(25% * 2 + 20px)', right: 'calc(25% * 1 + 20px)' }}>
+              <div
+                className={`h-full w-full bg-gradient-to-r from-[#553E53]/70 to-[#553E53] origin-left transition-transform duration-500 ease-out delay-[600ms] motion-reduce:transition-none ${
+                  isInView ? 'scale-x-100' : 'scale-x-0'
+                }`}
+              />
+            </div>
+
+            {/* ── Nodes ── */}
             {STEPS.map((step, i) => {
-              const Icon = step.icon;
               const isActive = activeStep === i;
               return (
-                <li
+                <div
                   key={step.title}
-                  className="relative flex gap-4 lg:flex-col lg:gap-0 cursor-default"
+                  className="relative z-10 flex-1 flex justify-center first:justify-start last:justify-end"
                   onMouseEnter={() => setActiveStep(i)}
                   onMouseLeave={() => setActiveStep(null)}
                 >
-                  {/* Step node */}
-                  <div className="relative z-10 shrink-0 lg:mb-6">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-300 ${
-                        step.isLast
-                          ? 'bg-[#553E53] text-[#F5F6F0] border-[#553E53] shadow-[0_0_0_4px_rgba(85,62,83,0.15)]'
-                          : isActive
-                          ? 'bg-[#4B624A] text-[#F5F6F0] border-[#4B624A] shadow-[0_0_0_4px_rgba(75,98,74,0.15)]'
-                          : 'bg-[#F5F6F0] text-[#4B624A] border-[#4B624A]/50'
-                      }`}
-                    >
-                      {step.isLast ? <IconCheck className="w-4 h-4" /> : i + 1}
-                    </div>
-                  </div>
-
-                  {/* Card */}
+                  {/* Outer pulse ring */}
                   <div
-                    className={`flex-1 lg:flex-none rounded-2xl border p-5 transition-all duration-300 ${step.accentBorder} bg-gradient-to-br ${step.gradient} ${
-                      isActive ? 'shadow-lg shadow-[#553E53]/8 -translate-y-1' : 'shadow-sm'
+                    className={`absolute w-[52px] h-[52px] rounded-full transition-all duration-300 ${
+                      step.isLast
+                        ? 'bg-[#553E53]/15'
+                        : isActive
+                        ? 'bg-[#4B624A]/15'
+                        : 'bg-transparent'
+                    }`}
+                    style={{ top: '50%', transform: 'translate(-50%, -50%)', left: '50%', position: 'absolute' }}
+                  />
+                  {/* Node circle */}
+                  <div
+                    className={`relative w-10 h-10 rounded-full flex items-center justify-center text-sm font-extrabold border-[2.5px] shadow-sm transition-all duration-300 ${
+                      step.isLast
+                        ? 'bg-[#553E53] text-[#F5F6F0] border-[#553E53] shadow-[#553E53]/30'
+                        : isActive
+                        ? 'bg-[#4B624A] text-[#F5F6F0] border-[#4B624A] shadow-[#4B624A]/30'
+                        : 'bg-white text-[#553E53] border-[#553E53]/20 shadow-[#553E53]/5'
                     }`}
                   >
-                    {/* Icon + badge row */}
-                    <div className="flex items-start justify-between gap-2 mb-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-[#553E53] border ${step.accentBorder} bg-white/60`}>
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className={`shrink-0 inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase ${step.ownerColor}`}>
-                        {step.owner}
-                      </span>
-                    </div>
-
-                    <h3 className="text-[15px] font-bold text-[#553E53] leading-snug mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-[#553E53]/65 leading-relaxed mb-4">
-                      {step.desc}
-                    </p>
-
-                    {/* Detail tags */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {step.detail.split(' · ').map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-block px-2 py-0.5 rounded-md bg-white/70 border border-[#553E53]/10 text-[10px] font-semibold text-[#553E53]/55 tracking-wide"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    {step.isLast
+                      ? <IconCheck className="w-[18px] h-[18px]" />
+                      : <span>{i + 1}</span>}
                   </div>
-                </li>
+                </div>
               );
             })}
-          </ol>
+          </div>
+
+          {/* ── Node labels row ── */}
+          <div className={`flex mt-3 transition-opacity duration-700 delay-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
+            {STEPS.map((step, i) => (
+              <div
+                key={step.title}
+                className={`flex-1 flex flex-col transition-colors duration-200 ${
+                  i === 0 ? 'items-start' : i === STEPS.length - 1 ? 'items-end' : 'items-center'
+                }`}
+                onMouseEnter={() => setActiveStep(i)}
+                onMouseLeave={() => setActiveStep(null)}
+              >
+                <span className={`text-[11px] font-semibold tracking-wide transition-colors duration-200 ${
+                  step.isLast ? 'text-[#553E53]' : activeStep === i ? 'text-[#4B624A]' : 'text-[#553E53]/40'
+                }`}>
+                  {['Day 1', 'Week 1', 'Week 2', 'Week 2–3'][i]}
+                </span>
+                <span className={`text-[10px] font-medium transition-colors duration-200 ${
+                  activeStep === i ? 'text-[#553E53]/60' : 'text-[#553E53]/30'
+                }`}>
+                  {step.title}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* ── Timeline label strip – desktop ── */}
-        <div
-          className={`hidden lg:flex justify-between mt-3 transition-opacity duration-700 delay-500 ${isInView ? 'opacity-100' : 'opacity-0'}`}
-          aria-hidden
-        >
-          {['Day 1', 'Week 1', 'Week 2', 'Week 2–3'].map((label) => (
-            <span key={label} className="text-[11px] font-medium text-[#553E53]/35 w-1/4 first:pl-1">
-              {label}
-            </span>
-          ))}
+        {/* ── MOBILE stepper (vertical) ── */}
+        <div className="lg:hidden mb-8" aria-hidden>
+          <div className="relative flex flex-col gap-0">
+            {/* Rail */}
+            <div className="absolute left-[19px] top-5 bottom-5 w-1.5 rounded-full bg-[#553E53]/8" />
+            <div
+              className={`absolute left-[19px] top-5 w-1.5 rounded-full bg-gradient-to-b from-[#4B624A] to-[#553E53] origin-top transition-transform duration-[1000ms] ease-out motion-reduce:transition-none ${
+                isInView ? 'scale-y-100' : 'scale-y-0'
+              } bottom-5`}
+            />
+            {STEPS.map((step, i) => (
+              <div key={step.title} className="relative flex items-center gap-4 py-3">
+                <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center text-sm font-extrabold border-[2.5px] bg-white shrink-0 transition-all duration-300 ${
+                  step.isLast ? 'border-[#553E53] text-[#F5F6F0] bg-[#553E53]' : 'border-[#553E53]/25 text-[#553E53]'
+                }`}>
+                  {step.isLast ? <IconCheck className="w-4 h-4" /> : i + 1}
+                </div>
+                <div>
+                  <span className="text-[10px] font-semibold text-[#553E53]/40 tracking-wide">{['Day 1', 'Week 1', 'Week 2', 'Week 2–3'][i]}</span>
+                  <p className="text-sm font-bold text-[#553E53] leading-snug">{step.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* ── Step cards grid ── */}
+        <ol className="grid gap-4 lg:gap-5 lg:grid-cols-4">
+          {STEPS.map((step, i) => {
+            const Icon = step.icon;
+            const isActive = activeStep === i;
+            return (
+              <li
+                key={step.title}
+                className="relative flex gap-4 lg:flex-col lg:gap-0 cursor-default"
+                onMouseEnter={() => setActiveStep(i)}
+                onMouseLeave={() => setActiveStep(null)}
+              >
+                {/* Card */}
+                <div
+                  className={`flex-1 lg:flex-none rounded-2xl border p-5 transition-all duration-300 ${step.accentBorder} bg-gradient-to-br ${step.gradient} ${
+                    isActive ? 'shadow-lg shadow-[#553E53]/8 -translate-y-1' : 'shadow-sm'
+                  }`}
+                >
+                  {/* Icon + badge row */}
+                  <div className="flex items-start justify-between gap-2 mb-4">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-[#553E53] border ${step.accentBorder} bg-white/60`}>
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className={`shrink-0 inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase ${step.ownerColor}`}>
+                      {step.owner}
+                    </span>
+                  </div>
+
+                  <h3 className="text-[15px] font-bold text-[#553E53] leading-snug mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-[#553E53]/65 leading-relaxed mb-4">
+                    {step.desc}
+                  </p>
+
+                  {/* Detail tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {step.detail.split(' · ').map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-block px-2 py-0.5 rounded-md bg-white/70 border border-[#553E53]/10 text-[10px] font-semibold text-[#553E53]/55 tracking-wide"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
 
         {/* ── CTA Panel ── */}
         <div className="mt-16 relative overflow-hidden rounded-3xl bg-[#553E53] px-6 py-10 sm:px-12 sm:py-12">
