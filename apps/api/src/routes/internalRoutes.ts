@@ -119,7 +119,7 @@ router.post('/clinics', async (req: Request, res: Response): Promise<void> => {
 
     // 5. Trigger password setup email
     try {
-      await auth.api.forgetPassword({
+      await (auth.api as any).requestPasswordReset({
         body: {
           email,
           redirectTo: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password`,

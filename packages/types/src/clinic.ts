@@ -41,6 +41,21 @@ export interface Clinic {
   updatedAt: string;
 }
 
+export type UserRole = 'OWNER' | 'ADMIN' | 'STAFF' | 'DOCTOR';
+
+export interface StaffUser {
+  id: string;
+  clinicId?: string;
+  name: string;
+  email: string;
+  passwordHash?: string;
+  role?: UserRole;
+  phone?: string;
+  avatarUrl?: string;
+  isActive?: boolean;
+  createdAt?: string;
+}
+
 // ----------------------------------------------------
 // Demo Request Entity
 // ----------------------------------------------------

@@ -62,6 +62,9 @@ export function seedDatabase() {
     enableGoogleDocsSync: false,
     enableRazorpayDeposits: true,
     consultationDepositAmount: 500,
+    slug: 'dermacare-aesthetics',
+    status: 'ACTIVE',
+    onboardingStatus: 'LIVE',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
