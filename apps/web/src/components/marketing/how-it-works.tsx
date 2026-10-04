@@ -132,103 +132,87 @@ export function HowItWorks({ onBookDemo }: HowItWorksProps) {
 
         {/* ── DESKTOP stepper ── */}
         <div className="hidden lg:block mb-10" aria-hidden>
-          {/* Outer container positions rail + nodes */}
-          <div className="relative flex items-center">
 
-            {/* ── Rail track (background) ── */}
-            <div className="absolute inset-x-5 top-1/2 -translate-y-1/2 h-2 rounded-full bg-[#553E53]/8" />
-
-            {/* ── Animated fill segments between nodes ── */}
-            {/* Segment 1: node0 → node1 */}
-            <div className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full overflow-hidden"
-              style={{ left: 'calc(25% * 0 + 20px)', right: 'calc(25% * 3 + 20px)' }}>
-              <div
-                className={`h-full w-full bg-gradient-to-r from-[#4B624A] to-[#4B624A]/70 origin-left transition-transform duration-500 ease-out delay-[100ms] motion-reduce:transition-none ${
-                  isInView ? 'scale-x-100' : 'scale-x-0'
-                }`}
-              />
-            </div>
-            {/* Segment 2: node1 → node2 */}
-            <div className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full overflow-hidden"
-              style={{ left: 'calc(25% * 1 + 20px)', right: 'calc(25% * 2 + 20px)' }}>
-              <div
-                className={`h-full w-full bg-gradient-to-r from-[#4B624A]/70 to-[#553E53]/70 origin-left transition-transform duration-500 ease-out delay-[350ms] motion-reduce:transition-none ${
-                  isInView ? 'scale-x-100' : 'scale-x-0'
-                }`}
-              />
-            </div>
-            {/* Segment 3: node2 → node3 */}
-            <div className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full overflow-hidden"
-              style={{ left: 'calc(25% * 2 + 20px)', right: 'calc(25% * 1 + 20px)' }}>
-              <div
-                className={`h-full w-full bg-gradient-to-r from-[#553E53]/70 to-[#553E53] origin-left transition-transform duration-500 ease-out delay-[600ms] motion-reduce:transition-none ${
-                  isInView ? 'scale-x-100' : 'scale-x-0'
-                }`}
-              />
-            </div>
-
-            {/* ── Nodes ── */}
+          {/* ── Nodes + connectors (flex row) ── */}
+          <div className="flex items-center">
             {STEPS.map((step, i) => {
               const isActive = activeStep === i;
+              const delays = ['delay-[100ms]', 'delay-[350ms]', 'delay-[600ms]'];
+              const gradients = [
+                'from-[#4B624A] to-[#4B624A]/70',
+                'from-[#4B624A]/70 to-[#553E53]/70',
+                'from-[#553E53]/70 to-[#553E53]',
+              ];
               return (
-                <div
-                  key={step.title}
-                  className="relative z-10 flex-1 flex justify-center first:justify-start last:justify-end"
-                  onMouseEnter={() => setActiveStep(i)}
-                  onMouseLeave={() => setActiveStep(null)}
-                >
-                  {/* Outer pulse ring */}
+                <React.Fragment key={step.title}>
+                  {/* Node */}
                   <div
-                    className={`absolute w-[52px] h-[52px] rounded-full transition-all duration-300 ${
-                      step.isLast
-                        ? 'bg-[#553E53]/15'
-                        : isActive
-                        ? 'bg-[#4B624A]/15'
-                        : 'bg-transparent'
-                    }`}
-                    style={{ top: '50%', transform: 'translate(-50%, -50%)', left: '50%', position: 'absolute' }}
-                  />
-                  {/* Node circle */}
-                  <div
-                    className={`relative w-10 h-10 rounded-full flex items-center justify-center text-sm font-extrabold border-[2.5px] shadow-sm transition-all duration-300 ${
-                      step.isLast
-                        ? 'bg-[#553E53] text-[#F5F6F0] border-[#553E53] shadow-[#553E53]/30'
-                        : isActive
-                        ? 'bg-[#4B624A] text-[#F5F6F0] border-[#4B624A] shadow-[#4B624A]/30'
-                        : 'bg-white text-[#553E53] border-[#553E53]/20 shadow-[#553E53]/5'
-                    }`}
+                    className="relative shrink-0 flex items-center justify-center"
+                    style={{ width: 40, height: 40 }}
+                    onMouseEnter={() => setActiveStep(i)}
+                    onMouseLeave={() => setActiveStep(null)}
                   >
-                    {step.isLast
-                      ? <IconCheck className="w-[18px] h-[18px]" />
-                      : <span>{i + 1}</span>}
+                    {/* Hover ring */}
+                    <div
+                      className={`absolute inset-0 rounded-full scale-[1.4] transition-all duration-300 ${
+                        step.isLast
+                          ? 'bg-[#553E53]/12'
+                          : isActive
+                          ? 'bg-[#4B624A]/12'
+                          : 'bg-transparent'
+                      }`}
+                    />
+                    {/* Circle */}
+                    <div
+                      className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center text-sm font-extrabold border-2 transition-all duration-300 ${
+                        step.isLast
+                          ? 'bg-[#553E53] text-[#F5F6F0] border-[#553E53] shadow-md shadow-[#553E53]/25'
+                          : isActive
+                          ? 'bg-[#4B624A] text-[#F5F6F0] border-[#4B624A] shadow-md shadow-[#4B624A]/25'
+                          : 'bg-white text-[#553E53] border-[#553E53]/20 shadow-sm'
+                      }`}
+                    >
+                      {step.isLast ? <IconCheck className="w-4 h-4" /> : i + 1}
+                    </div>
                   </div>
-                </div>
+
+                  {/* Connector between nodes (not after last) */}
+                  {i < STEPS.length - 1 && (
+                    <div className="flex-1 h-2 rounded-full bg-[#553E53]/8 mx-1 overflow-hidden">
+                      <div
+                        className={`h-full bg-gradient-to-r ${gradients[i]} origin-left transition-transform duration-500 ease-out ${delays[i]} motion-reduce:transition-none ${
+                          isInView ? 'scale-x-100' : 'scale-x-0'
+                        }`}
+                      />
+                    </div>
+                  )}
+                </React.Fragment>
               );
             })}
           </div>
 
-          {/* ── Node labels row ── */}
-          <div className={`flex mt-3 transition-opacity duration-700 delay-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
+          {/* ── Labels row — mirrors node + connector widths ── */}
+          <div className={`flex items-start mt-3 transition-opacity duration-700 delay-700 ${isInView ? 'opacity-100' : 'opacity-0'}`}>
             {STEPS.map((step, i) => (
-              <div
-                key={step.title}
-                className={`flex-1 flex flex-col transition-colors duration-200 ${
-                  i === 0 ? 'items-start' : i === STEPS.length - 1 ? 'items-end' : 'items-center'
-                }`}
-                onMouseEnter={() => setActiveStep(i)}
-                onMouseLeave={() => setActiveStep(null)}
-              >
-                <span className={`text-[11px] font-semibold tracking-wide transition-colors duration-200 ${
-                  step.isLast ? 'text-[#553E53]' : activeStep === i ? 'text-[#4B624A]' : 'text-[#553E53]/40'
-                }`}>
-                  {['Day 1', 'Week 1', 'Week 2', 'Week 2–3'][i]}
-                </span>
-                <span className={`text-[10px] font-medium transition-colors duration-200 ${
-                  activeStep === i ? 'text-[#553E53]/60' : 'text-[#553E53]/30'
-                }`}>
-                  {step.title}
-                </span>
-              </div>
+              <React.Fragment key={step.title}>
+                {/* Label under node — fixed 40px to match node width */}
+                <div
+                  className="shrink-0 flex flex-col"
+                  style={{ width: 40 }}
+                  onMouseEnter={() => setActiveStep(i)}
+                  onMouseLeave={() => setActiveStep(null)}
+                >
+                  <span className={`text-[10px] font-bold tracking-wide leading-none transition-colors duration-200 ${
+                    step.isLast ? 'text-[#553E53]' : activeStep === i ? 'text-[#4B624A]' : 'text-[#553E53]/40'
+                  }`} style={{ whiteSpace: 'nowrap', transform: 'translateX(-50%)', marginLeft: 20 }}>
+                    {['Day 1', 'Week 1', 'Week 2', 'Week 2–3'][i]}
+                  </span>
+                </div>
+                {/* Spacer matching connector width */}
+                {i < STEPS.length - 1 && (
+                  <div className="flex-1 mx-1" />
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
