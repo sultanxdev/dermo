@@ -30,7 +30,13 @@ export default function LoginPage() {
       if (result.error) {
         setError(result.error.message || 'Invalid email or password.');
       } else {
-        router.push('/dashboard');
+        const sessionRes = await authClient.getSession();
+        const user = sessionRes?.data?.user as any;
+        if (user?.accountType === 'INTERNAL_TEAM') {
+          router.push('/internal');
+        } else {
+          router.push('/dashboard');
+        }
         router.refresh();
       }
     } catch (err: any) {
