@@ -13,18 +13,23 @@ async function migrateAuth() {
       "postgresql://postgres:postgres@localhost:5432/dermo_clinic",
   });
 
-  console.log("🔄 Running auth migrations...");
-  const migrationPath = path.resolve(__dirname, "./migrations/0001_auth_tables.sql");
-  if (!fs.existsSync(migrationPath)) {
-    throw new Error(`Migration file not found at: ${migrationPath}`);
+  console.log("🔄 Running database migrations...");
+  const migrationsDir = path.resolve(__dirname, "./migrations");
+  const files = fs.readdirSync(migrationsDir).filter((f) => f.endsWith(".sql")).sort();
+
+  for (const file of files) {
+    const filePath = path.join(migrationsDir, file);
+    console.log(`  Applying migration: ${file}...`);
+    const sql = fs.readFileSync(filePath, "utf-8");
+    await pool.query(sql);
+    console.log(`  ✓ ${file} applied`);
   }
-  const sql = fs.readFileSync(migrationPath, "utf-8");
-  await pool.query(sql);
-  console.log("✅ Auth tables created successfully");
+
+  console.log("✅ All migrations applied successfully");
   await pool.end();
 }
 
 migrateAuth().catch((err) => {
-  console.error("❌ Auth migration failed:", err);
+  console.error("❌ Database migration failed:", err);
   process.exit(1);
 });
