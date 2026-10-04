@@ -9,6 +9,7 @@
     "start": "node dist/server.js",
     "seed": "tsx src/database/seed.ts",
     "db:auth:migrate": "tsx src/database/migrate-auth.ts",
+    "db:create-admin": "tsx src/database/create-admin.ts",
     "type-check": "tsc --noEmit",
     "test": "node --import tsx --test test/unit/*.test.ts test/integration/*.test.ts",
     "test:eval": "tsx src/eval/runAiEval.ts",
