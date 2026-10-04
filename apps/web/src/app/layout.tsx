@@ -10,7 +10,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'Dermo.ai — AI Employee for Modern Clinics',
+  title: 'Dermoai — AI Employee for Modern Clinics',
   description:
     "Dermo helps clinics automate WhatsApp patient conversations, lead capture, appointment booking, payments, and human handoff.",
   keywords: [
@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     'medical appointment scheduling',
   ],
   openGraph: {
-    title: 'Dermo.ai — AI Employee for Modern Clinics',
+    title: 'Dermoai — AI Employee for Modern Clinics',
     description:
       'Dermo helps clinics automate WhatsApp patient conversations, lead capture, appointment booking, payments, and human handoff.',
-    url: 'https://dermo.ai',
-    siteName: 'Dermo.ai',
+    url: 'https://dermoai.in',
+    siteName: 'Dermoai',
     type: 'website',
   },
   robots: {
