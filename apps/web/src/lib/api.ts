@@ -107,4 +107,41 @@ export const api = {
   getAnalyticsOverview: () => fetcher<any>('/analytics/overview'),
   getAnalyticsTimeseries: () => fetcher<any[]>('/analytics/timeseries'),
   getAuditLogs: () => fetcher<any[]>('/audit-logs'),
+
+  // Public Demo Requests
+  createDemoRequest: (payload: {
+    name: string;
+    clinicName: string;
+    email: string;
+    phone: string;
+    clinicType?: string;
+    doctorCount?: number;
+    city?: string;
+    requirements?: string;
+  }) => fetcher<any>('/demo-requests', { method: 'POST', body: JSON.stringify(payload) }),
+
+  // Internal Team Operations
+  getInternalStats: () => fetcher<any>('/internal/stats'),
+  getInternalClinics: () => fetcher<any[]>('/internal/clinics'),
+  getInternalClinic: (id: string) => fetcher<any>(`/internal/clinics/${id}`),
+  updateClinicStatus: (id: string, status: 'ACTIVE' | 'SUSPENDED' | 'ARCHIVED') =>
+    fetcher<any>(`/internal/clinics/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) }),
+  updateClinicOnboarding: (id: string, status: string) =>
+    fetcher<any>(`/internal/clinics/${id}/onboarding-status`, { method: 'PATCH', body: JSON.stringify({ status }) }),
+  launchClinic: (id: string) => fetcher<any>(`/internal/clinics/${id}/launch`, { method: 'POST' }),
+  provisionClinic: (payload: {
+    sourceDemoRequestId?: string;
+    name: string;
+    slug: string;
+    ownerName: string;
+    email: string;
+    phone: string;
+    address?: string;
+    city?: string;
+    timezone?: string;
+    currency?: string;
+  }) => fetcher<any>('/internal/clinics', { method: 'POST', body: JSON.stringify(payload) }),
+  getInternalDemoRequests: () => fetcher<any[]>('/internal/demo-requests'),
+  updateDemoRequestStatus: (id: string, status: string) =>
+    fetcher<any>(`/internal/demo-requests/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) }),
 };

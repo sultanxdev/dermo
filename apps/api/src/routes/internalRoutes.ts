@@ -372,4 +372,73 @@ router.patch('/clinics/:id/status', async (req: Request, res: Response): Promise
   }
 });
 
+// GET /api/v1/internal/stats — High-level overview metrics
+router.get('/stats', async (_req: Request, res: Response): Promise<void> => {
+  try {
+    const clinicsRes = await authPool.query(`
+      SELECT 
+        COUNT(*)::int AS total,
+        COUNT(*) FILTER (WHERE status = 'ACTIVE')::int AS active,
+        COUNT(*) FILTER (WHERE status = 'SUSPENDED')::int AS suspended
+      FROM clinics
+    `);
+    const demoRes = await authPool.query(`
+      SELECT 
+        COUNT(*)::int AS total,
+        COUNT(*) FILTER (WHERE status IN ('NEW', 'CONTACTED', 'ONBOARDING'))::int AS pending
+      FROM demo_requests
+    `);
+    res.json({
+      success: true,
+      data: {
+        clinics: clinicsRes.rows[0] || { total: 0, active: 0, suspended: 0 },
+        demoRequests: demoRes.rows[0] || { total: 0, pending: 0 },
+      },
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Failed to fetch internal stats' } });
+  }
+});
+
+// GET /api/v1/internal/demo-requests — List all incoming demo requests
+router.get('/demo-requests', async (_req: Request, res: Response): Promise<void> => {
+  try {
+    const result = await authPool.query(
+      `SELECT * FROM demo_requests ORDER BY created_at DESC`
+    );
+    res.json({ success: true, data: result.rows });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Failed to list demo requests' } });
+  }
+});
+
+// PATCH /api/v1/internal/demo-requests/:id/status — Transition demo request lifecycle
+router.patch('/demo-requests/:id/status', async (req: Request, res: Response): Promise<void> => {
+  const { status } = req.body;
+  const allowed = ['NEW', 'CONTACTED', 'DEMO_COMPLETED', 'ONBOARDING', 'CONVERTED', 'REJECTED'];
+  if (!allowed.includes(status)) {
+    res.status(400).json({
+      success: false,
+      error: { code: 'INVALID_STATUS', message: `Status must be one of: ${allowed.join(', ')}` },
+    });
+    return;
+  }
+
+  try {
+    const result = await authPool.query(
+      `UPDATE demo_requests SET status = $1, updated_at = NOW() WHERE id = $2 RETURNING *`,
+      [status, req.params.id]
+    );
+
+    if (result.rows.length === 0) {
+      res.status(404).json({ success: false, error: { code: 'NOT_FOUND', message: 'Demo request not found' } });
+      return;
+    }
+
+    res.json({ success: true, data: result.rows[0] });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Failed to update demo request status' } });
+  }
+});
+
 export default router;
