@@ -13,6 +13,25 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/auth/login',
+        destination: '/login',
+        permanent: false,
+      },
+      {
+        source: '/auth/signup',
+        destination: '/book-demo',
+        permanent: false,
+      },
+      {
+        source: '/auth',
+        destination: '/login',
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
     return [

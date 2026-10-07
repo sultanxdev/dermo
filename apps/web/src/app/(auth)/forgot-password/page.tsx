@@ -29,7 +29,7 @@ export default function ForgotPasswordPage() {
               If an account exists for <strong>{email}</strong>, a password reset link has been sent.
             </p>
             <Link
-              href="/auth/login"
+              href="/login"
               className="inline-block text-xs font-bold text-[#553E53] hover:underline pt-2"
             >
               Return to Login
@@ -74,7 +74,7 @@ export default function ForgotPasswordPage() {
 
       <p className="text-center text-xs text-[#553E53]/80 mt-6 font-medium">
         Remembered your credentials?{' '}
-        <Link href="/auth/login" className="text-[#553E53] hover:underline font-bold transition-colors">
+        <Link href="/login" className="text-[#553E53] hover:underline font-bold transition-colors">
           Clinic Login
         </Link>
       </p>

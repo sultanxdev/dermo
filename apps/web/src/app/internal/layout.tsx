@@ -13,7 +13,7 @@ export default function InternalLayout({ children }: { children: React.ReactNode
   useEffect(() => {
     if (!isPending) {
       if (!session) {
-        router.push('/auth/login');
+        router.push('/login');
       } else {
         const user = session.user as any;
         if (user?.accountType !== 'INTERNAL_TEAM') {
@@ -26,7 +26,7 @@ export default function InternalLayout({ children }: { children: React.ReactNode
 
   const handleLogout = async () => {
     await authClient.signOut();
-    window.location.href = '/auth/login';
+    window.location.href = '/login';
   };
 
   if (isPending || !session || (session.user as any)?.accountType !== 'INTERNAL_TEAM') {

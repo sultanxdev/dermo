@@ -23,7 +23,7 @@ export const footerNav = {
     { title: 'Book a Demo', href: '/book-demo' },
   ],
   clinic: [
-    { title: 'Clinic Login', href: '/auth/login' },
+    { title: 'Clinic Login', href: '/login' },
     { title: 'Dashboard Shell', href: '/dashboard' },
   ],
   legal: [

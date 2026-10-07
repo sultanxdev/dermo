@@ -24,7 +24,7 @@ export default function VerifyEmailPage() {
           We&apos;ve sent a verification link to your registered clinic email. Please click the link to activate your access.
         </p>
         <Link
-          href="/auth/login"
+          href="/login"
           className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#553E53] hover:bg-[#4B624A] text-[#F5F6F0] text-xs font-semibold transition-colors"
         >
           <span>Return to Clinic Login</span>

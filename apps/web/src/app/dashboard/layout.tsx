@@ -58,7 +58,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const handleLogout = async () => {
     await authClient.signOut();
-    window.location.href = '/auth/login';
+    window.location.href = '/login';
   };
 
   if (isPending) {

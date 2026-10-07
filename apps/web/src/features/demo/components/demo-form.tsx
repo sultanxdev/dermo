@@ -7,6 +7,7 @@ import {
   IconArrowRight,
   IconCheckCircle,
   IconLock,
+  IconAlertCircle,
 } from '@/components/ui/icons';
 
 interface DemoFormProps {
@@ -18,6 +19,7 @@ interface DemoFormProps {
 export function DemoForm({ onSuccess, className = '', isModal = false }: DemoFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState<DemoFormData>({
     name: '',
     clinicName: '',
@@ -32,11 +34,16 @@ export function DemoForm({ onSuccess, className = '', isModal = false }: DemoFor
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setLoading(true);
-    await submitDemoRequest(formData);
+    const res = await submitDemoRequest(formData);
     setLoading(false);
-    setSubmitted(true);
-    onSuccess?.();
+    if (res.success) {
+      setSubmitted(true);
+      onSuccess?.();
+    } else {
+      setError(res.message || 'Failed to submit demo request. Please try again.');
+    }
   };
 
   if (submitted) {
@@ -56,6 +63,12 @@ export function DemoForm({ onSuccess, className = '', isModal = false }: DemoFor
 
   return (
     <form onSubmit={handleSubmit} className={`space-y-3.5 text-xs ${className}`}>
+      {error && (
+        <div className="flex items-center gap-2.5 p-3 rounded-xl bg-red-500/10 border border-red-500/25 text-red-700 text-xs">
+          <IconAlertCircle className="w-4 h-4 flex-shrink-0 text-red-600" />
+          <span>{error}</span>
+        </div>
+      )}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
           <label className="block text-[#553E53] font-semibold mb-1">Your Name *</label>

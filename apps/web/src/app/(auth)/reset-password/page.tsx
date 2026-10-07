@@ -29,7 +29,7 @@ export default function ResetPasswordPage() {
               Your password has been updated successfully.
             </p>
             <Link
-              href="/auth/login"
+              href="/login"
               className="inline-block text-xs font-bold text-[#553E53] hover:underline pt-2"
             >
               Sign In to Dashboard

@@ -70,7 +70,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-2">
             <h2 className={headingClass}>Existing clinics</h2>
             <Link
-              href="/auth/login"
+              href="/login"
               className="inline-flex h-10 items-center rounded-lg border border-[#553E53]/25 px-4 text-sm font-semibold text-[#553E53] transition-colors hover:bg-[#553E53] hover:text-[#F5F6F0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4B624A]"
             >
               Clinic login

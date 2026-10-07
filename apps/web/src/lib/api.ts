@@ -19,7 +19,7 @@ async function fetcher<T>(endpoint: string, options: RequestInit = {}): Promise<
     if (res.status === 401) {
       // Token expired or invalid — user needs to re-authenticate
       if (typeof window !== 'undefined') {
-        window.location.href = '/auth/login';
+        window.location.href = '/login';
       }
       throw new Error('Session expired. Please sign in again.');
     }

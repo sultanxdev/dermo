@@ -54,7 +54,7 @@ export function Navbar({ onBookDemo }: NavbarProps) {
         {/* Right Navigation CTAs */}
         <div className="hidden items-center gap-4 md:flex">
           <Link
-            href="/auth/login"
+            href="/login"
             className="inline-flex items-center px-4 py-2 rounded-lg border border-[#553E53]/25 text-sm font-semibold text-[#553E53] hover:bg-[#4B624A] hover:text-[#F5F6F0] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4B624A]"
           >
             Clinic login
@@ -110,7 +110,7 @@ export function Navbar({ onBookDemo }: NavbarProps) {
           ))}
           <div className="mt-2 border-t border-[#553E53]/10 pt-3">
             <Link
-              href="/auth/login"
+              href="/login"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between rounded-lg px-2 py-2.5 text-[#553E53] hover:bg-[#553E53]/5"
             >
