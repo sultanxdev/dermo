@@ -1,8 +1,7 @@
 import { betterAuth } from "better-auth";
+import { admin } from "better-auth/plugins";
 import { Pool } from "pg";
 
-// Auth-only database connection.
-// This is intentionally separate from the future application database layer (Drizzle, PR 1.2).
 export const authPool = new Pool({
   connectionString:
     process.env.DATABASE_URL ||
@@ -14,34 +13,53 @@ export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL || "http://localhost:4000",
   secret: process.env.BETTER_AUTH_SECRET || "default_dev_secret_must_be_overridden_in_production_min_32_chars",
 
-  emailAndPassword: {
-    enabled: true,
+  plugins: [
+    admin({
+      // We only use the server-side admin user creation capability
+      // No complex organization or custom RBAC
+    }),
+  ],
+
+  user: {
+    additionalFields: {
+      accountType: {
+        type: "string",
+        required: true,
+        input: false, // Prevents client-side injection during normal auth
+      },
+      clinicId: {
+        type: "string",
+        required: false,
+        input: false, // Injected exclusively by server provisioning
+      },
+    },
   },
 
-  socialProviders: {
-    ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
-      ? {
-          google: {
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          },
-        }
-      : {}),
-    ...(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET
-      ? {
-          github: {
-            clientId: process.env.GITHUB_CLIENT_ID,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET,
-          },
-        }
-      : {}),
+  emailAndPassword: {
+    enabled: true,
+    // Disable public signup: Only Dermo internal team can provision clinic accounts
+    disableSignUp: true,
+    minPasswordLength: 8,
+    async sendResetPassword({ user, url }) {
+      // Branded account setup & password reset delivery
+      console.log(`[Email Service] Password setup/reset link for ${user.email}: ${url}`);
+    },
+  },
+
+  session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 days
+    updateAge: 60 * 60 * 24,      // 1 day rolling window
+    cookieCache: {
+      enabled: false,             // Disabled: real-time revocation & immediate clinic suspension
+    },
   },
 
   advanced: {
     cookiePrefix: "dermo",
     crossSubDomainCookies: {
-      enabled: false,
+      enabled: false, // Same-origin proxy architecture
     },
+    useSecureCookies: process.env.NODE_ENV === "production",
   },
 
   trustedOrigins: [
