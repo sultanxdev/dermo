@@ -32,7 +32,7 @@ export interface DatabaseState {
 }
 
 // In-memory persistent state holder for development & demonstration
-class Database {
+export class Database {
   private static instance: Database;
   public state: DatabaseState;
 

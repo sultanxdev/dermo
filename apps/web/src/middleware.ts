@@ -10,16 +10,20 @@ export function middleware(request: NextRequest) {
     request.cookies.has('__Secure-better-auth.session_token');
 
   const isOnDashboard = request.nextUrl.pathname.startsWith('/dashboard');
-  const isOnAuth =
-    request.nextUrl.pathname.startsWith('/auth') ||
-    request.nextUrl.pathname === '/login' ||
-    request.nextUrl.pathname === '/forgot-password' ||
-    request.nextUrl.pathname === '/reset-password';
+  const isOnInternal = request.nextUrl.pathname.startsWith('/internal');
+  const isOnAuth = request.nextUrl.pathname.startsWith('/auth');
 
+  // Protect clinic dashboard
   if (isOnDashboard && !hasSession) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
 
+  // Protect internal operations console
+  if (isOnInternal && !hasSession) {
+    return NextResponse.redirect(new URL('/auth/login', request.url));
+  }
+
+  // Redirect authenticated users away from auth pages to their workspace
   if (isOnAuth && hasSession) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
@@ -28,5 +32,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth/:path*', '/login', '/forgot-password', '/reset-password'],
+  matcher: ['/dashboard/:path*', '/internal/:path*', '/auth/:path*'],
 };

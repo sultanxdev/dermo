@@ -4,6 +4,8 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "outDir": "./dist",
+    "declaration": false,
+    "declarationMap": false,
     "paths": {
       "@dermo/types": ["../../packages/types/src"],
       "@dermo/schemas": ["../../packages/schemas/src"]

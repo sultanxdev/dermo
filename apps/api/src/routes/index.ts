@@ -10,24 +10,30 @@ import paymentRoutes from './paymentRoutes';
 import whatsappRoutes from './whatsappRoutes';
 import analyticsRoutes from './analyticsRoutes';
 import auditRoutes from './auditRoutes';
-import { requireAuth } from '../middleware/requireAuth';
+import demoRequestRoutes from './demoRequestRoutes';
+import internalRoutes from './internalRoutes';
+import { requireAuth, requireClinicOwner } from '../middleware/requireAuth';
 
 const router = Router();
 
 // Public / Webhook routes
 router.use('/', whatsappRoutes);
+router.use('/demo-requests', demoRequestRoutes);
 
-// Protected routes — authenticated identity, single-tenant context
-router.use('/clinic', requireAuth, clinicRoutes);
-router.use('/doctors', requireAuth, doctorRoutes);
-router.use('/services', requireAuth, serviceRoutes);
-router.use('/appointments', requireAuth, appointmentRoutes);
-router.use('/leads', requireAuth, leadRoutes);
-router.use('/conversations', requireAuth, conversationRoutes);
-router.use('/knowledge', requireAuth, knowledgeRoutes);
-router.use('/', requireAuth, knowledgeRoutes); // For /faqs
-router.use('/payments', requireAuth, paymentRoutes);
-router.use('/analytics', requireAuth, analyticsRoutes);
-router.use('/audit-logs', requireAuth, auditRoutes);
+// Internal Team operations routes
+router.use('/internal', internalRoutes);
+
+// Clinic Owner protected routes — single-tenant context with active clinic enforcement
+router.use('/clinic', requireAuth, requireClinicOwner, clinicRoutes);
+router.use('/doctors', requireAuth, requireClinicOwner, doctorRoutes);
+router.use('/services', requireAuth, requireClinicOwner, serviceRoutes);
+router.use('/appointments', requireAuth, requireClinicOwner, appointmentRoutes);
+router.use('/leads', requireAuth, requireClinicOwner, leadRoutes);
+router.use('/conversations', requireAuth, requireClinicOwner, conversationRoutes);
+router.use('/knowledge', requireAuth, requireClinicOwner, knowledgeRoutes);
+router.use('/', requireAuth, requireClinicOwner, knowledgeRoutes); // For /faqs
+router.use('/payments', requireAuth, requireClinicOwner, paymentRoutes);
+router.use('/analytics', requireAuth, requireClinicOwner, analyticsRoutes);
+router.use('/audit-logs', requireAuth, requireClinicOwner, auditRoutes);
 
 export default router;

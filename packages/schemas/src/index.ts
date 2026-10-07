@@ -4,25 +4,36 @@ import { z } from 'zod';
 // Authentication Schemas
 // ==========================================
 export const loginSchema = z.object({
-  email: z.string().email('Valid email is required'),
+  email: z.string().trim().toLowerCase().email('Valid email is required'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-export const registerSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Valid email is required'),
-  password: z
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number')
-    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
-  confirmPassword: z.string(),
-  role: z.enum(['OWNER', 'ADMIN', 'STAFF', 'DOCTOR']).default('STAFF'),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Passwords do not match',
-  path: ['confirmPassword'],
+export const createDemoRequestSchema = z.object({
+  name: z.string().trim().min(2, 'Name is required'),
+  clinicName: z.string().trim().min(2, 'Clinic name is required'),
+  email: z.string().trim().toLowerCase().email('Valid email is required'),
+  phone: z.string().trim().min(8, 'Valid phone number is required'),
+  clinicType: z.string().optional(),
+  doctorCount: z.number().int().min(1).default(1),
+  city: z.string().optional(),
+  requirements: z.string().optional(),
+});
+
+export const provisionClinicSchema = z.object({
+  sourceDemoRequestId: z.string().optional(),
+  name: z.string().trim().min(2, 'Clinic name is required'),
+  slug: z.string().trim().min(2).regex(/^[a-z0-9-]+$/, 'Slug must be URL-safe (lowercase letters, numbers, hyphens)'),
+  ownerName: z.string().trim().min(2, 'Owner name is required'),
+  email: z.string().trim().toLowerCase().email('Valid owner email is required'),
+  phone: z.string().trim().min(8, 'Valid phone number is required'),
+  address: z.string().optional(),
+  city: z.string().optional(),
+  timezone: z.string().default('Asia/Kolkata'),
+  currency: z.string().default('INR'),
+});
+
+export const updateOnboardingStatusSchema = z.object({
+  status: z.enum(['NOT_STARTED', 'CONFIGURING', 'TESTING', 'READY', 'LIVE', 'SUSPENDED']),
 });
 
 // ==========================================
