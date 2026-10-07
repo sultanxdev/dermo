@@ -36,78 +36,78 @@ export default function AnalyticsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-          <BarChart3 className="w-6 h-6 text-orange-400" />
+        <h1 className="text-2xl font-serif font-bold text-[#553E53] flex items-center gap-2">
+          <BarChart3 className="w-6 h-6 text-[#553E53]" />
           <span>Clinic Conversion Analytics & AI Performance</span>
         </h1>
-        <p className="text-xs text-neutral-400 mt-1">
+        <p className="text-xs text-[#553E53]/70 mt-1">
           Real-time patient acquisition funnel, AI grounding accuracy, and revenue attribution.
         </p>
       </div>
 
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="glass-card p-5 rounded-2xl border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">AI Conversion Rate</span>
-          <div className="text-3xl font-extrabold text-orange-400 font-mono">
+        <div className="bg-white p-5 rounded-2xl border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">AI Conversion Rate</span>
+          <div className="text-3xl font-extrabold text-[#553E53] font-mono">
             {overview?.aiConversionRate || 0}%
           </div>
-          <div className="text-[10px] text-neutral-400">Enquiries → Confirmed Bookings</div>
+          <div className="text-[10px] text-[#553E53]/50">Enquiries → Confirmed Bookings</div>
         </div>
 
-        <div className="glass-card p-5 rounded-2xl border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">AI Grounding Accuracy</span>
-          <div className="text-3xl font-extrabold text-white font-mono">
+        <div className="bg-white p-5 rounded-2xl border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">AI Grounding Accuracy</span>
+          <div className="text-3xl font-extrabold text-[#553E53] font-mono">
             {overview?.aiAccuracyScore || 98.4}%
           </div>
-          <div className="text-[10px] text-orange-400 flex items-center gap-1">
-            <ShieldCheck className="w-3 h-3" />
+          <div className="text-[10px] text-[#553E53] flex items-center gap-1 font-medium">
+            <ShieldCheck className="w-3 h-3 text-[#553E53]" />
             <span>Zero Hallucination Guarantee</span>
           </div>
         </div>
 
-        <div className="glass-card p-5 rounded-2xl border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">Average AI Latency</span>
-          <div className="text-3xl font-extrabold text-amber-400 font-mono">
+        <div className="bg-white p-5 rounded-2xl border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">Average AI Latency</span>
+          <div className="text-3xl font-extrabold text-[#553E53] font-mono">
             1.4s
           </div>
-          <div className="text-[10px] text-neutral-400">LangChain + Gemini Flash 2.0</div>
+          <div className="text-[10px] text-[#553E53]/50">LangChain + Gemini Flash 2.0</div>
         </div>
 
-        <div className="glass-card p-5 rounded-2xl border border-neutral-800 space-y-1">
-          <span className="text-xs text-neutral-400">Human Escalation Rate</span>
-          <div className="text-3xl font-extrabold text-rose-400 font-mono">
+        <div className="bg-white p-5 rounded-2xl border border-[#553E53]/10 shadow-sm space-y-1">
+          <span className="text-xs text-[#553E53]/70">Human Escalation Rate</span>
+          <div className="text-3xl font-extrabold text-rose-600 font-mono">
             {overview?.humanHandoffs || 0}
           </div>
-          <div className="text-[10px] text-neutral-400">Escalated to human staff</div>
+          <div className="text-[10px] text-[#553E53]/50">Escalated to human staff</div>
         </div>
       </div>
 
       {/* Patient Conversion Funnel */}
-      <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-6">
-        <h3 className="font-bold text-sm text-white">End-to-End Patient Conversion Funnel</h3>
+      <div className="bg-white rounded-2xl p-6 border border-[#553E53]/10 shadow-sm space-y-6">
+        <h3 className="font-serif font-bold text-sm text-[#553E53]">End-to-End Patient Conversion Funnel</h3>
 
         <div className="space-y-4">
           {/* Step 1 */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-neutral-300">1. WhatsApp Inquiries Captured</span>
-              <span className="font-mono font-bold text-white">{overview?.totalEnquiries || 0}</span>
+              <span className="font-medium text-[#553E53]">1. WhatsApp Inquiries Captured</span>
+              <span className="font-mono font-bold text-[#553E53]">{overview?.totalEnquiries || 0}</span>
             </div>
-            <div className="h-3 rounded-full bg-neutral-800 overflow-hidden">
-              <div className="h-full bg-blue-500 rounded-full w-full" />
+            <div className="h-3 rounded-full bg-[#F5F6F0] overflow-hidden">
+              <div className="h-full bg-[#B6CBDE] rounded-full w-full" />
             </div>
           </div>
 
           {/* Step 2 */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-neutral-300">2. Qualified Patients (Service & Intent Matched)</span>
-              <span className="font-mono font-bold text-white">{overview?.qualifiedLeads || 0}</span>
+              <span className="font-medium text-[#553E53]">2. Qualified Patients (Service & Intent Matched)</span>
+              <span className="font-mono font-bold text-[#553E53]">{overview?.qualifiedLeads || 0}</span>
             </div>
-            <div className="h-3 rounded-full bg-neutral-800 overflow-hidden">
+            <div className="h-3 rounded-full bg-[#F5F6F0] overflow-hidden">
               <div
-                className="h-full bg-purple-500 rounded-full"
+                className="h-full bg-[#8E6F8B] rounded-full"
                 style={{
                   width: `${Math.min(
                     100,
@@ -121,12 +121,12 @@ export default function AnalyticsPage() {
           {/* Step 3 */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-semibold text-neutral-300">3. Slot Booked & Deposit Paid</span>
-              <span className="font-mono font-bold text-white">{overview?.appointmentsBooked || 0}</span>
+              <span className="font-medium text-[#553E53]">3. Slot Booked & Deposit Paid</span>
+              <span className="font-mono font-bold text-[#553E53]">{overview?.appointmentsBooked || 0}</span>
             </div>
-            <div className="h-3 rounded-full bg-neutral-800 overflow-hidden">
+            <div className="h-3 rounded-full bg-[#F5F6F0] overflow-hidden">
               <div
-                className="h-full bg-orange-500 rounded-full"
+                className="h-full bg-[#553E53] rounded-full"
                 style={{
                   width: `${Math.min(
                     100,
@@ -140,12 +140,12 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Weekly Trends Table */}
-      <div className="glass-card rounded-2xl border border-neutral-800 overflow-hidden">
-        <div className="p-4 border-b border-neutral-800 bg-neutral-900/60 font-bold text-sm text-white">
+      <div className="bg-white rounded-2xl border border-[#553E53]/10 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-[#553E53]/10 bg-[#F5F6F0]/60 font-serif font-bold text-sm text-[#553E53]">
           7-Day Operational Activity Log
         </div>
-        <table className="w-full text-left text-xs text-neutral-300">
-          <thead className="bg-neutral-900/80 text-neutral-400 border-b border-neutral-800 uppercase tracking-wider text-[10px]">
+        <table className="w-full text-left text-xs text-[#553E53]">
+          <thead className="bg-[#F5F6F0] text-[#553E53]/70 border-b border-[#553E53]/10 uppercase tracking-wider text-[10px]">
             <tr>
               <th className="p-3.5">Day</th>
               <th className="p-3.5">Inquiries Handled</th>
@@ -153,13 +153,13 @@ export default function AnalyticsPage() {
               <th className="p-3.5">Handoffs</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-neutral-800/60 font-mono">
+          <tbody className="divide-y divide-[#553E53]/10 font-mono">
             {timeseries.map((row, idx) => (
-              <tr key={idx} className="hover:bg-neutral-800/30">
-                <td className="p-3.5 font-bold text-white">{row.day}</td>
-                <td className="p-3.5 text-neutral-200">{row.enquiries}</td>
-                <td className="p-3.5 text-orange-400 font-bold">{row.bookings}</td>
-                <td className="p-3.5 text-neutral-400">{row.handoffs}</td>
+              <tr key={idx} className="hover:bg-[#F5F6F0]/50 transition-colors">
+                <td className="p-3.5 font-bold text-[#553E53]">{row.day}</td>
+                <td className="p-3.5 text-[#553E53]/80">{row.enquiries}</td>
+                <td className="p-3.5 text-[#553E53] font-bold">{row.bookings}</td>
+                <td className="p-3.5 text-[#553E53]/60">{row.handoffs}</td>
               </tr>
             ))}
           </tbody>

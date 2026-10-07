@@ -167,56 +167,56 @@ export default function AppointmentsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <CalendarIcon className="w-6 h-6 text-orange-400" />
+          <h1 className="text-2xl font-serif font-bold text-[#553E53] flex items-center gap-2">
+            <CalendarIcon className="w-6 h-6 text-[#553E53]" />
             <span>Doctor Appointments & Slot Manager</span>
           </h1>
-          <p className="text-xs text-neutral-400 mt-1">
+          <p className="text-xs text-[#553E53]/70 mt-1">
             Check real-time shift availability, doctor breaks, and atomic slot reservations.
           </p>
         </div>
 
         <button
           onClick={() => setShowBookingModal(true)}
-          className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-neutral-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all self-start"
+          className="px-4 py-2.5 rounded-xl bg-[#553E53] hover:bg-[#433041] text-[#F5F6F0] font-medium text-xs flex items-center gap-2 shadow-sm transition-all self-start"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 text-[#B6CBDE]" />
           <span>Book In-Clinic Slot</span>
         </button>
       </div>
 
       {/* Live Availability Inspector Card */}
-      <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-5">
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-neutral-800">
+      <div className="bg-white rounded-2xl p-6 border border-[#553E53]/10 shadow-sm space-y-5">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#553E53]/10">
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-orange-400" />
-            <h3 className="font-bold text-sm text-white">Live Slot Availability Inspector</h3>
+            <Clock className="w-5 h-5 text-[#553E53]" />
+            <h3 className="font-serif font-bold text-sm text-[#553E53]">Live Slot Availability Inspector</h3>
           </div>
 
           {/* Doctor & Date Pickers */}
           <div className="flex flex-wrap items-center gap-3 text-xs">
-            <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-1.5">
-              <Stethoscope className="w-4 h-4 text-orange-400" />
+            <div className="flex items-center gap-2 bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-1.5">
+              <Stethoscope className="w-4 h-4 text-[#553E53]" />
               <select
                 value={selectedDoctorId}
                 onChange={(e) => setSelectedDoctorId(e.target.value)}
-                className="bg-transparent text-neutral-100 font-semibold focus:outline-none"
+                className="bg-transparent text-[#553E53] font-medium focus:outline-none"
               >
                 {doctors.map((d) => (
-                  <option key={d.id} value={d.id} className="bg-neutral-900 text-white">
+                  <option key={d.id} value={d.id} className="bg-white text-[#553E53]">
                     {d.name} ({d.title})
                   </option>
                 ))}
               </select>
             </div>
 
-            <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-xl px-3 py-1.5">
-              <CalendarIcon className="w-4 h-4 text-orange-400" />
+            <div className="flex items-center gap-2 bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-1.5">
+              <CalendarIcon className="w-4 h-4 text-[#553E53]" />
               <input
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-transparent text-neutral-100 font-semibold focus:outline-none"
+                className="bg-transparent text-[#553E53] font-medium focus:outline-none"
               />
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function AppointmentsPage() {
 
         {/* Slot Grid */}
         {loadingSlots ? (
-          <div className="text-center py-8 text-xs text-neutral-400 animate-pulse">
+          <div className="text-center py-8 text-xs text-[#553E53]/70 animate-pulse font-medium">
             Calculating real-time doctor shifts and break intervals...
           </div>
         ) : availabilitySlots.length > 0 ? (
@@ -234,8 +234,8 @@ export default function AppointmentsPage() {
                 key={idx}
                 className={`p-2.5 rounded-xl border text-center text-xs font-semibold flex flex-col justify-center transition-all ${
                   slot.available
-                    ? 'bg-orange-500/10 border-orange-500/40 text-orange-300 hover:scale-105'
-                    : 'bg-neutral-900/60 border-neutral-800 text-neutral-500 opacity-60'
+                    ? 'bg-[#B6CBDE]/30 border-[#553E53]/25 text-[#553E53] hover:scale-105'
+                    : 'bg-[#F5F6F0] border-[#553E53]/10 text-[#553E53]/40'
                 }`}
               >
                 <div className="font-mono">{slot.startTime}</div>
@@ -246,21 +246,21 @@ export default function AppointmentsPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-6 text-xs text-neutral-500">
+          <div className="text-center py-6 text-xs text-[#553E53]/60">
             Doctor is not working on this selected day.
           </div>
         )}
       </div>
 
       {/* Confirmed Appointments Table */}
-      <div className="glass-card rounded-2xl border border-neutral-800 overflow-hidden">
-        <div className="p-4 border-b border-neutral-800 bg-neutral-900/60 flex items-center justify-between">
-          <h3 className="font-bold text-sm text-white">All Clinic Appointments ({appointments.length})</h3>
+      <div className="bg-white rounded-2xl border border-[#553E53]/10 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-[#553E53]/10 bg-[#F5F6F0]/60 flex items-center justify-between">
+          <h3 className="font-serif font-bold text-sm text-[#553E53]">All Clinic Appointments ({appointments.length})</h3>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-neutral-300">
-            <thead className="bg-neutral-900/80 text-neutral-400 border-b border-neutral-800 uppercase tracking-wider text-[10px]">
+          <table className="w-full text-left text-xs text-[#553E53]">
+            <thead className="bg-[#F5F6F0] text-[#553E53]/70 border-b border-[#553E53]/10 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="p-3.5">Patient Details</th>
                 <th className="p-3.5">Doctor</th>
@@ -271,38 +271,38 @@ export default function AppointmentsPage() {
                 <th className="p-3.5">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/60">
+            <tbody className="divide-y divide-[#553E53]/10">
               {appointments.map((apt) => (
-                <tr key={apt.id} className="hover:bg-neutral-800/30">
+                <tr key={apt.id} className="hover:bg-[#F5F6F0]/50 transition-colors">
                   <td className="p-3.5">
-                    <div className="font-bold text-white">{apt.leadName}</div>
-                    <div className="text-[10px] text-neutral-400 font-mono">{apt.leadPhone}</div>
+                    <div className="font-bold text-[#553E53]">{apt.leadName}</div>
+                    <div className="text-[10px] text-[#553E53]/60 font-mono">{apt.leadPhone}</div>
                   </td>
-                  <td className="p-3.5 text-orange-400 font-medium">{apt.doctorName}</td>
-                  <td className="p-3.5 text-neutral-200">{apt.serviceName}</td>
+                  <td className="p-3.5 text-[#553E53] font-medium">{apt.doctorName}</td>
+                  <td className="p-3.5 text-[#553E53]/90">{apt.serviceName}</td>
                   <td className="p-3.5">
-                    <div className="font-mono text-white">{formatDate(apt.date)}</div>
-                    <div className="text-[10px] text-neutral-400 font-mono">{apt.startTime} – {apt.endTime}</div>
+                    <div className="font-mono text-[#553E53] font-medium">{formatDate(apt.date)}</div>
+                    <div className="text-[10px] text-[#553E53]/60 font-mono">{apt.startTime} – {apt.endTime}</div>
                   </td>
                   <td className="p-3.5">
                     {apt.paymentStatus === 'PAID' ? (
-                      <span className="px-2 py-0.5 rounded bg-orange-950 text-orange-300 text-[10px] font-bold border border-orange-800">
+                      <span className="px-2 py-0.5 rounded bg-[#553E53] text-[#F5F6F0] text-[10px] font-bold">
                         ₹{apt.depositPaid} (Razorpay)
                       </span>
                     ) : (
-                      <span className="text-neutral-500 text-[10px]">Unpaid</span>
+                      <span className="text-[#553E53]/50 text-[10px]">Unpaid</span>
                     )}
                   </td>
                   <td className="p-3.5">
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                         apt.status === 'CONFIRMED'
-                          ? 'bg-orange-500/15 text-orange-300 border-orange-500/30'
+                          ? 'bg-[#B6CBDE]/35 text-[#553E53] border-[#553E53]/25'
                           : apt.status === 'BOOKED'
-                          ? 'bg-blue-500/15 text-blue-300 border-blue-500/30'
+                          ? 'bg-blue-50 text-blue-700 border-blue-200'
                           : apt.status === 'RESCHEDULED'
-                          ? 'bg-purple-500/15 text-purple-300 border-purple-500/30'
-                          : 'bg-rose-500/15 text-rose-300 border-rose-500/30'
+                          ? 'bg-purple-50 text-purple-700 border-purple-200'
+                          : 'bg-rose-50 text-rose-700 border-rose-200'
                       }`}
                     >
                       {apt.status}
@@ -317,14 +317,14 @@ export default function AppointmentsPage() {
                             setReschedDate(apt.date);
                             setReschedTime(apt.startTime);
                           }}
-                          className="text-[11px] text-orange-400 hover:text-orange-300 font-medium"
+                          className="text-[11px] text-[#553E53] hover:underline font-semibold"
                         >
                           Reschedule
                         </button>
-                        <span className="text-neutral-600">|</span>
+                        <span className="text-[#553E53]/30">|</span>
                         <button
                           onClick={() => setShowCancelModal(apt)}
-                          className="text-[11px] text-rose-400 hover:text-rose-300 font-medium"
+                          className="text-[11px] text-rose-600 hover:underline font-semibold"
                         >
                           Cancel
                         </button>
@@ -340,22 +340,22 @@ export default function AppointmentsPage() {
 
       {/* Booking Modal */}
       {showBookingModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-lg w-full border border-neutral-700 space-y-4 shadow-2xl">
-            <h3 className="font-bold text-lg text-white">Book In-Clinic Appointment</h3>
+        <div className="fixed inset-0 z-50 bg-[#553E53]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white p-6 rounded-2xl max-w-lg w-full border border-[#553E53]/15 space-y-4 shadow-xl">
+            <h3 className="font-serif font-bold text-lg text-[#553E53]">Book In-Clinic Appointment</h3>
             {bookingError && (
-              <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
-                <AlertCircle className="w-4 h-4" />
+              <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-rose-600" />
                 <span>{bookingError}</span>
               </div>
             )}
             <form onSubmit={handleCreateAppointment} className="space-y-3 text-xs">
               <div>
-                <label className="block text-neutral-400 mb-1">Select Patient *</label>
+                <label className="block text-[#553E53]/80 font-medium mb-1">Select Patient *</label>
                 <select
                   value={bookLeadId}
                   onChange={(e) => setBookLeadId(e.target.value)}
-                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                  className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                 >
                   {leads.map((l) => (
                     <option key={l.id} value={l.id}>
@@ -367,11 +367,11 @@ export default function AppointmentsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-neutral-400 mb-1">Doctor *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Doctor *</label>
                   <select
                     value={bookDoctorId}
                     onChange={(e) => setBookDoctorId(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                   >
                     {doctors.map((d) => (
                       <option key={d.id} value={d.id}>
@@ -381,11 +381,11 @@ export default function AppointmentsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-neutral-400 mb-1">Treatment / Procedure *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Treatment / Procedure *</label>
                   <select
                     value={bookServiceId}
                     onChange={(e) => setBookServiceId(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                   >
                     {services.map((s) => (
                       <option key={s.id} value={s.id}>
@@ -398,36 +398,36 @@ export default function AppointmentsPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-neutral-400 mb-1">Date *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Date *</label>
                   <input
                     type="date"
                     required
                     value={bookDate}
                     onChange={(e) => setBookDate(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                   />
                 </div>
                 <div>
-                  <label className="block text-neutral-400 mb-1">Slot Time (HH:mm) *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">Slot Time (HH:mm) *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. 11:00"
                     value={bookTime}
                     onChange={(e) => setBookTime(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono focus:outline-none focus:border-orange-500"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs font-mono focus:outline-none focus:border-[#553E53]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1">Clinical Notes</label>
+                <label className="block text-[#553E53]/80 font-medium mb-1">Clinical Notes</label>
                 <textarea
                   value={bookNotes}
                   onChange={(e) => setBookNotes(e.target.value)}
                   placeholder="Special instructions or initial complaints..."
                   rows={2}
-                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl p-2.5 text-neutral-100 text-xs focus:outline-none focus:border-orange-500"
+                  className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl p-2.5 text-[#553E53] text-xs focus:outline-none focus:border-[#553E53]"
                 />
               </div>
 
@@ -435,13 +435,13 @@ export default function AppointmentsPage() {
                 <button
                   type="button"
                   onClick={() => setShowBookingModal(false)}
-                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs hover:bg-neutral-700"
+                  className="px-4 py-2 rounded-xl bg-[#F5F6F0] text-[#553E53] font-medium text-xs hover:bg-[#e8ecea] border border-[#553E53]/15"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
+                  className="px-4 py-2 rounded-xl bg-[#553E53] text-[#F5F6F0] font-medium text-xs hover:bg-[#433041]"
                 >
                   Confirm & Reserve Slot
                 </button>
@@ -453,56 +453,56 @@ export default function AppointmentsPage() {
 
       {/* Reschedule Modal */}
       {showRescheduleModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
-            <h3 className="font-bold text-lg text-white">Reschedule Appointment</h3>
-            <p className="text-xs text-neutral-400">
-              Rescheduling for <strong className="text-white">{showRescheduleModal.leadName}</strong> with {showRescheduleModal.doctorName}.
+        <div className="fixed inset-0 z-50 bg-[#553E53]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white p-6 rounded-2xl max-w-md w-full border border-[#553E53]/15 space-y-4 shadow-xl">
+            <h3 className="font-serif font-bold text-lg text-[#553E53]">Reschedule Appointment</h3>
+            <p className="text-xs text-[#553E53]/70">
+              Rescheduling for <strong className="text-[#553E53]">{showRescheduleModal.leadName}</strong> with {showRescheduleModal.doctorName}.
             </p>
             <form onSubmit={handleReschedule} className="space-y-3 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-neutral-400 mb-1">New Date *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">New Date *</label>
                   <input
                     type="date"
                     required
                     value={reschedDate}
                     onChange={(e) => setReschedDate(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-neutral-400 mb-1">New Start Time *</label>
+                  <label className="block text-[#553E53]/80 font-medium mb-1">New Start Time *</label>
                   <input
                     type="text"
                     required
                     value={reschedTime}
                     onChange={(e) => setReschedTime(e.target.value)}
-                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs font-mono"
+                    className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs font-mono"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-neutral-400 mb-1">Reason</label>
+                <label className="block text-[#553E53]/80 font-medium mb-1">Reason</label>
                 <input
                   type="text"
                   value={reschedReason}
                   onChange={(e) => setReschedReason(e.target.value)}
                   placeholder="Patient requested different timing"
-                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
+                  className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs"
                 />
               </div>
               <div className="flex justify-end gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowRescheduleModal(null)}
-                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-[#F5F6F0] text-[#553E53] font-medium text-xs border border-[#553E53]/15"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-orange-500 text-neutral-950 font-bold text-xs hover:bg-orange-400"
+                  className="px-4 py-2 rounded-xl bg-[#553E53] text-[#F5F6F0] font-medium text-xs hover:bg-[#433041]"
                 >
                   Confirm Reschedule
                 </button>
@@ -514,34 +514,34 @@ export default function AppointmentsPage() {
 
       {/* Cancel Modal */}
       {showCancelModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-2xl max-w-md w-full border border-neutral-700 space-y-4 shadow-2xl">
-            <h3 className="font-bold text-lg text-white text-rose-400">Cancel Appointment</h3>
-            <p className="text-xs text-neutral-300">
-              Are you sure you want to cancel the booking for <strong className="text-white">{showCancelModal.leadName}</strong> on {showCancelModal.date} at {showCancelModal.startTime}?
+        <div className="fixed inset-0 z-50 bg-[#553E53]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white p-6 rounded-2xl max-w-md w-full border border-[#553E53]/15 space-y-4 shadow-xl">
+            <h3 className="font-serif font-bold text-lg text-rose-600">Cancel Appointment</h3>
+            <p className="text-xs text-[#553E53]/80">
+              Are you sure you want to cancel the booking for <strong className="text-[#553E53]">{showCancelModal.leadName}</strong> on {showCancelModal.date} at {showCancelModal.startTime}?
             </p>
             <form onSubmit={handleCancel} className="space-y-3 text-xs">
               <div>
-                <label className="block text-neutral-400 mb-1">Cancellation Reason *</label>
+                <label className="block text-[#553E53]/80 font-medium mb-1">Cancellation Reason *</label>
                 <input
                   type="text"
                   required
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
-                  className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-3 py-2 text-neutral-100 text-xs"
+                  className="w-full bg-[#F5F6F0] border border-[#553E53]/15 rounded-xl px-3 py-2 text-[#553E53] text-xs"
                 />
               </div>
               <div className="flex justify-end gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowCancelModal(null)}
-                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-xs"
+                  className="px-4 py-2 rounded-xl bg-[#F5F6F0] text-[#553E53] font-medium text-xs border border-[#553E53]/15"
                 >
                   Keep Slot
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-rose-500 text-white font-bold text-xs hover:bg-rose-400"
+                  className="px-4 py-2 rounded-xl bg-rose-600 text-white font-medium text-xs hover:bg-rose-500"
                 >
                   Confirm Cancellation
                 </button>

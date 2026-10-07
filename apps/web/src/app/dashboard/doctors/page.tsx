@@ -37,11 +37,11 @@ export default function DoctorsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-          <Stethoscope className="w-6 h-6 text-orange-400" />
+        <h1 className="text-2xl font-serif font-bold text-[#553E53] flex items-center gap-2">
+          <Stethoscope className="w-6 h-6 text-[#553E53]" />
           <span>Doctor Profiles & Shift Schedules</span>
         </h1>
-        <p className="text-xs text-neutral-400 mt-1">
+        <p className="text-xs text-[#553E53]/70 mt-1">
           Manage clinical specialists, consultation fees, and weekly slot availability rules.
         </p>
       </div>
@@ -52,43 +52,43 @@ export default function DoctorsPage() {
           <div
             key={doc.id}
             onClick={() => setSelectedDoc(doc)}
-            className={`glass-card rounded-2xl p-6 border transition-all cursor-pointer space-y-4 ${
+            className={`rounded-2xl p-6 border transition-all cursor-pointer space-y-4 shadow-sm ${
               selectedDoc?.id === doc.id
-                ? 'border-orange-500/80 bg-neutral-900/90 glow-orange'
-                : 'border-neutral-800 hover:border-neutral-700'
+                ? 'border-[#553E53] ring-2 ring-[#B6CBDE] bg-white'
+                : 'border-[#553E53]/10 bg-white hover:border-[#553E53]/25'
             }`}
           >
             <div className="flex items-start gap-4">
               <img
                 src={doc.avatarUrl || 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200'}
                 alt={doc.name}
-                className="w-16 h-16 rounded-2xl object-cover border border-neutral-700 shadow-md"
+                className="w-16 h-16 rounded-2xl object-cover border border-[#553E53]/15 shadow-sm"
               />
               <div className="space-y-1 flex-1">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-base text-white">{doc.name}</h3>
-                  <span className="px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 text-[10px] font-bold border border-orange-500/30">
+                  <h3 className="font-bold text-base text-[#553E53]">{doc.name}</h3>
+                  <span className="px-2 py-0.5 rounded-full bg-[#B6CBDE]/30 text-[#553E53] text-[10px] font-bold border border-[#553E53]/20">
                     {doc.status}
                   </span>
                 </div>
-                <div className="text-xs text-orange-400 font-medium">{doc.title}</div>
-                <div className="text-[11px] text-neutral-400">{doc.qualification}</div>
+                <div className="text-xs text-[#553E53] font-medium">{doc.title}</div>
+                <div className="text-[11px] text-[#553E53]/60">{doc.qualification}</div>
               </div>
             </div>
 
-            <p className="text-xs text-neutral-300 leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-neutral-800">
+            <p className="text-xs text-[#553E53]/80 leading-relaxed bg-[#F5F6F0] p-3 rounded-xl border border-[#553E53]/10">
               {doc.bio}
             </p>
 
             <div className="space-y-2">
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold block">
+              <span className="text-[10px] uppercase tracking-wider text-[#553E53]/60 font-bold block">
                 Specialties
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {doc.specialty.map((spec, i) => (
                   <span
                     key={i}
-                    className="px-2 py-0.5 rounded-lg bg-neutral-900 text-neutral-300 text-[10px] border border-neutral-800"
+                    className="px-2 py-0.5 rounded-lg bg-[#B6CBDE]/25 text-[#553E53] text-[10px] font-medium border border-[#553E53]/10"
                   >
                     {spec}
                   </span>
@@ -96,12 +96,12 @@ export default function DoctorsPage() {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-neutral-800/80 flex items-center justify-between text-xs">
-              <div className="text-neutral-400">
-                Experience: <strong className="text-white">{doc.experienceYears}+ years</strong>
+            <div className="pt-3 border-t border-[#553E53]/10 flex items-center justify-between text-xs">
+              <div className="text-[#553E53]/70">
+                Experience: <strong className="text-[#553E53]">{doc.experienceYears}+ years</strong>
               </div>
               <div>
-                Consultation Fee: <strong className="text-orange-400 font-mono font-bold text-sm">₹{doc.consultationFee}</strong>
+                Consultation Fee: <strong className="text-[#553E53] font-mono font-bold text-sm">₹{doc.consultationFee}</strong>
               </div>
             </div>
           </div>
@@ -110,15 +110,15 @@ export default function DoctorsPage() {
 
       {/* Selected Doctor Shift Schedule Inspector */}
       {selectedDoc && (
-        <div className="glass-card rounded-2xl p-6 border border-neutral-800 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+        <div className="bg-white rounded-2xl p-6 border border-[#553E53]/10 shadow-sm space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#553E53]/10">
             <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-orange-400" />
-              <h3 className="font-bold text-sm text-white">
+              <Clock className="w-5 h-5 text-[#553E53]" />
+              <h3 className="font-serif font-bold text-sm text-[#553E53]">
                 Weekly Shift Schedule for {selectedDoc.name}
               </h3>
             </div>
-            <span className="text-xs text-neutral-400 font-mono">
+            <span className="text-xs text-[#553E53]/60 font-mono">
               30 Mins / Slot • Break: 1:00 PM – 2:00 PM
             </span>
           </div>
@@ -129,26 +129,26 @@ export default function DoctorsPage() {
                 key={idx}
                 className={`p-3.5 rounded-xl border text-center text-xs space-y-1 ${
                   shift.isWorking
-                    ? 'bg-neutral-900/90 border-neutral-800 text-neutral-200'
-                    : 'bg-neutral-950/40 border-neutral-900 text-neutral-600 opacity-60'
+                    ? 'bg-[#F5F6F0] border-[#553E53]/15 text-[#553E53]'
+                    : 'bg-white border-[#553E53]/5 text-[#553E53]/30'
                 }`}
               >
-                <div className="font-bold uppercase tracking-wider text-[11px] text-orange-400">
+                <div className="font-bold uppercase tracking-wider text-[11px] text-[#553E53]">
                   {shift.day}
                 </div>
                 {shift.isWorking ? (
                   <>
-                    <div className="font-mono text-[11px] text-white font-semibold">
+                    <div className="font-mono text-[11px] text-[#553E53] font-semibold">
                       {shift.startTime} – {shift.endTime}
                     </div>
                     {shift.breakStart && (
-                      <div className="text-[10px] text-neutral-500">
+                      <div className="text-[10px] text-[#553E53]/60">
                         Break: {shift.breakStart}-{shift.breakEnd}
                       </div>
                     )}
                   </>
                 ) : (
-                  <div className="text-[11px] text-neutral-500 py-1">Day Off</div>
+                  <div className="text-[11px] text-[#553E53]/40 py-1">Day Off</div>
                 )}
               </div>
             ))}

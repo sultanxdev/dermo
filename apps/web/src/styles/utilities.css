@@ -1,0 +1,47 @@
+/* ─────────────────────────────────────────────────────────────
+   Dermo Utilities & Component Classes
+   ───────────────────────────────────────────────────────────── */
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dermo-bg, #F5F6F0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(85, 62, 83, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dermo-plum, #553E53);
+}
+
+/* FAQ Accordion Grid Transition */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-content.open {
+  grid-template-rows: 1fr;
+}
+
+.faq-content > div {
+  overflow: hidden;
+}
+
+/* Hide Scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

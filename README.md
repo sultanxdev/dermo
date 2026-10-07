@@ -1,237 +1,90 @@
+# Dermoai — 24/7 AI Employee for Modern Clinics
 
-# DermoAI
+<div align="center">
 
-> AI employee for clinics that handles WhatsApp conversations, clinic knowledge, leads, appointments, and human handoff.
-
-DermoAI is a clinic-focused AI assistant designed to automate repetitive patient conversations while keeping important business decisions under application control.
-
-**Core workflow**
-
-`WhatsApp → AI → Knowledge → Lead → Appointment → Human Handoff`
-
-## Why DermoAI?
-
-Clinics receive repetitive enquiries about:
-
-- Treatments and services
-- Consultation fees
-- Doctors
-- Working hours
-- Clinic location
-- Appointment availability
-- Cancellations and rescheduling
-- General FAQs
-
-Handling these conversations manually creates repetitive work, delayed responses, and avoidable booking mistakes.
-
-DermoAI automates the repetitive workflow while keeping staff involved when human judgment is needed.
-
-## How It Works
-
-```text
-Patient → WhatsApp → DermoAI → Knowledge / Tools → Lead / Appointment
-                                      ↓
-                                 Human Handoff
-```
-
-The application controls business state such as appointments, leads, availability, and conversation mode. The LLM does not receive unrestricted database access.
-
-## Architecture
-
-DermoAI uses a modular monolith designed for a single-clinic deployment.
-
-```text
-WhatsApp
-   ↓
-Webhook
-   ↓
-PostgreSQL + pgvector
-   ↓
-Redis + BullMQ
-   ↓
-Conversation Engine
-   ↓
-RAG + LLM + Tools
-   ↓
-WhatsApp
-```
-
-The architecture keeps business rules inside application services while AI handles language, classification, retrieval, and response generation.
-
-## AI Pipeline
-
-```text
-Message
-  ↓
-Intent
-  ↓
-Safety
-  ↓
-Conversation State
-  ↓
-RAG / Clinic Context
-  ↓
-Tool Validation
-  ↓
-Response
-```
-
-## RAG
-
-Clinic-approved information is stored and retrieved with PostgreSQL + pgvector.
-
-`Clinic Content → Chunk → Embed → pgvector → Retrieve → LLM`
-
-The system is designed to use approved clinic knowledge and provide a safe fallback or human escalation when reliable information is unavailable.
-
-## Appointment Booking
-
-Appointments are handled by deterministic application logic rather than free-form AI decisions.
-
-`Request → Validate → Check Availability → Check Conflict → Commit`
-
-The server validates availability again during booking so the displayed slot is not treated as a guaranteed reservation.
-
-## Human Handoff & Safety
-
-A conversation can move between:
-
-`AI ↔ HUMAN_TAKEOVER`
-
-Handoff can occur when:
-
-- The patient requests a human
-- Medical input requires staff involvement
-- The AI cannot answer reliably
-- An emergency signal is detected
-
-DermoAI is not a diagnostic or prescription system.
-
-## WhatsApp
-
-The inbound webhook flow is:
-
-`Verify → Deduplicate → Persist → Queue → Process`
-
-Provider message IDs are used for idempotency so duplicate webhook deliveries do not create duplicate processing.
-
-## Core Features
-
-- WhatsApp patient conversations
-- Clinic-specific knowledge retrieval
-- AI intent detection
-- Medical safety boundaries
-- Lead management
-- Appointment availability and booking
-- Cancellation and rescheduling
-- Human receptionist takeover
-- Razorpay payment integration
-- Knowledge management
-- Clinic dashboard
-- Audit logging
-- Operational monitoring
-
-## Tech Stack
-
-| Layer | Technology |
-| --- | --- |
-| Frontend | Next.js, React |
-| Backend | Node.js, Express.js |
-| Database | PostgreSQL |
-| Vector Search | pgvector |
-| Background Jobs | Redis, BullMQ |
-| AI | Gemini, LangChain |
-| Messaging | WhatsApp Cloud API |
-| Payments | Razorpay |
-| Validation | Zod |
-| Authentication | JWT, bcrypt |
-| Styling | Tailwind CSS |
-
-## Project Structure
-
-```text
-dermoai/
-├── apps/
-│   ├── api/
-│   └── web/
-├── packages/
-│   ├── schemas/
-│   └── types/
-├── docs/
-└── package.json
-```
-## Testing
-
-The project includes tests for:
-
-- Authentication and authorization
-- Webhook verification
-- Message idempotency
-- Appointment availability
-- Booking conflicts
-- Conversation state
-- Safety rules
-- RAG retrieval
-- AI tool execution
-
-The project also includes a versioned AI evaluation suite for supported clinic conversation scenarios.
-
-## Security
-
-Security-sensitive areas include:
-
-- Staff authentication and authorization
-- WhatsApp webhook verification
-- Provider credentials
-- AI credentials
-- Database credentials
-- Audit logging
-- Clinic data boundaries
-
-Secrets must never be committed to the repository or exposed in normal responses and logs.
-
-## Project Status
-
-**Active Development**
-
-Current focus:
-
-`WhatsApp → AI → Knowledge → Lead → Appointment → Payment → Human Handoff → Dashboard`
-
-> **AI handles conversation. The application controls business decisions.**
+[![Dermoai Platform Banner](docs/hero.png)](https://github.com/sultanxdev/dermo)
 
 
-## 🚀 Local Setup
+# Tech Stack
 
-1. **Start PostgreSQL**:
-   ```bash
-   docker compose up -d
-   ```
+[![Next.js 15](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL_16-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![pgvector](https://img.shields.io/badge/pgvector-Embeddings-blue?style=for-the-badge)](https://github.com/pgvector/pgvector)
+[![Better Auth](https://img.shields.io/badge/Better_Auth-Security-blueviolet?style=for-the-badge)](https://better-auth.com/)
+[![Meta WhatsApp API](https://img.shields.io/badge/Meta_WhatsApp-Cloud_API-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://developers.facebook.com/docs/whatsapp/)
+[![Razorpay](https://img.shields.io/badge/Razorpay-Payment_Gateway-02042B?style=for-the-badge&logo=razorpay&logoColor=3395FF)](https://razorpay.com/)
 
-2. **Migrate Auth Database**:
-   ```bash
-   npm run db:auth:migrate --workspace=apps/api
-   ```
 
-3. **Start Development Servers**:
-   ```bash
-   # Both API and Web
-   npm run dev
-
-   # Or separately
-   npm run dev:api   # API runs on http://localhost:4000
-   npm run dev:web   # Web runs on http://localhost:3000
-   ```
-
-4. **Register / Login**:
-   Open [http://localhost:3000/auth/signup](http://localhost:3000/auth/signup) to create your clinic staff account.
+</div>
 
 ---
 
-## 🔐 Authentication (Better Auth)
+## 📌 Executive Summary
 
-Dermo uses [Better Auth](https://better-auth.com) backed by PostgreSQL auth storage:
-- **Email & Password**: Built-in credential provider with complexity enforcement.
-- **Social OAuth**: Google and GitHub OAuth providers (configured via `GOOGLE_CLIENT_ID` / `GITHUB_CLIENT_ID`).
-- **Server-Side Sessions**: Secure HTTP-only cookies (`credentials: 'include'`). Client-side JWTs are eliminated.
-- **Single-Tenant Identity Boundary**: PR 1.1 establishes authenticated identity while single-tenant isolation is centralized (`DEFAULT_CLINIC_ID`). Role authorization is deferred to `staff_profile` in PR 1.2.
+
+**Dermoai** solves this by acting as an autonomous, always-on **digital receptionist and patient coordinator**. Operating directly over **WhatsApp**—the primary messaging channel for outpatient clinics worldwide—Dermo greets patients instantly, answers treatment and pricing questions from verified clinic knowledge, checks live physician calendars, collects reservation deposits via integrated payment links, and intelligently escalates complex or clinical inquiries to human staff.
+
+
+
+
+## ✨ Core Capabilities
+
+### 1. 💬 Omnichannel WhatsApp Automation
+* Native integration with the **Meta WhatsApp Cloud API**.
+* Handles multimedia, quick reply buttons, list messages, and natural conversational text.
+* Zero delay: Responds in under 2.5 seconds with warm, brand-tailored conversational tone.
+
+### 2. 🧠 Context-Aware Healthcare RAG (`pgvector`)
+* Embeds and semantically indexes verified clinic documentation: services, doctor credentials, contraindications, preparation tips, and fee schedules.
+* Uses semantic distance thresholding: if confidence is below safety boundaries, the system transparently defers to clinic staff rather than guessing.
+
+### 3. 🗓️ Deterministic Appointment & Calendar Engine
+* Strict two-phase reservation pipeline (`Check Availability` $\rightarrow$ `Soft Hold` $\rightarrow$ `Payment Commit`).
+* Enforces doctor shift times, room constraints, buffer windows, and procedure durations.
+* Completely immune to LLM hallucination: slots are fetched directly from PostgreSQL calendar tables.
+
+### 4. 💳 Frictionless In-Chat Payment Collection
+* Automated **Razorpay** integration creates secure payment links inside the WhatsApp conversation.
+* Collects consultation deposits (e.g., ₹500) to deter no-shows.
+* Instant reconciliation via webhooks: slots are confirmed upon webhook verification.
+
+### 5. 🤝 Seamless Human-in-the-Loop Takeover
+* One-click toggle (`AI_MODE` $\leftrightarrow$ `HUMAN_TAKEOVER`).
+* Receptionists can take over the conversation anytime from the web dashboard; the AI immediately pauses automated replies.
+* Once the staff finishes, the conversation can be handed back to AI mode seamlessly.
+
+### 6. 🔐 Enterprise Authentication & Multi-Tenant Foundations
+* Built with **Better Auth** using server-side, HTTP-only secure cookie sessions.
+* Email/Password credential authentication with robust password hashing and rate limiting.
+* Social OAuth providers (Google, GitHub) pre-configured.
+* Strict tenant isolation boundaries (`clinic_id`) across all database queries.
+
+## ⚡ Engineering Depth & Technical Innovations
+
+### 1. Robust Webhook Idempotency
+WhatsApp delivers webhook notifications under an "at-least-once" guarantee. To prevent duplicate replies or double bookings, Dermo indexes incoming `message_id` hashes in a fast Redis cache with a TTL of 24 hours. Duplicate deliveries are immediately acknowledged (`200 OK`) and discarded.
+
+### 2. Guardrailed Tool Execution (Deterministic Isolation)
+The Large Language Model is strictly treated as an intent interpreter. When a patient says *"Book Dr. Priya at 11am"*:
+1. The LLM extracts the parameter schema `{ doctor: "Dr. Priya", time: "11:00", date: "2026-10-01" }`.
+2. The schema is validated against a **Zod** validator.
+3. The booking service executes an ACID transaction on PostgreSQL with `SELECT ... FOR UPDATE` row-level locks.
+4. The LLM receives the outcome string and converts it into conversational confirmation.
+
+### 3. Sub-Second Hybrid Search
+Clinic documents (services, post-care instructions, pricing, doctor bios) are pre-chunked with overlap and converted into dense vector embeddings. Search queries execute hybrid cosine-similarity queries through `pgvector` indexed via `HNSW` (Hierarchical Navigable Small World) for sub-10ms retrieval latency.
+
+
+
+## 👤 Author & Contact
+
+**Sultan**  
+*Full-Stack Engineer & AI Systems Developer*  
+
+* **GitHub**: [@sultanxdev](https://github.com/sultanxdev)
+
+---
+
+

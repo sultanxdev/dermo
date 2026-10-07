@@ -1,19 +1,45 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import AuthSessionProvider from '@/components/providers/session-provider';
+import { Manrope } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Dermo — Managed WhatsApp AI Employee for Dermatology & Aesthetic Clinics',
+  title: 'Dermoai — AI Employee for Modern Clinics',
   description:
-    'Grounded 24/7 AI employee for dermatology clinics. Handles WhatsApp inquiries, RAG knowledge retrieval, real doctor slot booking, Razorpay deposits, and seamless human handoff.',
-  keywords: ['dermatology ai', 'whatsapp clinic bot', 'aesthetic clinic automation', 'medical appointment booking', 'langchain clinic ai'],
+    "Dermo helps clinics automate WhatsApp patient conversations, lead capture, appointment booking, payments, and human handoff.",
+  keywords: [
+    'clinic ai employee',
+    'whatsapp clinic receptionist',
+    'healthcare appointment booking',
+    'outpatient clinic automation',
+    'medical appointment scheduling',
+  ],
+  openGraph: {
+    title: 'Dermoai — AI Employee for Modern Clinics',
+    description:
+      'Dermo helps clinics automate WhatsApp patient conversations, lead capture, appointment booking, payments, and human handoff.',
+    url: 'https://dermoai.in',
+    siteName: 'Dermoai',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/apple-icon',
+  },
 };
 
 export default function RootLayout({
@@ -22,9 +48,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${inter.variable}`}>
-      <body className="min-h-screen bg-[#0A0A0A] text-cream-100 antialiased font-sans selection:bg-orange-500 selection:text-white">
-        <AuthSessionProvider>{children}</AuthSessionProvider>
+    <html lang="en" className={manrope.variable}>
+      <body className="min-h-screen bg-[#F5F6F0] text-[#553E53] antialiased font-sans selection:bg-[#B6CBDE] selection:text-[#553E53]">
+        {children}
       </body>
     </html>
   );
